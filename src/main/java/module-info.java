@@ -2,8 +2,9 @@ module uni.emotionalsong {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
+    requires java.sql;
+    requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
 
     opens uni.emotionalsongs.search to javafx.fxml;
