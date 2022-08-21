@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Search extends Application {
 	public static void main(String[] args) throws ClassNotFoundException {
-		serverES.connection(serverES.getdbUser(), serverES.getdbPsw(), serverES.getdbName(), serverES.getdbIP(), serverES.getdbPort());
+		serverES.setConn();
 		launch();
 	}
 	

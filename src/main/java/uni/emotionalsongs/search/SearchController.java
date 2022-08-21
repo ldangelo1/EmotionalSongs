@@ -42,8 +42,6 @@ public class SearchController implements Initializable {
 			case "Year" -> this.query = "SELECT * FROM Canzoni WHERE Anno=" + year;
 			case "Author and Year" -> this.query = "SELECT * FROM Canzoni WHERE Autore=" + author + "AND Anno=" + year;
 		}
-		
-		
 	}
 	
 	@Override
