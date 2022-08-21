@@ -7,4 +7,8 @@ public class Song {
     private Integer Year;
     private String Genre;
     private Integer Duration;
+	
+	public Song(String title, String author, int year, String album, Double duration, String genre) {
+	
+	}
 }
