@@ -23,7 +23,7 @@
             <TextField fx:id="yearField" onInputMethodTextChanged="#regexYear" prefHeight="30.0" prefWidth="547.0" />
         </graphic>
     </Label>
-    <ChoiceBox fx:id="choiceBox" layoutX="635.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <ChoiceBox fx:id="choiceBox" layoutX="635.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <TableView layoutX="40.0" layoutY="170.0" prefHeight="339.0" prefWidth="760.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="150.0">
         <columns>
             <TableColumn prefWidth="75.0" text="Title" />
@@ -36,8 +36,8 @@
         </columnResizePolicy>
     </TableView>
     <Button layoutX="365.0" layoutY="520.0" mnemonicParsing="false" onAction="#search" prefHeight="30.0" prefWidth="70.0" text="SEARCH" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
-    <Button layoutX="340.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Sign in" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" />
-    <Button layoutX="460.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Sign up" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="300.0" />
+    <Button layoutX="320.0" layoutY="550.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Sign in" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="385.0" />
+    <Button layoutX="363.0" layoutY="550.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Sign up" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="300.0" />
    <Button layoutX="40.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="new playlist" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
    <Button layoutX="40.0" layoutY="550.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="delete playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
    <Button layoutX="660.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="add song" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="20.0" />
