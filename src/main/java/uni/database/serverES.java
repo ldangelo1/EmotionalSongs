@@ -1,40 +1,43 @@
 package uni.database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class serverES {
+	public static Connection dbLink;
 	
-	public static Connection connection(String user, String psw, String dbName, String dbIP, String dbPort) throws ClassNotFoundException {
-		Class.forName("org.postgresql.Driver");
+	public static Connection getConnection() {
+		String url = "jdbc:postgresql://" + getDBIP() + /*getDBPort() +*/ "/" + getDBName();
+		
 		try {
-			DriverManager.getConnection("jdbc:postgresql://" + dbIP + dbPort + "/" + dbName, user, psw);
+			Class.forName("org.postgresql.Driver");
+			dbLink = DriverManager.getConnection(url, getDBUser(), getDBPsw());
 			System.out.println("connessione avvenuta con successo");
-		} catch (SQLException e) {
+			
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Errore nella connessione");
 		}
+		return dbLink;
 	}
 	
-	public static String getdbUser() {
+	public static String getDBUser() {
 		return "postgres";
 	}
 	
-	public static String getdbPsw() {
+	public static String getDBPsw() {
 		return "password";
 	}
 	
-	public static String getdbPort() {
-		return "5432";
-	}
-	
-	public static String getdbName() {
+	public static String getDBName() {
 		return "EmotionalSongs";
 	}
 	
-	public static String getdbIP() {
+	public static String getDBIP() {
 		return "localhost";
 	}
 	
-	public static void setConn() throws ClassNotFoundException {
-		Connection conn = connection(getdbUser(), getdbPsw(), getdbName(), getdbIP(), getdbPort());
+	public static String getDBPort() {
+		return "5432";
 	}
 }
