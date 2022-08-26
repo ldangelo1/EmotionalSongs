@@ -1,6 +1,7 @@
 package uni.emotionalsongs;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -77,5 +78,17 @@ public class clientESController implements Initializable {
 	public void signup() throws IOException {
 		Stage stage = new Stage();
 		new Signup().start(stage);
+	}
+	
+	public void addPList(ActionEvent actionEvent) {
+	}
+	
+	public void remPList(ActionEvent actionEvent) {
+	}
+	
+	public void addSong(ActionEvent actionEvent) {
+	}
+	
+	public void remSong(ActionEvent actionEvent) {
 	}
 }

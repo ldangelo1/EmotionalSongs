@@ -3,8 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="uni.emotionalsongs.clientESController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uni.emotionalsongs.clientESController">
 	<padding>
 		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
 	</padding>
@@ -23,8 +22,8 @@
 			<TextField fx:id="yearField" onInputMethodTextChanged="#regexYear" prefHeight="30.0" prefWidth="547.0"/>
 		</graphic>
 	</Label>
-	<Label fx:id="loggedLabel" alignment="CENTER" disable="true" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0" prefHeight="30.0" prefWidth="100.0"
-	       AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0"/>
+	<Label fx:id="loggedLabel" alignment="CENTER" disable="true" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0"
+	       AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0"/>
 	<ChoiceBox fx:id="choiceBox" layoutX="635.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
 	<TableView fx:id="searchTable" layoutX="40.0" layoutY="170.0" prefHeight="339.0" prefWidth="760.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="20.0"
 	           AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="150.0">
@@ -38,18 +37,18 @@
 			<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
 		</columnResizePolicy>
 	</TableView>
-	<Button fx:id="searchBtn" layoutX="365.0" layoutY="520.0" mnemonicParsing="false" onAction="#search" prefHeight="30.0" prefWidth="70.0" text="SEARCH"
+	<Button fx:id="searchBtn" layoutX="365.0" layoutY="520.0" mnemonicParsing="false" onAction="#search" prefHeight="30.0" text="SEARCH"
 	        AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0"/>
-	<Button fx:id="signinBtn" layoutX="320.0" layoutY="550.0" mnemonicParsing="false" onAction="#signin" prefHeight="30.0" prefWidth="75.0" text="Sign in"
-	        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="385.0"/>
-	<Button fx:id="signupBtn" layoutX="363.0" layoutY="550.0" mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="75.0" text="Sign up"
-	        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="300.0"/>
-	<Button fx:id="addPListBtn" layoutX="40.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="new playlist" AnchorPane.bottomAnchor="35.0"
-	        AnchorPane.leftAnchor="20.0"/>
-	<Button fx:id="remPListBtn" layoutX="40.0" layoutY="550.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="delete playlist" AnchorPane.bottomAnchor="0.0"
-	        AnchorPane.leftAnchor="20.0"/>
-	<Button fx:id="addSongBtn" layoutX="660.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="add song" AnchorPane.bottomAnchor="35.0"
-	        AnchorPane.rightAnchor="20.0"/>
-	<Button fx:id="remSongBtn" layoutX="660.0" layoutY="550.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="remove song" AnchorPane.bottomAnchor="0.0"
-	        AnchorPane.rightAnchor="20.0"/>
+	<Button fx:id="signinBtn" layoutX="320.0" layoutY="550.0" mnemonicParsing="false" onAction="#signin" prefHeight="30.0" text="Sign in" AnchorPane.bottomAnchor="0.0"
+	        AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="403.0"/>
+	<Button fx:id="signupBtn" layoutX="363.0" layoutY="550.0" mnemonicParsing="false" onAction="#signup" prefHeight="30.0" text="Sign up" AnchorPane.bottomAnchor="0.0"
+	        AnchorPane.leftAnchor="403.0" AnchorPane.rightAnchor="300.0"/>
+	<Button fx:id="addPListBtn" layoutX="40.0" layoutY="515.0" mnemonicParsing="false" onAction="#addPList" prefHeight="30.0" prefWidth="100.0" text="new playlist"
+	        AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"/>
+	<Button fx:id="remPListBtn" layoutX="40.0" layoutY="550.0" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0" prefWidth="100.0" text="delete playlist"
+	        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"/>
+	<Button fx:id="addSongBtn" layoutX="660.0" layoutY="515.0" mnemonicParsing="false" onAction="#addSong" prefHeight="30.0" prefWidth="100.0" text="add song"
+	        AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="20.0"/>
+	<Button fx:id="remSongBtn" layoutX="660.0" layoutY="550.0" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0" prefWidth="100.0" text="remove song"
+	        AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0"/>
 </AnchorPane>

@@ -1,14 +1,16 @@
 package uni.emotionalsongs.signin;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class SigninController {
-    @FXML
-    private Label welcomeText;
+	public TextField userField;
+	public TextField passField;
+	public Button signinBtn;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+	public void inButtonClick() {
+	}
 }
