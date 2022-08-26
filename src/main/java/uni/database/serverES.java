@@ -14,7 +14,6 @@ public class serverES {
 			Class.forName("org.postgresql.Driver");
 			dbLink = DriverManager.getConnection(url, getDBUser(), getDBPsw());
 			System.out.println("connessione avvenuta con successo");
-			
 		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Errore nella connessione");
 		}
