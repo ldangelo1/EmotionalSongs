@@ -12,6 +12,7 @@ public class Signup extends Application {
 	public void start(Stage stage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(Signup.class.getResource("signup-view.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+		stage.setResizable(false);
 		stage.setTitle("Sign UP");
 		stage.setScene(scene);
 		stage.show();

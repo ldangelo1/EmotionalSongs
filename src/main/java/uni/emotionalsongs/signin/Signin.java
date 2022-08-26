@@ -12,7 +12,8 @@ public class Signin extends Application {
 	public void start(Stage stage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(Signin.class.getResource("signin-view.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-		stage.setTitle("Sign IN");
+		stage.setResizable(false);
+		stage.setTitle("Signin");
 		stage.setScene(scene);
 		stage.show();
 	}

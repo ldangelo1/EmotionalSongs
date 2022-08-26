@@ -3,9 +3,7 @@ package uni.emotionalsongs;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
@@ -18,8 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class clientESController implements Initializable {
-	@FXML
 	public static TableView<ObservableList> searchTable = new TableView<>();
+	@FXML
 	private final String[] typeSearch = {"Title", "Author", "Year", "Author and Year"};
 	@FXML
 	public TextField titleField, authorField, yearField;
@@ -55,21 +53,6 @@ public class clientESController implements Initializable {
 		dbQuery.cercaBranoMusicale(query);
 	}
 	
-	public void regexTitle(InputMethodEvent inputMethodEvent) {
-	}
-	
-	public void regexAuthor(InputMethodEvent inputMethodEvent) {
-	}
-	
-	public void regexYear(InputMethodEvent inputMethodEvent) {
-	}
-	
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		choiceBox.getItems().addAll(typeSearch);
-		choiceBox.setValue(typeSearch[0]);
-	}
-	
 	public void signin() throws IOException {
 		Stage stage = new Stage();
 		new Signin().start(stage);
@@ -80,15 +63,19 @@ public class clientESController implements Initializable {
 		new Signup().start(stage);
 	}
 	
-	public void addPList(ActionEvent actionEvent) {
-	}
+	public void addPList(ActionEvent actionEvent) { }
+	public void remPList(ActionEvent actionEvent) { }
 	
-	public void remPList(ActionEvent actionEvent) {
-	}
+	public void addSong(ActionEvent actionEvent) { }
+	public void remSong(ActionEvent actionEvent) { }
 	
-	public void addSong(ActionEvent actionEvent) {
-	}
+	public void regexTitle(InputMethodEvent inputMethodEvent) { }
+	public void regexAuthor(InputMethodEvent inputMethodEvent) { }
+	public void regexYear(InputMethodEvent inputMethodEvent) { }
 	
-	public void remSong(ActionEvent actionEvent) {
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		choiceBox.getItems().addAll(typeSearch);
+		choiceBox.setValue(typeSearch[0]);
 	}
 }
