@@ -8,16 +8,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Signin extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Signin.class.getResource("signin-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
-    }
+	@Override
+	public void start(Stage stage) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(Signin.class.getResource("signin-view.fxml"));
+		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+		stage.setTitle("Sign IN");
+		stage.setScene(scene);
+		stage.show();
+	}
 }
