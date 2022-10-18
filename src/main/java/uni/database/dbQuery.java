@@ -10,9 +10,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class dbQuery extends serverES {
-	static Connection connectDB = serverES.getConnection();
+	static Connection connectDB;
+
+	static {
+		try {
+			connectDB = connect();
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	private static ObservableList<ObservableList> data;
 	
+	/**
+	 * Query per la ricerca dei brani
+	 * param Stringa è la Query da eseguire
+	 * return
+	 * */
 	public static void cercaBranoMusicale(String query) {
 		ArrayList<Song> brano = new ArrayList<>();
 		
@@ -22,4 +36,8 @@ public class dbQuery extends serverES {
 		}
 		catch (SQLException e) { e.printStackTrace(); }
 	}
+
+
+
+
 }
