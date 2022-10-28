@@ -21,12 +21,11 @@ public class dbQuery extends serverES {
 	}
 
 	private static ObservableList<ObservableList> data;
-	
+
 	/**
 	 * Query per la ricerca dei brani
-	 * param Stringa è la Query da eseguire
-	 * return
-	 * */
+	 * @param query l'interrogazione sui brani al db
+	 */
 	public static void cercaBranoMusicale(String query) {
 		ArrayList<Song> brano = new ArrayList<>();
 		
