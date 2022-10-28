@@ -1,7 +1,7 @@
-package uni.database;
+package database;
 
+import emotionalsongs.objects.Song;
 import javafx.collections.ObservableList;
-import uni.emotionalsongs.objects.Song;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

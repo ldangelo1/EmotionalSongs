@@ -1,4 +1,4 @@
-package uni.emotionalsongs.signup;
+package emotionalsongs.signup;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

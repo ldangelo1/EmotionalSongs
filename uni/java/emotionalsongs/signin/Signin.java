@@ -1,4 +1,4 @@
-package uni.emotionalsongs.signin;
+package emotionalsongs.signin;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static uni.database.serverES.connect;
 
 public class Signin extends Application {
 	@Override

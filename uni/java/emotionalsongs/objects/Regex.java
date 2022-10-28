@@ -1,4 +1,4 @@
-package uni.emotionalsongs.objects;
+package emotionalsongs.objects;
 
 public class Regex {
 	public Boolean regexStandard(String text) {

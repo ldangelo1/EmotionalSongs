@@ -1,4 +1,4 @@
-package uni.database;
+package database;
 
 /**
  * @author ricky

@@ -1,4 +1,4 @@
-package uni.emotionalsongs.objects;
+package emotionalsongs.objects;
 
 public class Address {
 	private final String qualifier;

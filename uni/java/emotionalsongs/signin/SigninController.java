@@ -1,4 +1,4 @@
-package uni.emotionalsongs.signin;
+package emotionalsongs.signin;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import static uni.database.serverES.connect;
+import static database.serverES.connect;
 
 public class SigninController {
 	public TextField userField;

@@ -1,4 +1,4 @@
-package uni.emotionalsongs.objects;
+package emotionalsongs.objects;
 
 import java.util.ArrayList;
 

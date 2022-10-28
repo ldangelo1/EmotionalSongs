@@ -1,5 +1,8 @@
-package uni.emotionalsongs;
+package emotionalsongs;
 
+import database.dbQuery;
+import emotionalsongs.signin.Signin;
+import emotionalsongs.signup.Signup;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,9 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
-import uni.database.dbQuery;
-import uni.emotionalsongs.signin.Signin;
-import uni.emotionalsongs.signup.Signup;
 
 import java.io.IOException;
 import java.net.URL;
