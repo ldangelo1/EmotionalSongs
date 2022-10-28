@@ -6,6 +6,7 @@ module uni.emotionalsong {
 	requires java.sql;
 	requires org.controlsfx.controls;
 	requires org.kordamp.bootstrapfx.core;
+	requires org.postgresql.jdbc;
 	
 	opens uni.emotionalsongs to javafx.fxml;
 	
