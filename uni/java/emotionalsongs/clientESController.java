@@ -1,6 +1,5 @@
 package emotionalsongs;
 
-import database.dbQuery;
 import emotionalsongs.signin.Signin;
 import emotionalsongs.signup.Signup;
 import javafx.collections.ObservableList;
@@ -32,7 +31,7 @@ public class clientESController implements Initializable {
 	 * Metodo per selezionare il tipo di Query da eseguire
 	 * Viene in seguito restituita la stringa della query da eseguire sulla classe ServerES
 	 */
-	public void search() {
+	/*public void search() {
 		String title = titleField.getText();
 		String author = authorField.getText();
 		String year = yearField.getText();
@@ -55,7 +54,7 @@ public class clientESController implements Initializable {
 		}
 		
 		dbQuery.cercaBranoMusicale(query);
-	}
+	}*/
 	
 	/**
 	 * Apertura window per accesso
