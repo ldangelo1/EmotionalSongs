@@ -1,5 +1,5 @@
 package emotionalsongs.objects;
 
-public class Emotion {
+public class Emozione {
 
 }

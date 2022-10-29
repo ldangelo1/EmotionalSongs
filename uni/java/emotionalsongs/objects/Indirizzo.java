@@ -1,6 +1,6 @@
 package emotionalsongs.objects;
 
-public class Address {
+public class Indirizzo {
 	private final String qualifier;
 	private final String addrName;
 	private final Integer civicNum;
@@ -8,7 +8,7 @@ public class Address {
 	private final String province;
 	private final Integer cap;
 	
-	Address(String qualifier, String addrName, Integer civicNum, String city, String province, Integer cap) {
+	Indirizzo(String qualifier, String addrName, Integer civicNum, String city, String province, Integer cap) {
 		this.qualifier = qualifier;
 		this.addrName = addrName;
 		this.civicNum = civicNum;
