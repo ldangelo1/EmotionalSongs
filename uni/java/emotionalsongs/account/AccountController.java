@@ -1,4 +1,4 @@
-package emotionalsongs.signin;
+package emotionalsongs.account;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,9 +7,9 @@ import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import static database.serverES.connect;
+import static database.serverES.connDB;
 
-public class SigninController {
+public class AccountController {
 	public TextField userField;
 	public TextField passField;
 	public Button signinBtn;
@@ -17,15 +17,12 @@ public class SigninController {
 	/**
 	 * Metodo per verificare i dati dell'utente per eseguire il login
 	 */
-	public boolean checkLogin(String user, String pass) throws Exception {
-		boolean check = false;
-		Statement st = connect().createStatement();
-		ResultSet loginQuery = st.executeQuery("SELECT username,password FROM \"Utenti\" WHERE username LIKE \"" + user + '\"');
+	public void checkLogin(String user, String pass) throws Exception {
+		Statement st = connDB().createStatement();
+		ResultSet loginQuery = st.executeQuery("SELECT username FROM \"Utente\" WHERE username=" + "'" + user + "'");
 		
 		if (loginQuery.next()) {
-			
 			if (user.equals(loginQuery.getString(1)) && pass.equals(loginQuery.getString(2))) {
-				check = true;
 				System.out.println("Dati confermati nel DB");
 			} else {
 				System.out.println("Errore, i dati inseriti sono errati e non corrispondono a quelli nel DB");
@@ -33,11 +30,8 @@ public class SigninController {
 		} else {
 			System.out.println("utente non registrato !!");
 		}
-		
 		st.close();
 		loginQuery.close();
-		
-		return check;
 	}
 	
 	@FXML
