@@ -1,10 +1,9 @@
 package database;
 
-
 public class DBInfo {
 	// TODO: 29/10/22 Ho settato il mio db con diverse credenziali:
 	// la variabile le gestisce, se true è il vostro db.
-	private static final Boolean dbDefault = false;
+	private static final Boolean dbDefault = true;
 	
 	public static String getIP() {
 		return "localhost";
