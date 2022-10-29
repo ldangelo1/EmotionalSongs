@@ -1,10 +1,12 @@
 package emotionalsongs;
 
 import database.dbQuery;
+import emotionalsongs.account.Account;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 
 public class clientESController_NEW {
@@ -16,7 +18,6 @@ public class clientESController_NEW {
 	public Button songBtn, accountBtn;
 	public Button addPListBtn, remPListBtn;
 	public Button addSongBtn_song, remSongBtn_song, remSongBtn_acc;
-	
 	
 	public void song() throws Exception {
 		String title = titleField.getText();
@@ -47,23 +48,39 @@ public class clientESController_NEW {
 	
 	private void printTable(ResultSet rset) {
 		System.out.println("arrivati");
-		
 		// TODO: 29/10/22 qui arriva, metodo di stampa su tabella
 	}
 	
-	public void addSong(ActionEvent actionEvent) {
+	/**
+	 * Apertura finestra per registrazione/accesso
+	 */
+	public void account() throws IOException {
+		Stage stage = new Stage();
+		new Account().start(stage);
 	}
 	
-	public void remSong(ActionEvent actionEvent) {
+	/**
+	 * Metodo di creazione della playlist
+	 */
+	public void addPList() {
 	}
 	
-	public void account(ActionEvent actionEvent) {
+	/**
+	 * Metodo di eliminazione della playlist
+	 */
+	public void remPList() {
 	}
 	
-	public void addPList(ActionEvent actionEvent) {
+	/**
+	 * Metodo di aggiunta canzone a Playlist
+	 */
+	public void addSong() {
 	}
 	
-	public void remPList(ActionEvent actionEvent) {
+	/**
+	 * Metodo di rimozione canzone da Playlist
+	 */
+	public void remSong() {
 	}
 	
 	public void initialize() {
@@ -71,7 +88,7 @@ public class clientESController_NEW {
 		queryCBox.setValue(typeQuery[0]);
 	}
 	
-	// @todo scrivere un solo metodo che fa la regex su tutti i campi
+	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
 	public void regexTitle() {
 	}
 	
