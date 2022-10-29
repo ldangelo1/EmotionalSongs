@@ -1,68 +1,28 @@
 package database;
 
-/**
- * @author ricky
- */
+
 public class DBInfo {
-	private static String USERNAME = "postgres";
-	private static String PASS = "password";
-	private static String DBPORT = "5432";
-	private static String DBNAME = "EmotionalSongs";
-	private static String IP = "localhost";
+	// TODO: 29/10/22 Ho settato il mio db con diverse credenziali:
+	// la variabile le gestisce, se true è il vostro db.
+	private static final Boolean dbDefault = false;
 	
-	/**
-	 * @return the USERNAME
-	 */
-	public static String getUSERNAME() {
-		return USERNAME;
-	}
-	
-	/**
-	 * @return the PASS
-	 */
-	public static String getPASS() {
-		return PASS;
-	}
-	
-	/**
-	 * @return the DBPORT
-	 */
-	public static String getDBPORT() {
-		return DBPORT;
-	}
-	
-	/**
-	 * @return the DBNAME
-	 */
-	public static String getDBNAME() {
-		return DBNAME;
-	}
-	
-	/**
-	 * @return the IP
-	 */
 	public static String getIP() {
-		return IP;
+		return "localhost";
 	}
 	
-	/**
-	 * @param aUSERNAME the USERNAME to set
-	 */
-	public static void setUSERNAME(String aUSERNAME) {
-		USERNAME = aUSERNAME;
+	public static String getPORT() {
+		return "5432";
 	}
 	
-	/**
-	 * @param aPASS the PASS to set
-	 */
-	public static void setPASS(String aPASS) {
-		PASS = aPASS;
+	public static String getNAME() {
+		return dbDefault ? "EmotionalSongs" : "lab";
 	}
 	
-	/**
-	 * @param aDBPORT the DBPORT to set
-	 */
-	public static void setDBPORT(String aDBPORT) {
-		DBPORT = aDBPORT;
+	public static String getUser() {
+		return dbDefault ? "postgres" : "lab";
+	}
+	
+	public static String getPass() {
+		return dbDefault ? "password" : "postLab";
 	}
 }
