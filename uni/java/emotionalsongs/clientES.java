@@ -14,7 +14,7 @@ public class clientES extends Application {
 	
 	@Override
 	public void start(Stage stage) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(clientES.class.getResource("clientES-view.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(clientES.class.getResource("clientES-view_NEW.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 		stage.setResizable(false);
 		stage.setTitle("Search");
