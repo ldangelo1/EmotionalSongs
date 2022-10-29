@@ -10,12 +10,13 @@ import java.sql.Statement;
 import static database.serverES.connDB;
 
 public class AccountController {
-	public TextField userField;
-	public TextField passField;
-	public Button signinBtn;
+	public TextField userField, passField;
+	public Button accediBtn, registratiBtn;
 	
 	/**
 	 * Metodo per verificare i dati dell'utente per eseguire il login
+	 * TODO: da rivedere/riprendere la vecchia query, scusa
+	 * comunque è da spostare in dbQuery, abbiamo creato apposta il file.
 	 */
 	public void checkLogin(String user, String pass) throws Exception {
 		Statement st = connDB().createStatement();
