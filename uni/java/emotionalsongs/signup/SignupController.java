@@ -1,35 +1,34 @@
 package emotionalsongs.signup;
 
-import emotionalsongs.objects.Address;
+import emotionalsongs.objects.Indirizzo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static database.serverES.connect;
+import static database.serverES.connDB;
 
 
 public class SignupController {
 	@FXML
 	private Label welcomeText;
 	
-	public void SignUp(String user, String NomeCognome, String mail, String pass, String CF, Address indirizzo) throws ClassNotFoundException, SQLException {
+	public void SignUp(String user, String NomeCognome, String mail, String pass, String CF, Indirizzo indirizzo) throws SQLException {
 		//controlla se utente già registrato
 		boolean registered = false;
-		Statement st = connect().createStatement();
-		ResultSet resUser = st.executeQuery("SELECT username FROM User WHERE username =" + user);
+		Statement st = connDB().createStatement();
+		ResultSet resUser = st.executeQuery("SELECT username FROM \"Utente\" WHERE username =" + user);
 		
 		if (resUser.next()) {
 			registered = true;
 		}
 		
 		//se non presente, registra
-		if (!registered) {
-			String query = "INSERT INTO User(username, password, NomeCognome, CF, mail, indirizzo) VALUES(?, ?, ?, ?, ?, ?)";
-			try (PreparedStatement pst = connect().prepareStatement(query)) {
+		/*if (!registered) {
+			String query = "INSERT INTO \"Utente\"(username, password, NomeCognome, CF, mail, indirizzo) VALUES(?, ?, ?, ?, ?, ?)";
+			try (PreparedStatement pst = connDB().prepareStatement(query)) {
 				pst.setString(1, user);
 				pst.setString(2, pass);
 				pst.setString(3, NomeCognome);
@@ -44,11 +43,6 @@ public class SignupController {
 			}
 		} else {
 			System.err.println("Utente già registrato!");
-		}
-	}
-	
-	@FXML
-	protected void onHelloButtonClick() {
-		welcomeText.setText("Welcome to JavaFX Application!");
+		}*/
 	}
 }
