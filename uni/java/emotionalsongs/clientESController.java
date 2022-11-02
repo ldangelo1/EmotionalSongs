@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 
-public class clientESController_NEW {
+public class clientESController {
 	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
 	public TableView<ObservableList> songTable, plistTable = new TableView<>();
 	public TextField titleField, authorField, yearField;
@@ -24,7 +24,7 @@ public class clientESController_NEW {
 		String author = authorField.getText();
 		String year = yearField.getText();
 		String choice = queryCBox.getValue();
-		String query = "SELECT * FROM \"Canzoni\" ";
+		String query = "SELECT * FROM \"Canzone\" ";
 		
 		switch (choice) {
 			case "Titolo" -> {
