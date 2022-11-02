@@ -42,7 +42,7 @@ public class clientESController {
 			}
 		}
 		
-		ResultSet rset = dbQuery.cercaCanzone(query);
+		ResultSet rset = dbQuery.eseguiQuery(query);
 		printTable(rset);
 	}
 	
