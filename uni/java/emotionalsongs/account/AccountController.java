@@ -20,7 +20,7 @@ public class AccountController {
 	 */
 	public void checkLogin(String user, String pass) throws Exception {
 		Statement st = connDB().createStatement();
-		ResultSet loginQuery = st.executeQuery("SELECT username FROM \"Utente\" WHERE username=" + "'" + user + "'");
+		ResultSet loginQuery = st.executeQuery("SELECT username, password FROM \"Utente\" WHERE username LIKE '" + user + "'");
 		
 		if (loginQuery.next()) {
 			if (user.equals(loginQuery.getString(1)) && pass.equals(loginQuery.getString(2))) {
