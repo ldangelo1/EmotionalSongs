@@ -1,6 +1,7 @@
 package emotionalsongs;
 
-import database.dbQuery;
+import database.DBInfo;
+import database.serverES;
 import emotionalsongs.account.Account;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -13,7 +14,7 @@ public class clientESController {
 	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
 	public TableView<ObservableList> songTable, plistTable = new TableView<>();
 	public TextField titleField, authorField, yearField;
-	public Label userLbl;
+	public Label userLbl, alertLbl;
 	public ChoiceBox<String> queryCBox, plistCBox;
 	public Button songBtn, accountBtn;
 	public Button addPListBtn, remPListBtn;
@@ -42,8 +43,9 @@ public class clientESController {
 			}
 		}
 		
-		ResultSet rset = dbQuery.eseguiQuery(query);
+		ResultSet rset = serverES.eseguiQuery(query, DBInfo.isConnected);
 		printTable(rset);
+		rset.close();
 	}
 	
 	private void printTable(ResultSet rset) {
@@ -84,8 +86,10 @@ public class clientESController {
 	}
 	
 	public void initialize() {
+		alertLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		queryCBox.getItems().addAll(typeQuery);
 		queryCBox.setValue(typeQuery[0]);
+		
 	}
 	
 	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
