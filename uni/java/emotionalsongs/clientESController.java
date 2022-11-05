@@ -10,15 +10,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 
+import static java.lang.System.out;
+
 public class clientESController {
+	public static Boolean isLogged;
 	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
 	public TableView<ObservableList> songTable, plistTable = new TableView<>();
 	public TextField titleField, authorField, yearField;
 	public Label userLbl, alertLbl;
 	public ChoiceBox<String> queryCBox, plistCBox;
-	public Button songBtn, accountBtn;
-	public Button addPListBtn, remPListBtn;
+	public Button addPListBtn, remPListBtn, songBtn, accountBtn;
 	public Button addSongBtn_song, remSongBtn_song, remSongBtn_acc;
+	
+	public void enableAccesso() {
+		this.addPListBtn.setDisable(!isLogged);
+		this.remPListBtn.setDisable(!isLogged);
+	}
 	
 	public void song() throws Exception {
 		String title = titleField.getText();
@@ -49,7 +56,7 @@ public class clientESController {
 	}
 	
 	private void printTable(ResultSet rset) {
-		System.out.println("arrivati");
+		out.println("arrivati");
 		// TODO: 29/10/22 qui arriva, metodo di stampa su tabella
 	}
 	
@@ -89,7 +96,6 @@ public class clientESController {
 		alertLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		queryCBox.getItems().addAll(typeQuery);
 		queryCBox.setValue(typeQuery[0]);
-		
 	}
 	
 	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
