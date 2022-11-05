@@ -1,44 +1,60 @@
 package emotionalsongs.account;
 
+import database.DBInfo;
+import database.serverES;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 
-import static database.serverES.connDB;
+import static java.lang.System.out;
 
 public class AccountController {
-	public TextField userField, passField;
-	public Button accediBtn, registratiBtn;
+	private final String[] typeQualifier = {"via", "piazza", "corso"};
+	public TextField nameField, surnameField, cfField;
+	public TextField addrField, civicField, cityField, provField, capField;
+	public TextField userAField, passAField, userRField, passRField;
+	public ChoiceBox<String> qualifierCBox;
+	public Button accessoBtn, registrazioneBtn;
 	
 	/**
 	 * Metodo per verificare i dati dell'utente per eseguire il login
-	 * TODO: da rivedere/riprendere la vecchia query, scusa
-	 * comunque è da spostare in dbQuery, abbiamo creato apposta il file.
+	 * gestione disable bottoni interfacce
+	 * nuova tabella plist affiancata
 	 */
-	public void checkLogin(String user, String pass) throws Exception {
-		Statement st = connDB().createStatement();
-		ResultSet loginQuery = st.executeQuery("SELECT username, password FROM \"Utente\" WHERE username LIKE '" + user + "'");
+	public Boolean checkAccesso(String tail) throws SQLException {
+		String query = "SELECT * FROM \"Utente\" " + tail;
+		ResultSet rset = serverES.eseguiQuery(query, DBInfo.isConnected);
 		
-		if (loginQuery.next()) {
-			if (user.equals(loginQuery.getString(1)) && pass.equals(loginQuery.getString(2))) {
-				System.out.println("Dati confermati nel DB");
-			} else {
-				System.out.println("Errore, i dati inseriti sono errati e non corrispondono a quelli nel DB");
-			}
-		} else {
-			System.out.println("utente non registrato !!");
-		}
-		st.close();
-		loginQuery.close();
+		rset.next();
+		Boolean check = rset.getRow() == 1;
+		rset.close();
+		return check;
 	}
 	
 	@FXML
-	public void inButtonClick() throws Exception {
-		String user = userField.getText();
-		String pass = passField.getText();
-		checkLogin(user, pass);
+	public void Accesso() throws Exception {
+		String query = "WHERE \"Username\"='" + userAField.getText() + "' " +
+				"AND \"Password\"='" + passAField.getText() + "'";
+		out.println(checkAccesso(query) ? "Accesso eseguito" : "I dati non corrispondono");
+	}
+	
+	@FXML
+	public void Registrazione() throws Exception {
+		String query = "WHERE \"CF\"='" + cfField.getText() + "'";
+		
+		if (!checkAccesso(query)) {
+			String queryIns = "INSERT INTO \"Utente\"(username, password, NomeCognome, CF, mail, indirizzo) VALUES(?, ?, ?, ?, ?, ?)";
+			// TODO: 05/11/22 registrazione utente
+		}
+		
+	}
+	
+	public void initialize() {
+		qualifierCBox.getItems().addAll(typeQualifier);
+		qualifierCBox.setValue(typeQualifier[0]);
 	}
 }
