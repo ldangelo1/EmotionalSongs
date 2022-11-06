@@ -11,9 +11,7 @@ module uni.emotionalsong {
 	opens emotionalsongs to javafx.fxml;
 	
 	opens emotionalsongs.account to javafx.fxml;
-	opens emotionalsongs.signup to javafx.fxml;
 	
 	exports emotionalsongs;
 	exports emotionalsongs.account;
-	exports emotionalsongs.signup;
 }
