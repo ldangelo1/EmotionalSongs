@@ -29,12 +29,11 @@
     <Label contentDisplay="RIGHT" layoutX="195.0" layoutY="55.0" prefHeight="30.0" text="Email"
            AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="35.0">
         <graphic>
-            <TextField prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="mailField" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <ChoiceBox fx:id="qualifierCBox" layoutX="20.0" layoutY="116.0" prefHeight="30.0" prefWidth="70.0"
-               AnchorPane.leftAnchor="0.0"
-               AnchorPane.topAnchor="95.0"/>
+               AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="95.0"/>
     <Label contentDisplay="RIGHT" layoutX="107.0" layoutY="116.0" prefHeight="30.0" text="Indirizzo"
            AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="95.0">
         <graphic>
