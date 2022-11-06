@@ -2,7 +2,6 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static java.lang.System.out;
@@ -23,11 +22,17 @@ public class serverES {
 		}
 	}
 	
-	public static ResultSet eseguiQuery(String query, Connection connDB) throws SQLException {
+	public static Object eseguiQuery(String query, Integer code) throws SQLException {
 		try {
-			return connDB.prepareStatement(query).executeQuery();
+			switch (code) {
+				case 1:
+					return DBInfo.isConnected.prepareStatement(query).executeQuery();
+				case 2:
+					return DBInfo.isConnected.prepareStatement(query).executeUpdate();
+			}
 		} catch (SQLException e) {
 			throw new SQLException(e);
 		}
+		return null;
 	}
 }

@@ -50,7 +50,8 @@ public class clientESController {
 			}
 		}
 		
-		ResultSet rset = serverES.eseguiQuery(query, DBInfo.isConnected);
+		ResultSet rset = (ResultSet) serverES.eseguiQuery(query, 1);
+		assert rset != null;
 		printTable(rset);
 		rset.close();
 	}
