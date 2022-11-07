@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<TabPane prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.clientESController">
+<TabPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.clientESController">
     <Tab text="Canzoni">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <padding>
@@ -31,7 +31,7 @@
                                prefWidth="470.0"/>
                 </graphic>
             </Label>
-            <Label fx:id="alertLbl" alignment="CENTER" disable="true" graphicTextGap="19.0" layoutX="40.0"
+            <Label fx:id="alertLbl" alignment="CENTER" graphicTextGap="19.0" layoutX="40.0"
                    layoutY="110.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
                    AnchorPane.topAnchor="115.0"/>
             <ChoiceBox fx:id="queryCBox" layoutX="637.0" layoutY="20.0" prefHeight="30.0" prefWidth="163.0"
@@ -50,13 +50,13 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                 </columnResizePolicy>
             </TableView>
-            <Button fx:id="songBtn" defaultButton="true" layoutX="365.0" layoutY="520.0" mnemonicParsing="false"
+            <Button defaultButton="true" layoutX="365.0" layoutY="520.0" mnemonicParsing="false"
                     onAction="#song" prefHeight="30.0" prefWidth="0.0" text="Ricerca canzoni"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0"/>
-            <Button fx:id="addSongBtn_song" disable="true" layoutX="660.0" layoutY="515.0" mnemonicParsing="false"
+            <Button fx:id="addSongBtn_song" layoutX="660.0" layoutY="515.0" mnemonicParsing="false"
                     onAction="#addSong" prefHeight="30.0" prefWidth="130.0" text="Aggiungi canzone"
                     AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="20.0"/>
-            <Button fx:id="remSongBtn_song" disable="true" layoutX="660.0" layoutY="550.0" mnemonicParsing="false"
+            <Button fx:id="remSongBtn_song" layoutX="660.0" layoutY="550.0" mnemonicParsing="false"
                     onAction="#remSong" prefHeight="30.0" prefWidth="130.0" text="Rimuovi canzone"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0"/>
         </AnchorPane>
@@ -68,7 +68,7 @@
             </padding>
             <Label fx:id="userLbl" layoutX="50.0" layoutY="40.0" prefHeight="30.0" text="Ciao"
                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0"/>
-            <Label alignment="CENTER" disable="true" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0"
+            <Label alignment="CENTER" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0"
                    prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
                    AnchorPane.topAnchor="35.0"/>
             <ChoiceBox fx:id="plistCBox" layoutX="637.0" layoutY="20.0" prefHeight="30.0" prefWidth="163.0"
@@ -87,16 +87,16 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                 </columnResizePolicy>
             </TableView>
-            <Button fx:id="accountBtn" defaultButton="true" layoutX="340.0" layoutY="550.0" mnemonicParsing="false"
+            <Button defaultButton="true" layoutX="340.0" layoutY="550.0" mnemonicParsing="false"
                     onAction="#account" prefHeight="30.0" prefWidth="200.0" text="Accedi / Registrati"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0"/>
-            <Button fx:id="addPListBtn" disable="true" layoutX="30.0" layoutY="484.0" mnemonicParsing="false"
+            <Button fx:id="addPListBtn" layoutX="30.0" layoutY="484.0" mnemonicParsing="false"
                     onAction="#addPList" prefHeight="30.0" prefWidth="120.0" text="Crea playlist"
                     AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"/>
-            <Button fx:id="remPListBtn" disable="true" layoutX="140.0" layoutY="525.0" mnemonicParsing="false"
+            <Button fx:id="remPListBtn" layoutX="140.0" layoutY="525.0" mnemonicParsing="false"
                     onAction="#remPList" prefHeight="30.0" prefWidth="120.0" text="Elimina playlist"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"/>
-            <Button fx:id="remSongBtn_acc" disable="true" layoutX="660.0" layoutY="550.0" mnemonicParsing="false"
+            <Button fx:id="remSongBtn_acc" layoutX="660.0" layoutY="550.0" mnemonicParsing="false"
                     onAction="#remSong" prefHeight="30.0" prefWidth="130.0" text="Rimuovi canzone"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0"/>
         </AnchorPane>

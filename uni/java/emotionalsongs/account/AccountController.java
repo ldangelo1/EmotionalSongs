@@ -1,9 +1,9 @@
 package emotionalsongs.account;
 
 import database.serverES;
+import emotionalsongs.clientESController;
 import emotionalsongs.objects.Indirizzo;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -14,18 +14,30 @@ import static java.lang.System.out;
 
 public class AccountController {
 	private final String[] typeQualifier = {"via", "piazza", "corso"};
-	public TextField nameField, surnameField, cfField, mailField;
-	public TextField addrField, civicField, cityField, provField, capField;
-	public TextField userAField, passAField, userRField, passRField;
-	public ChoiceBox<String> qualifierCBox;
-	public Button accessoBtn, registrazioneBtn;
+	@FXML
+	private TextField nameField, surnameField, cfField, mailField;
+	@FXML
+	private TextField addrField, civicField, cityField, provField, capField;
+	@FXML
+	private TextField userAField, passAField, userRField, passRField;
+	@FXML
+	private ChoiceBox<String> qualifierCBox;
 	
 	// TODO: 07/11/22 tabella affiancata per le playlist
 	@FXML
-	private void Accesso() throws SQLException {
-		String query = "WHERE \"Username\"='" + userAField.getText() + "' " +
-				"AND \"Password\"='" + passAField.getText() + "'";
-		out.println(checkUtente(query) ? "Accesso eseguito" : "I dati non corrispondono");
+	private void Accesso() throws Exception {
+		String user = userAField.getText();
+		
+		String query = "WHERE \"Username\"='" + user + "' AND \"Password\"='" + passAField.getText() + "'";
+		
+		if (checkUtente(query)) {
+			out.println("Accesso eseguito da: " + user);
+			clientESController.enableAccesso(user);
+			// TODO: 07/11/22 pop-up conferma
+		} else {
+			out.println("I dati non corrispondono");
+			// TODO: 07/11/22 pop-up rifiuto
+		}
 	}
 	
 	@FXML

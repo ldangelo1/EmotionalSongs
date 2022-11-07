@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="310.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.account.AccountController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="310.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.account.AccountController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -73,7 +73,7 @@
     <Label contentDisplay="RIGHT" layoutX="201.0" layoutY="317.0" prefHeight="30.0" text="password"
            AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="190.0">
         <graphic>
-            <TextField fx:id="passRField" prefHeight="30.0" prefWidth="110.0"/>
+            <PasswordField fx:id="passRField" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="404.0" layoutY="123.0" prefHeight="30.0" text="username"
@@ -85,13 +85,13 @@
     <Label contentDisplay="RIGHT" graphicTextGap="5.0" layoutX="405.0" layoutY="163.0" prefHeight="30.0" text="password"
            AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0">
         <graphic>
-            <TextField fx:id="passAField" prefHeight="30.0" prefWidth="110.0"/>
+            <PasswordField fx:id="passAField" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
-    <Button fx:id="accessoBtn" layoutX="400.0" layoutY="245.0" onAction="#Accesso" prefHeight="30.0" prefWidth="130.0"
-            text="Accesso" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0"/>
-    <Button fx:id="registrazioneBtn" layoutX="80.0" layoutY="378.0" onAction="#Registrazione" prefHeight="30.0"
+    <Button layoutX="80.0" layoutY="378.0" onAction="#Registrazione" prefHeight="30.0"
             prefWidth="130.0" text="Registrazione" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0"/>
+    <Button layoutX="400.0" layoutY="245.0" onAction="#Accesso" prefHeight="30.0" prefWidth="130.0"
+            text="Accesso" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0"/>
     <Separator layoutX="427.0" layoutY="120.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0"
                AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="10.0"/>
     <Separator layoutX="90.0" layoutY="120.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0"

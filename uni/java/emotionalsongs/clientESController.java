@@ -4,6 +4,7 @@ import database.DBInfo;
 import database.serverES;
 import emotionalsongs.account.Account;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -13,22 +14,33 @@ import java.sql.ResultSet;
 import static java.lang.System.out;
 
 public class clientESController {
-	public static Boolean isLogged;
+	@FXML
+	private static Label userLbl;
+	@FXML
+	private static Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_song, remSongBtn_acc;
+	@FXML
 	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
-	public TableView<ObservableList> songTable, plistTable = new TableView<>();
-	public TextField titleField, authorField, yearField;
-	public Label userLbl, alertLbl;
-	public ChoiceBox<String> queryCBox, plistCBox;
-	public Button addPListBtn, remPListBtn, songBtn, accountBtn;
-	public Button addSongBtn_song, remSongBtn_song, remSongBtn_acc;
+	@FXML
+	private TableView<ObservableList> songTable, plistTable = new TableView<>();
+	@FXML
+	private TextField titleField, authorField, yearField;
+	@FXML
+	private Label alertLbl;
+	@FXML
+	private ChoiceBox<String> queryCBox, plistCBox;
 	
 	// TODO: 07/11/22 Sblocca funzionalità dopo il login
-	public void enableAccesso() {
-		this.addPListBtn.setDisable(!isLogged);
-		this.remPListBtn.setDisable(!isLogged);
+	public static void enableAccesso(String user) {
+		userLbl.setText("Ciao, " + user);
+		addPListBtn.setDisable(false);
+		remPListBtn.setDisable(false);
+		addSongBtn_song.setDisable(false);
+		remSongBtn_song.setDisable(false);
+		remSongBtn_acc.setDisable(false);
 	}
 	
-	public void song() throws Exception {
+	@FXML
+	private void song() throws Exception {
 		String title = titleField.getText();
 		String author = authorField.getText();
 		String year = yearField.getText();
@@ -65,7 +77,8 @@ public class clientESController {
 	/**
 	 * Apertura finestra per registrazione/accesso
 	 */
-	public void account() throws IOException {
+	@FXML
+	private void account() throws IOException {
 		Stage stage = new Stage();
 		new Account().start(stage);
 	}
@@ -73,29 +86,43 @@ public class clientESController {
 	/**
 	 * Metodo di creazione della playlist
 	 */
-	public void addPList() {
+	@FXML
+	private void addPList() {
 	}
 	
 	/**
 	 * Metodo di eliminazione della playlist
 	 */
-	public void remPList() {
+	@FXML
+	private void remPList() {
 	}
 	
 	/**
 	 * Metodo di aggiunta canzone a Playlist
 	 */
-	public void addSong() {
+	@FXML
+	private void addSong() {
 	}
 	
 	/**
 	 * Metodo di rimozione canzone da Playlist
 	 */
-	public void remSong() {
+	@FXML
+	private void remSong() {
 	}
 	
 	public void initialize() {
 		alertLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
+		
+		userLbl = new Label("Necessario accedere per sbloccare altre funzionalità");
+		
+		addPListBtn = remPListBtn = addSongBtn_song = remSongBtn_song = remSongBtn_acc = new Button();
+		addPListBtn.setDisable(true);
+		remPListBtn.setDisable(true);
+		addSongBtn_song.setDisable(true);
+		remSongBtn_song.setDisable(true);
+		remSongBtn_acc.setDisable(true);
+		
 		queryCBox.getItems().addAll(typeQuery);
 		queryCBox.setValue(typeQuery[0]);
 	}
