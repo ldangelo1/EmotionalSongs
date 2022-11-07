@@ -22,6 +22,7 @@ public class clientESController {
 	public Button addPListBtn, remPListBtn, songBtn, accountBtn;
 	public Button addSongBtn_song, remSongBtn_song, remSongBtn_acc;
 	
+	// TODO: 07/11/22 Sblocca funzionalità dopo il login
 	public void enableAccesso() {
 		this.addPListBtn.setDisable(!isLogged);
 		this.remPListBtn.setDisable(!isLogged);
@@ -58,7 +59,7 @@ public class clientESController {
 	
 	private void printTable(ResultSet rset) {
 		out.println("arrivati");
-		// TODO: 29/10/22 qui arriva, metodo di stampa su tabella
+		// TODO: 29/10/22 stampa risultati su tabella
 	}
 	
 	/**

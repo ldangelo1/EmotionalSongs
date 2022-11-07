@@ -20,11 +20,7 @@ public class AccountController {
 	public ChoiceBox<String> qualifierCBox;
 	public Button accessoBtn, registrazioneBtn;
 	
-	/**
-	 * gestione disable bottoni interfacce
-	 * nuova tabella plist affiancata
-	 */
-	
+	// TODO: 07/11/22 tabella affiancata per le playlist
 	@FXML
 	private void Accesso() throws SQLException {
 		String query = "WHERE \"Username\"='" + userAField.getText() + "' " +
