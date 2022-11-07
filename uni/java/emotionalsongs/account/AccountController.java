@@ -43,6 +43,9 @@ public class AccountController {
 					userRField.getText() + "', '" + passRField.getText() + "', '" +
 					addr + "')";
 			
+			// TODO: 06/11/22 Username unico quindi da gestire
+			/// questo l'errore altrimenti
+			/// org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "Username_pk"
 			out.println(InsRegistrazione(queryIns) > 0 ? "Registrazione eseguita" : "Errore nella registrazione");
 		} else {
 			out.println("Utente già registrato");
