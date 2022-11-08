@@ -1,14 +1,37 @@
 package emotionalsongs.objects;
 
 public class Canzone {
-	private String title;
-	private String author;
-	private String album;
-	private Integer year;
-	private String genre;
-	private Integer duration;
+	private final Integer year;
+	private final String ID;
+	private final String author;
+	private final String title;
+	private final String album;
 	
-	public Canzone(String title, String author, int year, String album, Double duration, String genre) {
+	public Canzone(Integer year, String ID, String author, String title, String album) {
+		this.year = year;
+		this.ID = ID;
+		this.author = author;
+		this.title = title;
+		this.album = album;
+	}
 	
+	public Integer getYear() {
+		return year;
+	}
+	
+	public String getID() {
+		return ID;
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public String getAlbum() {
+		return album;
 	}
 }
