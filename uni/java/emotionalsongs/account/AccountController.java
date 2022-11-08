@@ -1,7 +1,6 @@
 package emotionalsongs.account;
 
 import database.serverES;
-import emotionalsongs.clientESController;
 import emotionalsongs.objects.Indirizzo;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -32,7 +31,6 @@ public class AccountController {
 		
 		if (checkUtente(query)) {
 			out.println("Accesso eseguito da: " + user);
-			clientESController.enableAccesso(user);
 			// TODO: 07/11/22 pop-up conferma
 		} else {
 			out.println("I dati non corrispondono");

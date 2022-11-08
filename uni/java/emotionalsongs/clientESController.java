@@ -3,6 +3,8 @@ package emotionalsongs;
 import database.DBInfo;
 import database.serverES;
 import emotionalsongs.account.Account;
+import emotionalsongs.objects.Canzone;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,34 +12,25 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static java.lang.System.out;
 
 public class clientESController {
 	@FXML
-	private static Label userLbl;
-	@FXML
-	private static Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_song, remSongBtn_acc;
-	@FXML
 	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
 	@FXML
-	private TableView<ObservableList> songTable, plistTable = new TableView<>();
+	private TableView<Canzone> songTable;
+	@FXML
+	private TableView<ObservableList> plistTable, plistSongTable = new TableView<>();
 	@FXML
 	private TextField titleField, authorField, yearField;
 	@FXML
-	private Label alertLbl;
+	private Label userLbl, alertLbl;
 	@FXML
-	private ChoiceBox<String> queryCBox, plistCBox;
-	
-	// TODO: 07/11/22 Sblocca funzionalità dopo il login
-	public static void enableAccesso(String user) {
-		userLbl.setText("Ciao, " + user);
-		addPListBtn.setDisable(false);
-		remPListBtn.setDisable(false);
-		addSongBtn_song.setDisable(false);
-		remSongBtn_song.setDisable(false);
-		remSongBtn_acc.setDisable(false);
-	}
+	private ChoiceBox<String> queryCBox;
+	@FXML
+	private Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_song, remSongBtn_acc;
 	
 	@FXML
 	private void song() throws Exception {
@@ -69,9 +62,17 @@ public class clientESController {
 		rset.close();
 	}
 	
-	private void printTable(ResultSet rset) {
-		out.println("arrivati");
+	private void printTable(ResultSet rset) throws SQLException {
 		// TODO: 29/10/22 stampa risultati su tabella
+		out.println("arrivati");
+		
+		ObservableList<Canzone> data = FXCollections.observableArrayList();
+		
+		while (rset.next()) {
+			data.add(new Canzone(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5)));
+		}
+		
+		songTable.setItems(data);
 	}
 	
 	/**
@@ -113,15 +114,7 @@ public class clientESController {
 	
 	public void initialize() {
 		alertLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
-		
-		userLbl = new Label("Necessario accedere per sbloccare altre funzionalità");
-		
-		addPListBtn = remPListBtn = addSongBtn_song = remSongBtn_song = remSongBtn_acc = new Button();
-		addPListBtn.setDisable(true);
-		remPListBtn.setDisable(true);
-		addSongBtn_song.setDisable(true);
-		remSongBtn_song.setDisable(true);
-		remSongBtn_acc.setDisable(true);
+		userLbl.setText("Necessita di account per sbloccare altre funzioni");
 		
 		queryCBox.getItems().addAll(typeQuery);
 		queryCBox.setValue(typeQuery[0]);
