@@ -126,14 +126,4 @@ public class clientESController {
 		queryCBox.getItems().addAll(typeQuery);
 		queryCBox.setValue(typeQuery[0]);
 	}
-	
-	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
-	public void regexTitle() {
-	}
-	
-	public void regexAuthor() {
-	}
-	
-	public void regexYear() {
-	}
 }

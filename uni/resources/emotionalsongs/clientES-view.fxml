@@ -13,21 +13,21 @@
             <Label contentDisplay="RIGHT" graphicTextGap="16.0" prefHeight="30.0" text="Titolo"
                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0">
                 <graphic>
-                    <TextField fx:id="titleField" onInputMethodTextChanged="#regexTitle" prefHeight="30.0"
+                    <TextField fx:id="titleField" prefHeight="30.0"
                                prefWidth="470.0"/>
                 </graphic>
             </Label>
             <Label contentDisplay="RIGHT" graphicTextGap="10.0" prefHeight="30.0" text="Autore"
                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="40.0">
                 <graphic>
-                    <TextField fx:id="authorField" onInputMethodTextChanged="#regexAuthor" prefHeight="30.0"
+                    <TextField fx:id="authorField" prefHeight="30.0"
                                prefWidth="470.0"/>
                 </graphic>
             </Label>
             <Label contentDisplay="RIGHT" graphicTextGap="18.0" prefHeight="30.0" text="Anno"
                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="80.0">
                 <graphic>
-                    <TextField fx:id="yearField" onInputMethodTextChanged="#regexYear" prefHeight="30.0"
+                    <TextField fx:id="yearField" prefHeight="30.0"
                                prefWidth="470.0"/>
                 </graphic>
             </Label>

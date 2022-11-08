@@ -6,7 +6,7 @@ public class Regex {
 	} // Regular phrase
 	
 	public Boolean regexNumber(String text, String quantifier) {
-		return text.matches("^\\d" + quantifier + "$");
+		return text.matches("^\\d{" + quantifier + "}$");
 	} // numbers (quantifier set the length)
 	
 	public Boolean regexEmail(String text) {

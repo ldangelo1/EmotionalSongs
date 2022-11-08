@@ -76,6 +76,10 @@ public class AccountController {
 		return (Integer) serverES.eseguiQuery(query, 2);
 	}
 	
+	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
+	public void regex() {
+	}
+	
 	public void initialize() {
 		qualifierCBox.getItems().addAll(typeQualifier);
 		qualifierCBox.setValue(typeQualifier[0]);
