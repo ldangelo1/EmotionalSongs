@@ -50,10 +50,10 @@
             <Button defaultButton="true" mnemonicParsing="false" onAction="#song" prefHeight="30.0"
                     text="Ricerca canzoni" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0"
                     AnchorPane.rightAnchor="320.0"/>
-            <Button fx:id="addSongBtn_song" mnemonicParsing="false" onAction="#addSong" prefHeight="30.0"
+            <Button fx:id="addSongBtn_song" disable="true" mnemonicParsing="false" onAction="#addSong" prefHeight="30.0"
                     prefWidth="130.0" text="Aggiungi canzone" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.rightAnchor="155.0"/>
-            <Button fx:id="remSongBtn_song" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
+            <Button fx:id="remSongBtn_song" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
                     prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.rightAnchor="20.0"/>
         </AnchorPane>
@@ -90,11 +90,12 @@
             <Button defaultButton="true" mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0"
                     text="Accedi / Registrati" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0"
                     AnchorPane.rightAnchor="320.0"/>
-            <Button fx:id="addPListBtn" mnemonicParsing="false" onAction="#addPList" prefHeight="30.0" prefWidth="130.0"
-                    text="Crea playlist" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"/>
-            <Button fx:id="remPListBtn" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0" prefWidth="130.0"
-                    text="Elimina playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"/>
-            <Button fx:id="remSongBtn_acc" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
+            <Button fx:id="addPListBtn" disable="true" mnemonicParsing="false" onAction="#addPList" prefHeight="30.0"
+                    prefWidth="130.0" text="Crea playlist" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"/>
+            <Button fx:id="remPListBtn" disable="true" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0"
+                    prefWidth="130.0" text="Elimina playlist" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="20.0"/>
+            <Button fx:id="remSongBtn_acc" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
                     prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.rightAnchor="20.0"/>
         </AnchorPane>
