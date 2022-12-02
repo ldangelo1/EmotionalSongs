@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Playlist {
 	
-	private String name;
+	private String nome;
 	private ArrayList<Canzone> pList;
 	private String user;
 	private Emozione emozione;
 	
-	public Playlist(String name, ArrayList<Canzone> list, String user, Emozione emozione) {
+	public Playlist(String nome, ArrayList<Canzone> list, String user, Emozione emozione) {
 	
 	}
 }

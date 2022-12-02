@@ -1,37 +1,54 @@
 package emotionalsongs.objects;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Canzone {
-	private final Integer year;
-	private final String ID;
-	private final String author;
-	private final String title;
-	private final String album;
+	private final IntegerProperty Anno = new SimpleIntegerProperty();
+	private final StringProperty ID = new SimpleStringProperty();
+	private final StringProperty Autore = new SimpleStringProperty();
+	private final StringProperty Titolo = new SimpleStringProperty();
+	private final StringProperty Album = new SimpleStringProperty();
 	
-	public Canzone(Integer year, String ID, String author, String title, String album) {
-		this.year = year;
-		this.ID = ID;
-		this.author = author;
-		this.title = title;
-		this.album = album;
+	public int getAnno() {
+		return Anno.get();
 	}
 	
-	public Integer getYear() {
-		return year;
+	public void setAnno(Integer anno) {
+		this.Anno.set(anno);
 	}
 	
 	public String getID() {
-		return ID;
+		return ID.get();
 	}
 	
-	public String getAuthor() {
-		return author;
+	public void setID(String id) {
+		this.ID.set(id);
 	}
 	
-	public String getTitle() {
-		return title;
+	public String getAutore() {
+		return Autore.get();
+	}
+	
+	public void setAutore(String autore) {
+		this.Autore.set(autore);
+	}
+	
+	public String getTitolo() {
+		return Titolo.get();
+	}
+	
+	public void setTitolo(String titolo) {
+		this.Titolo.set(titolo);
 	}
 	
 	public String getAlbum() {
-		return album;
+		return Album.get();
+	}
+	
+	public void setAlbum(String album) {
+		this.Album.set(album);
 	}
 }
