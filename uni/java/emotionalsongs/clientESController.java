@@ -17,8 +17,8 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 public class clientESController {
-	@FXML
 	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
+	private Boolean isLogged;
 	@FXML
 	private TableView<Canzone> songTable;
 	@FXML
@@ -118,5 +118,13 @@ public class clientESController {
 		
 		queryCBox.getItems().addAll(typeQuery);
 		queryCBox.setValue(typeQuery[0]);
+	}
+	
+	public Boolean getLogged() {
+		return isLogged;
+	}
+	
+	public void setLogged(Boolean logged) {
+		isLogged = logged;
 	}
 }

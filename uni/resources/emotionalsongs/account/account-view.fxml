@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="310.0" prefWidth="600.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="sceneAccount" prefHeight="310.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.account.AccountController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
@@ -88,9 +88,9 @@
             <PasswordField fx:id="passAField" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
-    <Button layoutX="80.0" layoutY="378.0" onAction="#Registrazione" prefHeight="30.0"
-            prefWidth="130.0" text="Registrazione" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0"/>
-    <Button layoutX="400.0" layoutY="245.0" onAction="#Accesso" prefHeight="30.0" prefWidth="130.0"
+    <Button layoutX="80.0" layoutY="378.0" onAction="#Registrazione" prefHeight="30.0" prefWidth="130.0"
+            text="Registrazione" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0"/>
+    <Button defaultButton="true" layoutX="400.0" layoutY="245.0" onAction="#Accesso" prefHeight="30.0" prefWidth="130.0"
             text="Accesso" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0"/>
     <Separator layoutX="427.0" layoutY="120.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0"
                AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="10.0"/>

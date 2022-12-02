@@ -1,18 +1,24 @@
 package emotionalsongs.account;
 
 import database.serverES;
+import emotionalsongs.clientESController;
 import emotionalsongs.objects.Indirizzo;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static java.lang.System.out;
 
-public class AccountController {
+public class AccountController extends clientESController {
 	private final String[] typeQualifier = {"via", "piazza", "corso"};
+	@FXML
+	private AnchorPane sceneAccount;
 	@FXML
 	private TextField nameField, surnameField, cfField, mailField;
 	@FXML
@@ -31,10 +37,16 @@ public class AccountController {
 		
 		if (checkUtente(query)) {
 			out.println("Accesso eseguito da: " + user);
-			// TODO: 07/11/22 pop-up conferma
+			
+			// TODO: 02/12/22 abilitare funzioni
+			setLogged(true);
+			
+			createAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale");
+			Stage stage = (Stage) sceneAccount.getScene().getWindow();
+			stage.close();
 		} else {
 			out.println("I dati non corrispondono");
-			// TODO: 07/11/22 pop-up rifiuto
+			createAlert(Alert.AlertType.WARNING, "Credenziali errate!", "Premi OK per riprovare.");
 		}
 	}
 	
@@ -72,6 +84,14 @@ public class AccountController {
 	private Integer InsRegistrazione(String tail) throws SQLException {
 		String query = "INSERT INTO \"Utente\"(\"CF\", \"Nome\", \"Email\", \"Username\", \"Password\", \"Indirizzo\") " + tail;
 		return (Integer) serverES.eseguiQuery(query, 2);
+	}
+	
+	private void createAlert(Alert.AlertType alertType, String head, String msg) {
+		Alert alert = new Alert(alertType);
+		alert.setTitle("Informazioni");
+		alert.setHeaderText(head);
+		alert.setContentText(msg);
+		alert.show();
 	}
 	
 	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
