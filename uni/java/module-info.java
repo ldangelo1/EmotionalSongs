@@ -4,9 +4,10 @@ module uni.emotionalsong {
 	requires java.sql;
 	
 	opens emotionalsongs to javafx.fxml;
-	
+	opens emotionalsongs.objects to javafx.fxml;
 	opens emotionalsongs.account to javafx.fxml;
 	
 	exports emotionalsongs;
+	exports emotionalsongs.objects;
 	exports emotionalsongs.account;
 }
