@@ -1,103 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<TabPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE"
-         xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.clientESController">
+
+<TabPane prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.clientESController">
     <Tab text="Canzoni">
         <AnchorPane>
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
-            <Label contentDisplay="RIGHT" graphicTextGap="16.0" prefHeight="30.0" text="Titolo"
-                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0">
+            <Label contentDisplay="RIGHT" graphicTextGap="16.0" prefHeight="30.0" text="Titolo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0">
                 <graphic>
-                    <TextField fx:id="titleField" prefHeight="30.0" prefWidth="470.0"/>
+                    <TextField fx:id="titoloField" prefHeight="30.0" prefWidth="470.0" />
                 </graphic>
             </Label>
-            <Label contentDisplay="RIGHT" graphicTextGap="10.0" prefHeight="30.0" text="Autore"
-                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="35.0">
+            <Label contentDisplay="RIGHT" graphicTextGap="10.0" prefHeight="30.0" text="Autore" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="35.0">
                 <graphic>
-                    <TextField fx:id="authorField" prefHeight="30.0" prefWidth="470.0"/>
+                    <TextField fx:id="autoreField" prefHeight="30.0" prefWidth="470.0" />
                 </graphic>
             </Label>
-            <Label contentDisplay="RIGHT" graphicTextGap="18.0" prefHeight="30.0" text="Anno"
-                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="70.0">
+            <Label contentDisplay="RIGHT" graphicTextGap="18.0" prefHeight="30.0" text="Anno" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="70.0">
                 <graphic>
-                    <TextField fx:id="yearField" prefHeight="30.0" prefWidth="470.0"/>
+                    <TextField fx:id="annoField" prefHeight="30.0" prefWidth="470.0" />
                 </graphic>
             </Label>
-            <Label fx:id="alertLbl" alignment="CENTER" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0"
-                   prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                   AnchorPane.topAnchor="105.0"/>
-            <ChoiceBox fx:id="queryCBox" prefHeight="30.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="20.0"
-                       AnchorPane.topAnchor="0.0"/>
-            <TableView fx:id="songTable" layoutX="40.0" layoutY="170.0" prefHeight="339.0" prefWidth="760.0"
-                       AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                       AnchorPane.topAnchor="140.0">
+            <Label fx:id="avvisoLbl" alignment="CENTER" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="105.0" />
+            <ChoiceBox fx:id="ricercaCBox" prefHeight="30.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
+            <TableView fx:id="canzoneTable" layoutX="40.0" layoutY="170.0" prefHeight="339.0" prefWidth="760.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
                 <columns>
-                    <TableColumn prefWidth="75.0" text="Titolo"/>
-                    <TableColumn prefWidth="75.0" text="Autore"/>
-                    <TableColumn prefWidth="75.0" text="Album"/>
-                    <TableColumn prefWidth="75.0" text="Anno"/>
-                    <TableColumn prefWidth="75.0" text="Emozione"/>
+                    <TableColumn fx:id="colTitolo" prefWidth="75.0" text="Titolo" />
+                    <TableColumn fx:id="colAutore" prefWidth="75.0" text="Autore" />
+                    <TableColumn fx:id="colAlbum" prefWidth="75.0" text="Album" />
+                    <TableColumn fx:id="colAnno" prefWidth="75.0" text="Anno" />
+                    <TableColumn fx:id="colEmozione" prefWidth="75.0" text="Emozione" />
                 </columns>
                 <columnResizePolicy>
-                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#song" prefHeight="30.0"
-                    text="Ricerca canzoni" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0"
-                    AnchorPane.rightAnchor="320.0"/>
-            <Button fx:id="addSongBtn_song" disable="true" mnemonicParsing="false" onAction="#addSong" prefHeight="30.0"
-                    prefWidth="130.0" text="Aggiungi canzone" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.rightAnchor="155.0"/>
-            <Button fx:id="remSongBtn_song" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
-                    prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.rightAnchor="20.0"/>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#song" prefHeight="30.0" text="Ricerca canzoni" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
+            <Button fx:id="addSongBtn_song" disable="true" mnemonicParsing="false" onAction="#addSong" prefHeight="30.0" prefWidth="130.0" text="Aggiungi canzone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="155.0" />
+            <Button fx:id="remSongBtn_song" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0" prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" />
         </AnchorPane>
     </Tab>
     <Tab text="Account">
         <AnchorPane>
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
             </padding>
-            <Label fx:id="userLbl" layoutX="50.0" layoutY="40.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0"
-                   AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0"/>
-            <TableView fx:id="plistTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0"
-                       AnchorPane.rightAnchor="610.0" AnchorPane.topAnchor="35.0">
+            <Label fx:id="userLbl" layoutX="50.0" layoutY="40.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0" />
+            <TableView fx:id="plistTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="610.0" AnchorPane.topAnchor="35.0">
                 <columns>
-                    <TableColumn prefWidth="75.0" text="Nome"/>
+                    <TableColumn prefWidth="75.0" text="Nome" />
                 </columns>
                 <columnResizePolicy>
-                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
-            <TableView fx:id="plistSongTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="155.0"
-                       AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
+            <TableView fx:id="plistCanzoneTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
                 <columns>
-                    <TableColumn prefWidth="75.0" text="Titolo"/>
-                    <TableColumn prefWidth="75.0" text="Autore"/>
-                    <TableColumn prefWidth="75.0" text="Album"/>
-                    <TableColumn prefWidth="75.0" text="Anno"/>
-                    <TableColumn prefWidth="75.0" text="Emozione"/>
+                    <TableColumn prefWidth="75.0" text="Titolo" />
+                    <TableColumn prefWidth="75.0" text="Autore" />
+                    <TableColumn prefWidth="75.0" text="Album" />
+                    <TableColumn prefWidth="75.0" text="Anno" />
+                    <TableColumn prefWidth="75.0" text="Emozione" />
                 </columns>
                 <columnResizePolicy>
-                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0"
-                    text="Accedi / Registrati" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0"
-                    AnchorPane.rightAnchor="320.0"/>
-            <Button fx:id="addPListBtn" disable="true" mnemonicParsing="false" onAction="#addPList" prefHeight="30.0"
-                    prefWidth="130.0" text="Crea playlist" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"/>
-            <Button fx:id="remPListBtn" disable="true" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0"
-                    prefWidth="130.0" text="Elimina playlist" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="20.0"/>
-            <Button fx:id="remSongBtn_acc" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
-                    prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.rightAnchor="20.0"/>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0" text="Accedi / Registrati" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
+            <Button fx:id="addPListBtn" disable="true" mnemonicParsing="false" onAction="#addPList" prefHeight="30.0" prefWidth="130.0" text="Crea playlist" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
+            <Button fx:id="remPListBtn" disable="true" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0" prefWidth="130.0" text="Elimina playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
+            <Button fx:id="remSongBtn_acc" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0" prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" />
         </AnchorPane>
     </Tab>
 </TabPane>
