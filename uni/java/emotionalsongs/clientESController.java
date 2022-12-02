@@ -4,84 +4,100 @@ import database.DBInfo;
 import database.serverES;
 import emotionalsongs.account.Account;
 import emotionalsongs.objects.Canzone;
+import emotionalsongs.objects.Playlist;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static java.lang.System.out;
-
 public class clientESController {
-	private final String[] typeQuery = {"Titolo", "Autore", "Anno", "Autore e Anno"};
+	private final String[] ricercaStrings = {"Titolo", "Autore", "Anno", "Autore e Anno"};
+	private final String[] emozioneStrings = {""};
 	private Boolean isLogged;
+	
 	@FXML
-	private TableView<Canzone> songTable;
+	private Label userLbl, avvisoLbl;
 	@FXML
-	private TableView<ObservableList> plistTable, plistSongTable = new TableView<>();
+	private TextField titoloField, autoreField, annoField;
+	
 	@FXML
-	private TextField titleField, authorField, yearField;
+	private TableView<Canzone> canzoneTable, plistCanzoneTable;
 	@FXML
-	private Label userLbl, alertLbl;
+	private TableView<Playlist> plistTable;
 	@FXML
-	private ChoiceBox<String> queryCBox;
+	private TableColumn<Canzone, Integer> colAnno;
+	@FXML
+	private TableColumn<Canzone, String> colTitolo, colAutore, colAlbum, colEmozione;
+	
+	@FXML
+	private ChoiceBox<String> ricercaCBox;
+	
 	@FXML
 	private Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_song, remSongBtn_acc;
 	
 	@FXML
+	private void account() throws IOException {
+		Stage stage = new Stage();
+		new Account().start(stage);
+	}
+	
+	@FXML
 	private void song() throws Exception {
-		String title = titleField.getText();
-		String author = authorField.getText();
-		String year = yearField.getText();
-		String choice = queryCBox.getValue();
+		String titolo = titoloField.getText();
+		String autore = autoreField.getText();
+		String anno = annoField.getText();
+		String ricerca = ricercaCBox.getValue();
 		String query = "SELECT * FROM \"Canzone\" ";
 		
-		switch (choice) {
+		switch (ricerca) {
 			case "Titolo" -> {
-				if (!title.isEmpty()) query += "WHERE \"Titolo\"=" + "'" + title + "'";
+				if (!titolo.isEmpty()) query += "WHERE \"Titolo\"=" + "'" + titolo + "'";
 			}
 			case "Autore" -> {
-				if (!author.isEmpty()) query += "WHERE \"Autore\"=" + "'" + author + "'";
+				if (!autore.isEmpty()) query += "WHERE \"Autore\"=" + "'" + autore + "'";
 			}
 			case "Anno" -> {
-				if (!year.isEmpty()) query += "WHERE \"Anno\"=" + year;
+				if (!anno.isEmpty()) query += "WHERE \"Anno\"=" + anno;
 			}
 			case "Autore e Anno" -> {
-				if (!author.isEmpty() && !year.isEmpty())
-					query += "WHERE \"Autore\"=" + "'" + author + "' " + "AND \"Anno\"=" + year;
+				if (!autore.isEmpty() && !anno.isEmpty())
+					query += "WHERE \"Autore\"=" + "'" + autore + "' " + "AND \"Anno\"=" + anno;
 			}
 		}
 		
 		ResultSet rset = (ResultSet) serverES.eseguiQuery(query, 1);
 		assert rset != null;
-		printTable(rset);
+		printCanzoneTable(rset);
 		rset.close();
 	}
 	
-	private void printTable(ResultSet rset) throws SQLException {
-		// TODO: 29/10/22 stampa risultati su tabella
-		out.println("arrivati");
-		
+	/**
+	 * Sfoglio canzone per canzone aggiungendole in lista,
+	 * successivamente popolo canzoneTable con la lista.
+	 *
+	 * @param rset risultato della query
+	 * @throws SQLException rset.next() genera l'eccezione
+	 */
+	private void printCanzoneTable(ResultSet rset) throws SQLException {
 		ObservableList<Canzone> data = FXCollections.observableArrayList();
 		
 		while (rset.next()) {
-			data.add(new Canzone(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5)));
+			Canzone canzone = new Canzone();
+			canzone.setAnno(rset.getInt("Anno"));
+			canzone.setID(rset.getString("ID"));
+			canzone.setAutore(rset.getString("Autore"));
+			canzone.setTitolo(rset.getString("Titolo"));
+			canzone.setAlbum(rset.getString("Album"));
+			data.add(canzone);
 		}
 		
-		songTable.setItems(data);
-	}
-	
-	/**
-	 * Apertura finestra per registrazione/accesso
-	 */
-	@FXML
-	private void account() throws IOException {
-		Stage stage = new Stage();
-		new Account().start(stage);
+		canzoneTable.setItems(data);
 	}
 	
 	/**
@@ -113,11 +129,19 @@ public class clientESController {
 	}
 	
 	public void initialize() {
-		alertLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
-		userLbl.setText("Necessita di account per sbloccare altre funzioni");
+		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
-		queryCBox.getItems().addAll(typeQuery);
-		queryCBox.setValue(typeQuery[0]);
+		ricercaCBox.getItems().addAll(ricercaStrings);
+		ricercaCBox.setValue(ricercaStrings[0]);
+		
+		assert canzoneTable != null;
+		colAnno.setCellValueFactory(new PropertyValueFactory<>("Anno"));
+		colEmozione.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		colAutore.setCellValueFactory(new PropertyValueFactory<>("Autore"));
+		colTitolo.setCellValueFactory(new PropertyValueFactory<>("Titolo"));
+		colAlbum.setCellValueFactory(new PropertyValueFactory<>("Album"));
+		
+		userLbl.setText("Necessita di account per sbloccare altre funzioni");
 	}
 	
 	public Boolean getLogged() {

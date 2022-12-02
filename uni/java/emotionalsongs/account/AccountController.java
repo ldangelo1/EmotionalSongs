@@ -29,6 +29,10 @@ public class AccountController extends clientESController {
 	private ChoiceBox<String> qualifierCBox;
 	
 	// TODO: 07/11/22 tabella affiancata per le playlist
+	
+	/**
+	 * @throws Exception
+	 */
 	@FXML
 	private void Accesso() throws Exception {
 		String user = userAField.getText();
@@ -50,16 +54,16 @@ public class AccountController extends clientESController {
 		}
 	}
 	
+	/**
+	 * @throws SQLException
+	 */
 	@FXML
 	private void Registrazione() throws SQLException {
 		String query = "WHERE \"CF\"=" + cfField.getText();
 		
 		if (!checkUtente(query)) {
 			Indirizzo addr = new Indirizzo(qualifierCBox.getValue(), addrField.getText(), Integer.parseInt(civicField.getText()), cityField.getText(), provField.getText(), Integer.parseInt(capField.getText()));
-			String queryIns = "VALUES(" + Integer.parseInt(cfField.getText()) + ", '" +
-					nameField.getText() + " " + surnameField.getText() + "', '" + mailField.getText() + "', '" +
-					userRField.getText() + "', '" + passRField.getText() + "', '" +
-					addr + "')";
+			String queryIns = "VALUES(" + Integer.parseInt(cfField.getText()) + ", '" + nameField.getText() + " " + surnameField.getText() + "', '" + mailField.getText() + "', '" + userRField.getText() + "', '" + passRField.getText() + "', '" + addr + "')";
 			
 			// TODO: 06/11/22 Username unico quindi da gestire
 			/// questo l'errore altrimenti
@@ -70,6 +74,11 @@ public class AccountController extends clientESController {
 		}
 	}
 	
+	/**
+	 * @param tail
+	 * @return
+	 * @throws SQLException
+	 */
 	private Boolean checkUtente(String tail) throws SQLException {
 		String query = "SELECT * FROM \"Utente\" " + tail;
 		ResultSet rset = (ResultSet) serverES.eseguiQuery(query, 1);
@@ -81,11 +90,21 @@ public class AccountController extends clientESController {
 		return check;
 	}
 	
+	/**
+	 * @param tail
+	 * @return
+	 * @throws SQLException
+	 */
 	private Integer InsRegistrazione(String tail) throws SQLException {
 		String query = "INSERT INTO \"Utente\"(\"CF\", \"Nome\", \"Email\", \"Username\", \"Password\", \"Indirizzo\") " + tail;
 		return (Integer) serverES.eseguiQuery(query, 2);
 	}
 	
+	/**
+	 * @param alertType
+	 * @param head
+	 * @param msg
+	 */
 	private void createAlert(Alert.AlertType alertType, String head, String msg) {
 		Alert alert = new Alert(alertType);
 		alert.setTitle("Informazioni");
