@@ -6,35 +6,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Canzone {
-	private final IntegerProperty Anno = new SimpleIntegerProperty();
-	private final StringProperty ID = new SimpleStringProperty();
-	private final StringProperty Autore = new SimpleStringProperty();
 	private final StringProperty Titolo = new SimpleStringProperty();
-	private final StringProperty Album = new SimpleStringProperty();
-	
-	public int getAnno() {
-		return Anno.get();
-	}
-	
-	public void setAnno(Integer anno) {
-		this.Anno.set(anno);
-	}
-	
-	public String getID() {
-		return ID.get();
-	}
-	
-	public void setID(String id) {
-		this.ID.set(id);
-	}
-	
-	public String getAutore() {
-		return Autore.get();
-	}
-	
-	public void setAutore(String autore) {
-		this.Autore.set(autore);
-	}
+	private final StringProperty Artista = new SimpleStringProperty();
+	private final IntegerProperty Anno = new SimpleIntegerProperty();
 	
 	public String getTitolo() {
 		return Titolo.get();
@@ -44,11 +18,19 @@ public class Canzone {
 		this.Titolo.set(titolo);
 	}
 	
-	public String getAlbum() {
-		return Album.get();
+	public String getArtista() {
+		return Artista.get();
 	}
 	
-	public void setAlbum(String album) {
-		this.Album.set(album);
+	public void setArtista(String artista) {
+		this.Artista.set(artista);
+	}
+	
+	public Integer getAnno() {
+		return Anno.get();
+	}
+	
+	public void setAnno(Integer anno) {
+		this.Anno.set(anno);
 	}
 }
