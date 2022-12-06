@@ -19,20 +19,17 @@ public class AccountController extends clientESController {
 	private final String[] typeQualifier = {"via", "piazza", "corso"};
 	@FXML
 	private AnchorPane sceneAccount;
+	
 	@FXML
 	private TextField nameField, surnameField, cfField, mailField;
 	@FXML
 	private TextField addrField, civicField, cityField, provField, capField;
 	@FXML
 	private TextField userAField, passAField, userRField, passRField;
+	
 	@FXML
 	private ChoiceBox<String> qualifierCBox;
 	
-	// TODO: 07/11/22 tabella affiancata per le playlist
-	
-	/**
-	 * @throws Exception
-	 */
 	@FXML
 	private void Accesso() throws Exception {
 		String user = userAField.getText();
@@ -45,39 +42,39 @@ public class AccountController extends clientESController {
 			// TODO: 02/12/22 abilitare funzioni
 			setLogged(true);
 			
-			createAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale");
-			Stage stage = (Stage) sceneAccount.getScene().getWindow();
-			stage.close();
+			generaAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale");
+			chiudiStage();
 		} else {
 			out.println("I dati non corrispondono");
-			createAlert(Alert.AlertType.WARNING, "Credenziali errate!", "Premi OK per riprovare.");
+			generaAlert(Alert.AlertType.WARNING, "Credenziali errate!", "Premi OK per riprovare.");
 		}
 	}
 	
-	/**
-	 * @throws SQLException
-	 */
 	@FXML
 	private void Registrazione() throws SQLException {
-		String query = "WHERE \"CF\"=" + cfField.getText();
+		String query = "WHERE \"CF\"=" + Integer.parseInt(cfField.getText()) + " OR \"Username\"='" + userRField.getText() + "'";
 		
 		if (!checkUtente(query)) {
 			Indirizzo addr = new Indirizzo(qualifierCBox.getValue(), addrField.getText(), Integer.parseInt(civicField.getText()), cityField.getText(), provField.getText(), Integer.parseInt(capField.getText()));
 			String queryIns = "VALUES(" + Integer.parseInt(cfField.getText()) + ", '" + nameField.getText() + " " + surnameField.getText() + "', '" + mailField.getText() + "', '" + userRField.getText() + "', '" + passRField.getText() + "', '" + addr + "')";
 			
-			// TODO: 06/11/22 Username unico quindi da gestire
-			/// questo l'errore altrimenti
-			/// org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "Username_pk"
-			out.println(InsRegistrazione(queryIns) > 0 ? "Registrazione eseguita" : "Errore nella registrazione");
+			if (InsRegistrazione(queryIns) == 1) {
+				out.println("Registrazione eseguita");
+				generaAlert(Alert.AlertType.INFORMATION, "Registrazione eseguita!", "Premi OK per tornare alla pagina principale");
+				chiudiStage();
+			} else {
+				out.println("Errore nella registrazione");
+				generaAlert(Alert.AlertType.WARNING, "Problemi con la registrazione!", "Premi OK per riprovare.");
+			}
 		} else {
 			out.println("Utente già registrato");
+			generaAlert(Alert.AlertType.INFORMATION, "Sei già registrato! o il tuo user è già stato usato", "Premi OK per riprovare.");
 		}
 	}
 	
 	/**
-	 * @param tail
-	 * @return
-	 * @throws SQLException
+	 * @param tail la seconda parte della query, generata in base agli input
+	 * @return se un utente è o non è registrato
 	 */
 	private Boolean checkUtente(String tail) throws SQLException {
 		String query = "SELECT * FROM \"Utente\" " + tail;
@@ -91,26 +88,12 @@ public class AccountController extends clientESController {
 	}
 	
 	/**
-	 * @param tail
-	 * @return
-	 * @throws SQLException
+	 * @param tail la seconda parte della query, generata in base agli input
+	 * @return il numero di tuple aggiornate
 	 */
 	private Integer InsRegistrazione(String tail) throws SQLException {
 		String query = "INSERT INTO \"Utente\"(\"CF\", \"Nome\", \"Email\", \"Username\", \"Password\", \"Indirizzo\") " + tail;
 		return (Integer) serverES.eseguiQuery(query, 2);
-	}
-	
-	/**
-	 * @param alertType
-	 * @param head
-	 * @param msg
-	 */
-	private void createAlert(Alert.AlertType alertType, String head, String msg) {
-		Alert alert = new Alert(alertType);
-		alert.setTitle("Informazioni");
-		alert.setHeaderText(head);
-		alert.setContentText(msg);
-		alert.show();
 	}
 	
 	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
@@ -120,5 +103,25 @@ public class AccountController extends clientESController {
 	public void initialize() {
 		qualifierCBox.getItems().addAll(typeQualifier);
 		qualifierCBox.setValue(typeQualifier[0]);
+	}
+	
+	/**
+	 * Genera l'alert adeguato da mostrate al cliente
+	 *
+	 * @param alertType il tipo di alert da mostrare
+	 * @param head      il messaggio da notificare
+	 * @param msg       il commento al messaggio
+	 */
+	private void generaAlert(Alert.AlertType alertType, String head, String msg) {
+		Alert alert = new Alert(alertType);
+		alert.setTitle("Informazioni");
+		alert.setHeaderText(head);
+		alert.setContentText(msg);
+		alert.show();
+	}
+	
+	private void chiudiStage() {
+		Stage stage = (Stage) sceneAccount.getScene().getWindow();
+		stage.close();
 	}
 }
