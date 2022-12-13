@@ -14,13 +14,13 @@ public class clientES extends Application {
 	}
 	
 	@Override
-	public void start(Stage stage) throws IOException {
-		DBInfo.isConnected = database.serverES.connectionDB();
+	public void start(Stage clientStage) throws IOException {
+		//DBInfo.isConnected = database.serverES.connectionDB();
 		FXMLLoader fxmlLoader = new FXMLLoader(clientES.class.getResource("clientES-view.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-		stage.setResizable(false);
-		stage.setTitle("Lab B - Emotional Songs");
-		stage.setScene(scene);
-		stage.show();
+		clientStage.setResizable(false);
+		clientStage.setTitle("Lab B - Emotional Songs");
+		clientStage.setScene(scene);
+		clientStage.show();
 	}
 }
