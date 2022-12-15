@@ -1,11 +1,11 @@
-drop table if exists "Playlist";
+drop table if exists "Playlist" cascade;
 
 create table "Playlist"
 (
     "Contatore" serial primary key,
     "Nome"      text,
-    "CF"        integer references "Utente" ("CF")
+    "CF"        varchar(16) references "Utente" on delete cascade on update cascade
 );
 
 insert into "Playlist" ("Nome", "CF")
-values ('Growl', 0);
+values ('Growl', 'ABCXYZ00A01A000A');
