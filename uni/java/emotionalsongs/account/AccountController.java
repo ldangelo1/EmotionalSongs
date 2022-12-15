@@ -33,15 +33,10 @@ public class AccountController extends clientESController {
 	@FXML
 	private void Accesso() throws Exception {
 		String user = userAField.getText();
-		
 		String query = "WHERE \"Username\"='" + user + "' AND \"Password\"='" + passAField.getText() + "'";
 		
 		if (checkUtente(query)) {
 			out.println("Accesso eseguito da: " + user);
-			
-			// TODO: 02/12/22 abilitare funzioni
-			setLogged(true);
-			
 			generaAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale");
 			chiudiStage();
 		} else {
@@ -52,13 +47,13 @@ public class AccountController extends clientESController {
 	
 	@FXML
 	private void Registrazione() throws SQLException {
-		String query = "WHERE \"CF\"=" + Integer.parseInt(cfField.getText()) + " OR \"Username\"='" + userRField.getText() + "'";
+		String query = "WHERE \"CF\"='" + cfField.getText() + "' OR \"Username\"='" + userRField.getText() + "'";
 		
 		if (!checkUtente(query)) {
 			Indirizzo addr = new Indirizzo(qualifierCBox.getValue(), addrField.getText(), Integer.parseInt(civicField.getText()), cityField.getText(), provField.getText(), Integer.parseInt(capField.getText()));
-			String queryIns = "VALUES(" + Integer.parseInt(cfField.getText()) + ", '" + nameField.getText() + " " + surnameField.getText() + "', '" + mailField.getText() + "', '" + userRField.getText() + "', '" + passRField.getText() + "', '" + addr + "')";
+			String queryIns = "VALUES('" + cfField.getText() + "', '" + nameField.getText() + " " + surnameField.getText() + "', '" + mailField.getText() + "', '" + addr + "', '" + userRField.getText() + "', '" + passRField.getText() + "')";
 			
-			if (InsRegistrazione(queryIns) == 1) {
+			if (serverES.insert("Utente", queryIns) == 1) {
 				out.println("Registrazione eseguita");
 				generaAlert(Alert.AlertType.INFORMATION, "Registrazione eseguita!", "Premi OK per tornare alla pagina principale");
 				chiudiStage();
@@ -92,7 +87,7 @@ public class AccountController extends clientESController {
 	 * @return il numero di tuple aggiornate
 	 */
 	private Integer InsRegistrazione(String tail) throws SQLException {
-		String query = "INSERT INTO \"Utente\"(\"CF\", \"Nome\", \"Email\", \"Username\", \"Password\", \"Indirizzo\") " + tail;
+		String query = "INSERT INTO \"Utente\" " + tail;
 		return (Integer) serverES.eseguiQuery(query, 2);
 	}
 	
