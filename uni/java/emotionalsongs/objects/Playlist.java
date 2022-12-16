@@ -1,15 +1,16 @@
 package emotionalsongs.objects;
 
-import java.util.ArrayList;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Playlist {
+	private final StringProperty Nome = new SimpleStringProperty();
 	
-	private String nome;
-	private ArrayList<Canzone> pList;
-	private String user;
-	private Emozione emozione;
+	public String getNome() {
+		return Nome.get();
+	}
 	
-	public Playlist(String nome, ArrayList<Canzone> list, String user, Emozione emozione) {
-	
+	public void setNome(String nome) {
+		Nome.set(nome);
 	}
 }
