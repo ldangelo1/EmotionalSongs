@@ -88,10 +88,6 @@ public class AccountController extends clientESController {
 	 * @param tail la seconda parte della query, generata in base agli input
 	 * @return il numero di tuple aggiornate
 	 */
-	private Integer InsRegistrazione(String tail) throws SQLException {
-		String query = "INSERT INTO \"Utente\" " + tail;
-		return (Integer) serverES.eseguiQuery(query, 2);
-	}
 	
 	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
 	public void regex() {
