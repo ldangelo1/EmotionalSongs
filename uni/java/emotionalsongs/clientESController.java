@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class clientESController {
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
 
-	private String CF;
+	private static String CF;
 	
 	@FXML
 	private Label userLbl, avvisoLbl;
@@ -93,9 +93,10 @@ public class clientESController {
 	/**
 	 * Metodo di creazione della playlist
 	 */
-	// TODO: 15/12/2022  metodo aggiungi playlist
 	@FXML
-	private void addPList() {
+	private void addPList() throws SQLException {
+		String query = "VALUES('" + addPListField.getText() + "', '" + CF + "')";
+		serverES.insert("Playlist", query);
 	}
 	
 	/**
