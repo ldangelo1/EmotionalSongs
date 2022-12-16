@@ -15,7 +15,7 @@ public class Canzone {
 	}
 	
 	public void setTitolo(String titolo) {
-		this.Titolo.set(titolo);
+		Titolo.set(titolo);
 	}
 	
 	public String getArtista() {
@@ -23,7 +23,7 @@ public class Canzone {
 	}
 	
 	public void setArtista(String artista) {
-		this.Artista.set(artista);
+		Artista.set(artista);
 	}
 	
 	public Integer getAnno() {
@@ -31,6 +31,6 @@ public class Canzone {
 	}
 	
 	public void setAnno(Integer anno) {
-		this.Anno.set(anno);
+		Anno.set(anno);
 	}
 }

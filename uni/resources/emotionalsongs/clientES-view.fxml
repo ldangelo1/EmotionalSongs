@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <TabPane prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.clientESController">
     <Tab text="Canzoni">
         <AnchorPane>
@@ -15,9 +14,10 @@
                     <TextField fx:id="titoloField" prefHeight="30.0" prefWidth="470.0" />
                 </graphic>
             </Label>
-            <Label contentDisplay="RIGHT" graphicTextGap="10.0" prefHeight="30.0" text="Autore" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="35.0">
+            <Label contentDisplay="RIGHT" graphicTextGap="10.0" prefHeight="30.0" text="Artista"
+                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="35.0">
                 <graphic>
-                    <TextField fx:id="artistaField" prefHeight="30.0" prefWidth="470.0" />
+                    <TextField fx:id="artistaField" prefHeight="30.0" prefWidth="470.0"/>
                 </graphic>
             </Label>
             <Label contentDisplay="RIGHT" graphicTextGap="18.0" prefHeight="30.0" text="Anno" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="70.0">

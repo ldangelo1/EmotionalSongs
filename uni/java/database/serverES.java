@@ -59,10 +59,12 @@ public class serverES extends Application {
 	public static Object eseguiQuery(String query, Integer code) throws SQLException {
 		try {
 			switch (code) {
-				case 1:
+				case 1 -> {
 					return DBInfo.isConnected.prepareStatement(query).executeQuery();
-				case 2:
+				}
+				case 2 -> {
 					return DBInfo.isConnected.prepareStatement(query).executeUpdate();
+				}
 			}
 		} catch (SQLException e) {
 			throw new SQLException(e);
