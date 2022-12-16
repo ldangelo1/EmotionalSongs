@@ -16,17 +16,20 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 public class AccountController extends clientESController {
+
+	//public static String CF = "";
 	private final String[] typeQualifier = {"via", "piazza", "corso"};
+
 	@FXML
 	private AnchorPane sceneAccount;
-	
+
 	@FXML
 	private TextField nameField, surnameField, cfField, mailField;
 	@FXML
 	private TextField addrField, civicField, cityField, provField, capField;
 	@FXML
 	private TextField userAField, passAField, userRField, passRField;
-	
+
 	@FXML
 	private ChoiceBox<String> qualifierCBox;
 	
@@ -34,7 +37,7 @@ public class AccountController extends clientESController {
 	private void Accesso() throws Exception {
 		String user = userAField.getText();
 		String query = "WHERE \"Username\"='" + user + "' AND \"Password\"='" + passAField.getText() + "'";
-		
+
 		if (checkUtente(query)) {
 			out.println("Accesso eseguito da: " + user);
 			generaAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale");
@@ -74,12 +77,11 @@ public class AccountController extends clientESController {
 	private Boolean checkUtente(String tail) throws SQLException {
 		String query = "SELECT * FROM \"Utente\" " + tail;
 		ResultSet rset = (ResultSet) serverES.eseguiQuery(query, 1);
-		
 		assert rset != null;
 		rset.next();
-		Boolean check = rset.getRow() == 1;
+		setCF(rset.getString(1));
 		rset.close();
-		return check;
+		return getCF() != null;
 	}
 	
 	/**

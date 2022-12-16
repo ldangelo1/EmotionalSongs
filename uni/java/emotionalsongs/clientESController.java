@@ -3,6 +3,7 @@ package emotionalsongs;
 import database.DBInfo;
 import database.serverES;
 import emotionalsongs.account.Account;
+import emotionalsongs.account.AccountController;
 import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
 import emotionalsongs.recensione.Recensione;
@@ -19,7 +20,8 @@ import java.sql.SQLException;
 
 public class clientESController {
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
-	private Boolean isLogged;
+
+	private String CF;
 	
 	@FXML
 	private Label userLbl, avvisoLbl;
@@ -62,7 +64,10 @@ public class clientESController {
 		String anno = annoField.getText();
 		String ricerca = ricercaCBox.getValue();
 		String query = "SELECT * FROM \"Canzone\" ";
-		
+
+		// TODO: 15/12/2022 Disabilitare campi di ricerca non interessati al momento
+		// (es. se ricerca per autore disabilitare gli altri 2 campi
+
 		switch (ricerca) {
 			case "Titolo" -> {
 				if (!titolo.isEmpty()) query += "WHERE \"Titolo\"=" + "'" + titolo + "'";
@@ -88,6 +93,7 @@ public class clientESController {
 	/**
 	 * Metodo di creazione della playlist
 	 */
+	// TODO: 15/12/2022  metodo aggiungi playlist
 	@FXML
 	private void addPList() {
 	}
@@ -95,6 +101,7 @@ public class clientESController {
 	/**
 	 * Metodo di eliminazione della playlist
 	 */
+	// TODO: 15/12/2022  metodo rimuovi playlist
 	@FXML
 	private void remPList() {
 	}
@@ -102,6 +109,7 @@ public class clientESController {
 	/**
 	 * Metodo di aggiunta canzone a Playlist
 	 */
+	// TODO: 15/12/2022  metodo aggiungi canzone
 	@FXML
 	private void addSong() {
 	}
@@ -161,12 +169,12 @@ public class clientESController {
 	// TODO: 04/12/22 queryCanzone ora è atomicizzato(? esiste il termine), da fare per le playlist
 	// ho eliminato le emozioni dalla tabella, quando si preme su una canzone si apre una nuova finestra dove
 	// si vedono le "recensioni" e, se loggato, puoi recensire
-	
-	public Boolean getLogged() {
-		return isLogged;
+
+	public String getCF() {
+		return CF;
 	}
 	
-	public void setLogged(Boolean logged) {
-		isLogged = logged;
+	public void setCF(String CF) {
+		this.CF = CF;
 	}
 }
