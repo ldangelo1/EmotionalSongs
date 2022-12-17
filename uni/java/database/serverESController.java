@@ -22,17 +22,12 @@ public class serverESController {
 		DBInfo.isConnected = serverES.connessioneDB(ipField.getText(), portField.getText(), nameField.getText(), userField.getText(), passField.getText());
 		if (DBInfo.isConnected != null) {
 			client();
-			chiudiStage();
+			serverES.chiudiStage(sceneAccount);
 		}
 	}
 	
 	private void client() throws IOException {
 		Stage stage = new Stage();
 		new clientES().start(stage);
-	}
-	
-	private void chiudiStage() {
-		Stage stage = (Stage) sceneAccount.getScene().getWindow();
-		stage.close();
 	}
 }

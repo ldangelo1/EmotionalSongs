@@ -116,11 +116,8 @@ public class serverES extends Application {
 		return (Integer) eseguiQuery(query, 2);
 	}
 	
-	public static Integer drop(String tabella, String tail) throws SQLException {
-		String query = "DELETE FROM \"" + tabella + "\"";
-		if ("Playlist".equals(tabella)) {
-			query += tail;
-		}
+	public static Integer delete(String tabella, String tail) throws SQLException {
+		String query = "DELETE FROM \"" + tabella + "\" " + tail;
 		return (Integer) eseguiQuery(query, 2);
 	}
 	

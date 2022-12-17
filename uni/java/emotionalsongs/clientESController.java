@@ -83,10 +83,7 @@ public class clientESController {
 			}
 		}
 		
-		ResultSet rset = serverES.select("Canzone", query);
-		assert rset != null;
-		canzoneTable.setItems(queryCanzone(rset));
-		rset.close();
+		queryCanzone(query);
 	}
 	
 	/**
@@ -94,9 +91,11 @@ public class clientESController {
 	 */
 	@FXML
 	private void addPList() throws SQLException {
-		serverES.insert("Playlist", "VALUES('" + addPListField.getText() + "', '" + getCF() + "')");
-		out.println("Playlist aggiunta con successo!");
-		serverES.generaAlert(Alert.AlertType.INFORMATION, "Playlist aggiunta con successo!", "Premi OK per tornare alla pagina precedente");
+		String queryIns = "VALUES('" + addPListField.getText() + "', '" + getCF() + "')";
+		if (serverES.insert("Playlist", queryIns) == 1) {
+			out.println("Playlist aggiunta con successo");
+			queryPList();
+		}
 	}
 	
 	/**
@@ -105,7 +104,11 @@ public class clientESController {
 	// TODO: 15/12/2022  metodo rimuovi playlist
 	@FXML
 	private void remPList() throws SQLException {
-		serverES.drop("Playlist", "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getItems() + "'");
+		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getItems() + "'";
+		if (serverES.delete("Playlist", queryIns) == 1) {
+			out.println("Playlist rimossa con successo");
+			queryPList();
+		}
 	}
 	
 	/**
@@ -154,8 +157,11 @@ public class clientESController {
 	 *
 	 * @param rset risultato della query
 	 */
-	private ObservableList<Canzone> queryCanzone(ResultSet rset) throws SQLException {
+	private void queryCanzone(String tail) throws SQLException {
+		ResultSet rset = serverES.select("Canzone", tail);
 		ObservableList<Canzone> data = FXCollections.observableArrayList();
+		
+		assert rset != null;
 		
 		while (rset.next()) {
 			Canzone canzone = new Canzone();
@@ -164,24 +170,27 @@ public class clientESController {
 			canzone.setAnno(rset.getInt("Anno"));
 			data.add(canzone);
 		}
-		return data;
+		canzoneTable.setItems(data);
+		rset.close();
 	}
 	
 	/**
 	 * Sfoglio playlist per playlist aggiungendole in lista,
 	 * successivamente popolo la tabella con la lista.
-	 *
-	 * @param rset risultato della query
 	 */
-	private ObservableList<Playlist> queryPList(ResultSet rset) throws SQLException {
+	private void queryPList() throws SQLException {
+		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
 		ObservableList<Playlist> data = FXCollections.observableArrayList();
+		
+		assert rset != null;
 		
 		while (rset.next()) {
 			Playlist playlist = new Playlist();
 			playlist.setNome(rset.getString("Nome"));
 			data.add(playlist);
 		}
-		return data;
+		plistTable.setItems(data);
+		rset.close();
 	}
 	
 	public String getCF() {
