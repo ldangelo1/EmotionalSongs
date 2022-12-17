@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static java.lang.System.out;
+
 public class clientESController {
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
 
@@ -97,6 +99,8 @@ public class clientESController {
 	private void addPList() throws SQLException {
 		String query = "VALUES('" + addPListField.getText() + "', '" + CF + "')";
 		serverES.insert("Playlist", query);
+		out.println("Playlist aggiunta con successo!");
+		AccountController.generaAlert(Alert.AlertType.INFORMATION, "Playlist aggiunta con successo!", "Premi OK per tornare alla pagina precedente");
 	}
 	
 	/**
@@ -105,6 +109,7 @@ public class clientESController {
 	// TODO: 15/12/2022  metodo rimuovi playlist
 	@FXML
 	private void remPList() {
+		//String query = "WHERE '"
 	}
 	
 	/**

@@ -17,7 +17,6 @@ import static java.lang.System.out;
 
 public class AccountController extends clientESController {
 
-	//public static String CF = "";
 	private final String[] typeQualifier = {"via", "piazza", "corso"};
 
 	@FXML
@@ -105,7 +104,7 @@ public class AccountController extends clientESController {
 	 * @param head      il messaggio da notificare
 	 * @param msg       il commento al messaggio
 	 */
-	private void generaAlert(Alert.AlertType alertType, String head, String msg) {
+	public static void generaAlert(Alert.AlertType alertType, String head, String msg) {
 		Alert alert = new Alert(alertType);
 		alert.setTitle("Informazioni");
 		alert.setHeaderText(head);
