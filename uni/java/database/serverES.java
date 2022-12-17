@@ -80,12 +80,26 @@ public class serverES extends Application {
 	
 	public static Integer insert(String tabella, String tail) throws SQLException {
 		String query = "INSERT INTO \"" + tabella + "\"";
-		
-		if ("Playlist".equals(tabella)) {
-			query += "(\"Nome\", \"CF\") ";
+		switch (tabella) {
+			case "Playlist" -> {
+				query += "(\"Nome\", \"CF\") ";
+				query += tail;
+				return (Integer) eseguiQuery(query, 2);
+			}
+			case "Contiene" -> {
+				query += "(\"fk_Playlist\", \"ID\") ";
+				query += tail;
+				return (Integer) eseguiQuery(query, 2);
+			}
 		}
-		query += tail;
-		
+		return (Integer) eseguiQuery(query, 2);
+	}
+
+	public static Integer remove(String tabella, String tail) throws SQLException {
+		String query = "DELETE FROM \"" + tabella + "\"";
+		if ("Playlist".equals(tabella)) {
+			query += tail;
+		}
 		return (Integer) eseguiQuery(query, 2);
 	}
 }
