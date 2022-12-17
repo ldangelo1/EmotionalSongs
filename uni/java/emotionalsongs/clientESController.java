@@ -104,8 +104,8 @@ public class clientESController {
 	 */
 	// TODO: 15/12/2022  metodo rimuovi playlist
 	@FXML
-	private void remPList() {
-		//String query = "WHERE '"
+	private void remPList() throws SQLException {
+		serverES.drop("Playlist", "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getItems() + "'");
 	}
 	
 	/**
