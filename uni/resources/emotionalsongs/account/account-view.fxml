@@ -88,9 +88,9 @@
             <PasswordField fx:id="passAField" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
-    <Button layoutX="80.0" layoutY="378.0" onAction="#Registrazione" prefHeight="30.0" prefWidth="130.0"
+    <Button layoutX="80.0" layoutY="378.0" onAction="#registrazione" prefHeight="30.0" prefWidth="130.0"
             text="Registrazione" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0"/>
-    <Button defaultButton="true" layoutX="400.0" layoutY="245.0" onAction="#Accesso" prefHeight="30.0" prefWidth="130.0"
+    <Button defaultButton="true" layoutX="400.0" layoutY="245.0" onAction="#accesso" prefHeight="30.0" prefWidth="130.0"
             text="Accesso" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0"/>
     <Separator layoutX="427.0" layoutY="120.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0"
                AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="10.0"/>

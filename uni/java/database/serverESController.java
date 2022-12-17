@@ -19,7 +19,7 @@ public class serverESController {
 	private PasswordField passField;
 	
 	public void Connessione() throws IOException {
-		DBInfo.isConnected = serverES.connectionDB(ipField.getText(), portField.getText(), nameField.getText(), userField.getText(), passField.getText());
+		DBInfo.isConnected = serverES.connessioneDB(ipField.getText(), portField.getText(), nameField.getText(), userField.getText(), passField.getText());
 		if (DBInfo.isConnected != null) {
 			client();
 			chiudiStage();

@@ -3,7 +3,6 @@ package emotionalsongs;
 import database.DBInfo;
 import database.serverES;
 import emotionalsongs.account.Account;
-import emotionalsongs.account.AccountController;
 import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
 import emotionalsongs.recensione.Recensione;
@@ -21,10 +20,8 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 public class clientESController {
-	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
-
 	private static String CF;
-	
+	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
 	@FXML
 	private Label userLbl, avvisoLbl;
 	@FXML
@@ -65,11 +62,11 @@ public class clientESController {
 		String artista = artistaField.getText();
 		String anno = annoField.getText();
 		String ricerca = ricercaCBox.getValue();
-		String query = "SELECT * FROM \"Canzone\" ";
-
+		String query = "";
+		
 		// TODO: 15/12/2022 Disabilitare campi di ricerca non interessati al momento
 		// (es. se ricerca per autore disabilitare gli altri 2 campi
-
+		
 		switch (ricerca) {
 			case "Titolo" -> {
 				if (!titolo.isEmpty()) query += "WHERE \"Titolo\"=" + "'" + titolo + "'";
@@ -86,7 +83,7 @@ public class clientESController {
 			}
 		}
 		
-		ResultSet rset = (ResultSet) serverES.eseguiQuery(query, 1);
+		ResultSet rset = serverES.select("Canzone", query);
 		assert rset != null;
 		canzoneTable.setItems(queryCanzone(rset));
 		rset.close();
@@ -97,10 +94,9 @@ public class clientESController {
 	 */
 	@FXML
 	private void addPList() throws SQLException {
-		String query = "VALUES('" + addPListField.getText() + "', '" + CF + "')";
-		serverES.insert("Playlist", query);
+		serverES.insert("Playlist", "VALUES('" + addPListField.getText() + "', '" + getCF() + "')");
 		out.println("Playlist aggiunta con successo!");
-		AccountController.generaAlert(Alert.AlertType.INFORMATION, "Playlist aggiunta con successo!", "Premi OK per tornare alla pagina precedente");
+		serverES.generaAlert(Alert.AlertType.INFORMATION, "Playlist aggiunta con successo!", "Premi OK per tornare alla pagina precedente");
 	}
 	
 	/**
@@ -157,7 +153,6 @@ public class clientESController {
 	 * successivamente popolo la tabella con la lista.
 	 *
 	 * @param rset risultato della query
-	 * @throws SQLException rset.next() genera l'eccezione
 	 */
 	private ObservableList<Canzone> queryCanzone(ResultSet rset) throws SQLException {
 		ObservableList<Canzone> data = FXCollections.observableArrayList();
@@ -172,15 +167,28 @@ public class clientESController {
 		return data;
 	}
 	
-	// TODO: 04/12/22 queryCanzone ora è atomicizzato(? esiste il termine), da fare per le playlist
-	// ho eliminato le emozioni dalla tabella, quando si preme su una canzone si apre una nuova finestra dove
-	// si vedono le "recensioni" e, se loggato, puoi recensire
-
+	/**
+	 * Sfoglio playlist per playlist aggiungendole in lista,
+	 * successivamente popolo la tabella con la lista.
+	 *
+	 * @param rset risultato della query
+	 */
+	private ObservableList<Playlist> queryPList(ResultSet rset) throws SQLException {
+		ObservableList<Playlist> data = FXCollections.observableArrayList();
+		
+		while (rset.next()) {
+			Playlist playlist = new Playlist();
+			playlist.setNome(rset.getString("Nome"));
+			data.add(playlist);
+		}
+		return data;
+	}
+	
 	public String getCF() {
 		return CF;
 	}
 	
-	public void setCF(String CF) {
-		this.CF = CF;
+	public void setCF(String cf) {
+		CF = cf;
 	}
 }
