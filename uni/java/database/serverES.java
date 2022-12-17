@@ -90,10 +90,10 @@ public class serverES extends Application {
 	}
 	
 	/**
-	 * Metodo che gestisce i comandi di SELECT
+	 * Metodo che gestisce i comandi di "SELECT"
 	 *
 	 * @param tabella la tabella dove operare
-	 * @param tail    la seconda parte della query, generata in base agli input
+	 * @param tail    la seconda parte della query, generata in base ai dati in ingresso
 	 * @return le tuple trovate
 	 */
 	public static ResultSet select(String tabella, String tail) throws SQLException {
@@ -103,10 +103,10 @@ public class serverES extends Application {
 	}
 	
 	/**
-	 * Metodo che gestisce i comandi di INSERT
+	 * Metodo che gestisce i comandi di "INSERT"
 	 *
 	 * @param tabella la tabella dove operare
-	 * @param tail    la seconda parte della query, generata in base agli input
+	 * @param tail    la seconda parte della query, generata in base ai dati in ingresso
 	 * @return il numero di tuple aggiornate
 	 */
 	public static Integer insert(String tabella, String tail) throws SQLException {
@@ -116,6 +116,13 @@ public class serverES extends Application {
 		return (Integer) eseguiQuery(query, 2);
 	}
 	
+	/**
+	 * Metodo che gestisce i comandi di "DELETE"
+	 *
+	 * @param tabella la tabella dove operare
+	 * @param tail    la seconda parte della query, generata in base ai dati in ingresso
+	 * @return il numero di tuple aggiornate
+	 */
 	public static Integer delete(String tabella, String tail) throws SQLException {
 		String query = "DELETE FROM \"" + tabella + "\" " + tail;
 		return (Integer) eseguiQuery(query, 2);

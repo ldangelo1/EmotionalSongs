@@ -25,7 +25,9 @@
                     <TextField fx:id="annoField" prefHeight="30.0" prefWidth="470.0" />
                 </graphic>
             </Label>
-            <Label fx:id="avvisoLbl" alignment="CENTER" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="105.0" />
+            <Label fx:id="avvisoLbl" alignment="CENTER" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0"
+                   prefHeight="30.0" text="label" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                   AnchorPane.topAnchor="105.0"/>
             <ChoiceBox fx:id="ricercaCBox" prefHeight="30.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" />
             <TableView fx:id="canzoneTable" layoutX="40.0" layoutY="170.0" prefHeight="339.0" prefWidth="760.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
                 <columns>
@@ -46,7 +48,8 @@
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
             </padding>
-            <Label fx:id="userLbl" layoutX="50.0" layoutY="40.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="userLbl" layoutX="50.0" layoutY="40.0" prefHeight="30.0" text="label"
+                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"/>
             <TableView fx:id="plistTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="610.0" AnchorPane.topAnchor="35.0">
                 <columns>
                     <TableColumn fx:id="colPList" prefWidth="75.0" text="Playlist" />
@@ -57,21 +60,27 @@
             </TableView>
             <TableView fx:id="plistCanzoneTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
                 <columns>
-                    <TableColumn fx:id="colTitolo_PList" prefWidth="75.0" text="Titolo" />
-                    <TableColumn fx:id="colArtista_PList" prefWidth="75.0" text="Autore" />
-                    <TableColumn fx:id="colAnno_PList" prefWidth="75.0" text="Anno" />
+                    <TableColumn fx:id="colTitolo_PList" prefWidth="75.0" text="Titolo"/>
+                    <TableColumn fx:id="colArtista_PList" prefWidth="75.0" text="Autore"/>
+                    <TableColumn fx:id="colAnno_PList" prefWidth="75.0" text="Anno"/>
                 </columns>
                 <columnResizePolicy>
-                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                 </columnResizePolicy>
             </TableView>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0" text="Accedi / Registrati" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
-            <Button fx:id="addPListBtn" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addPList" prefHeight="30.0" prefWidth="240.0" text="Crea playlist" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0">
-            <graphic>
-               <TextField fx:id="addPListField" />
-            </graphic></Button>
-            <Button fx:id="remPListBtn" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0" prefWidth="130.0" text="Elimina playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
-            <Button fx:id="remSongBtn_acc" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0" prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0"
+                    text="Accedi / Registrati" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0"
+                    AnchorPane.rightAnchor="320.0"/>
+            <Button fx:id="addPListBtn" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
+                    onAction="#addPList" prefHeight="30.0" prefWidth="130.0" text="Crea playlist"
+                    AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"/>
+            <TextField fx:id="addPListField" prefHeight="30.0" prefWidth="130.0" AnchorPane.bottomAnchor="35.0"
+                       AnchorPane.leftAnchor="155.0"/>
+            <Button fx:id="remPListBtn" mnemonicParsing="false" onAction="#remPList" prefHeight="30.0" prefWidth="130.0"
+                    text="Elimina playlist" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"/>
+            <Button fx:id="remSongBtn_acc" disable="true" mnemonicParsing="false" onAction="#remSong" prefHeight="30.0"
+                    prefWidth="130.0" text="Rimuovi canzone" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.rightAnchor="20.0"/>
         </AnchorPane>
     </Tab>
 </TabPane>

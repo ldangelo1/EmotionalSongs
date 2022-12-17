@@ -64,9 +64,6 @@ public class clientESController {
 		String ricerca = ricercaCBox.getValue();
 		String query = "";
 		
-		// TODO: 15/12/2022 Disabilitare campi di ricerca non interessati al momento
-		// (es. se ricerca per autore disabilitare gli altri 2 campi
-		
 		switch (ricerca) {
 			case "Titolo" -> {
 				if (!titolo.isEmpty()) query += "WHERE \"Titolo\"=" + "'" + titolo + "'";
@@ -126,20 +123,24 @@ public class clientESController {
 	private void remSong() {
 	}
 	
+	protected void abilitaFunzioni() {
+		//userLbl.setText("Felice di rivederti" + getCF());
+	}
+	
 	public void initialize() {
 		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
 		ricercaCBox.getItems().addAll(ricercaStrings);
 		ricercaCBox.setValue(ricercaStrings[0]);
 		
-		initTableView(canzoneTable, colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
-		initTableView(plistCanzoneTable, colTitolo_PList, colArtista_PList, colAnno_PList);
+		initCanzoneTable(canzoneTable, colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
+		initCanzoneTable(plistCanzoneTable, colTitolo_PList, colArtista_PList, colAnno_PList);
 		initPListTable(plistTable, colPList);
 		
 		userLbl.setText("Necessita di account per sbloccare altre funzioni");
 	}
 	
-	private void initTableView(TableView<Canzone> Table, TableColumn<Canzone, String> colTitolo, TableColumn<Canzone, String> colArtista, TableColumn<Canzone, Integer> colAnno) {
+	private void initCanzoneTable(TableView<Canzone> Table, TableColumn<Canzone, String> colTitolo, TableColumn<Canzone, String> colArtista, TableColumn<Canzone, Integer> colAnno) {
 		assert Table != null;
 		colTitolo.setCellValueFactory(new PropertyValueFactory<>("Titolo"));
 		colArtista.setCellValueFactory(new PropertyValueFactory<>("Artista"));
@@ -155,7 +156,7 @@ public class clientESController {
 	 * Sfoglio canzone per canzone aggiungendole in lista,
 	 * successivamente popolo la tabella con la lista.
 	 *
-	 * @param rset risultato della query
+	 * @param tail seconda parte della query costruita dai dati in ingresso
 	 */
 	private void queryCanzone(String tail) throws SQLException {
 		ResultSet rset = serverES.select("Canzone", tail);

@@ -30,21 +30,6 @@ public class AccountController extends clientESController {
 	private ChoiceBox<String> qualifierCBox;
 	
 	@FXML
-	private void accesso() throws Exception {
-		String user = userAField.getText();
-		String query = "WHERE \"Username\"='" + user + "' AND \"Password\"='" + passAField.getText() + "'";
-		
-		if (checkUtente(query)) {
-			out.println("Accesso eseguito da: " + user);
-			serverES.generaAlert(Alert.AlertType.INFORMATION, "accesso eseguito!", "Premi OK per tornare alla pagina principale");
-			serverES.chiudiStage(sceneAccount);
-		} else {
-			out.println("I dati non corrispondono");
-			serverES.generaAlert(Alert.AlertType.WARNING, "Credenziali errate!", "Premi OK per riprovare.");
-		}
-	}
-	
-	@FXML
 	private void registrazione() throws SQLException {
 		String query = "WHERE \"CF\"='" + cfField.getText() + "' OR \"Username\"='" + userRField.getText() + "'";
 		
@@ -54,27 +39,41 @@ public class AccountController extends clientESController {
 			
 			if (serverES.insert("Utente", queryIns) == 1) {
 				out.println("Registrazione eseguita");
-				serverES.generaAlert(Alert.AlertType.INFORMATION, "registrazione eseguita!", "Premi OK per tornare alla pagina principale");
-				serverES.chiudiStage(sceneAccount);
+				serverES.generaAlert(Alert.AlertType.INFORMATION, "Registrazione eseguita!", "Premi OK per eseguire l'accesso.");
 			} else {
 				out.println("Errore nella registrazione");
-				serverES.generaAlert(Alert.AlertType.WARNING, "Problemi con la registrazione!", "Premi OK per riprovare.");
+				serverES.generaAlert(Alert.AlertType.WARNING, "Errore nella registrazione!", "Premi OK per riprovare.");
 			}
 		} else {
 			out.println("Utente già registrato");
-			serverES.generaAlert(Alert.AlertType.INFORMATION, "Sei già registrato! o il tuo user è già stato usato", "Premi OK per riprovare.");
+			serverES.generaAlert(Alert.AlertType.INFORMATION, "Sei già registrato! o l'username è già stato usato.", "Premi OK per riprovare.");
+		}
+	}
+	
+	@FXML
+	private void accesso() throws Exception {
+		String user = userAField.getText();
+		String query = "WHERE \"Username\"='" + user + "' AND \"Password\"='" + passAField.getText() + "'";
+		
+		if (checkUtente(query)) {
+			out.println("Accesso eseguito da: " + user);
+			serverES.generaAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale.");
+			abilitaFunzioni();
+			serverES.chiudiStage(sceneAccount);
+		} else {
+			out.println("Credenziali errate");
+			serverES.generaAlert(Alert.AlertType.WARNING, "Credenziali errate!", "Premi OK per riprovare.");
 		}
 	}
 	
 	/**
-	 * @param tail la seconda parte della query, generata in base agli input
+	 * @param tail la seconda parte della query, generata in base ai dati in ingresso
 	 * @return se un utente è o non è registrato
 	 */
 	private Boolean checkUtente(String tail) throws SQLException {
 		ResultSet rset = serverES.select("Utente", tail);
 		assert rset != null;
-		rset.next();
-		setCF(rset.getString(1));
+		if (rset.next()) setCF(rset.getString(1));
 		rset.close();
 		return getCF() != null;
 	}
