@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -200,5 +201,30 @@ public class clientESController {
 	
 	public void setCF(String cf) {
 		CF = cf;
+	}
+
+	public void selezionaField(MouseEvent mouseEvent) {
+		switch (ricercaCBox.getValue()) {
+			case "Titolo" -> {
+				titoloField.setDisable(false);
+				artistaField.setDisable(true);
+				annoField.setDisable(true);
+			}
+			case "Artista" -> {
+				titoloField.setDisable(true);
+				artistaField.setDisable(false);
+				annoField.setDisable(true);
+			}
+			case "Anno" -> {
+				titoloField.setDisable(true);
+				artistaField.setDisable(true);
+				annoField.setDisable(false);
+			}
+			case "Artista e Anno" -> {
+				titoloField.setDisable(true);
+				artistaField.setDisable(false);
+				annoField.setDisable(false);
+			}
+		}
 	}
 }
