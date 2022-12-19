@@ -98,7 +98,7 @@ public class clientESController {
 	/**
 	 * Metodo di eliminazione della playlist
 	 */
-	// TODO: 15/12/2022  metodo rimuovi playlist
+	// TODO: 15/12/2022  metodo rimuovi playlist, plisTable.getItems è da sistemare
 	@FXML
 	private void remPList() throws SQLException {
 		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getItems() + "'";
@@ -150,7 +150,7 @@ public class clientESController {
 	
 	private void initPListTable(TableView<Playlist> Table, TableColumn<Playlist, String> colPList) {
 		assert Table != null;
-		colPList.setCellValueFactory(new PropertyValueFactory<>("Playlist"));
+		colPList.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 	}
 	
 	private void funzioni() {
@@ -227,8 +227,8 @@ public class clientESController {
 			Playlist playlist = new Playlist();
 			playlist.setNome(rset.getString("Nome"));
 			data.add(playlist);
+			plistTable.setItems(data);
 		}
-		plistTable.setItems(data);
 		rset.close();
 	}
 	
