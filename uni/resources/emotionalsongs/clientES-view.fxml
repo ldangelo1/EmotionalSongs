@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.clientESController">
+<TabPane prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.clientESController" onMouseMoved="#selezionaField">
 	<Tab text="Canzoni">
-		<AnchorPane onMouseMoved="#selezionaField">
+		<AnchorPane>
 			<padding>
 				<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
 			</padding>

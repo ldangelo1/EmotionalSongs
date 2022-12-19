@@ -43,7 +43,7 @@ public class clientESController {
 	private ChoiceBox<String> ricercaCBox;
 	
 	@FXML
-	private Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_song, remSongBtn_acc;
+	private Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_acc;
 	
 	@FXML
 	private void account() throws IOException {
@@ -204,6 +204,10 @@ public class clientESController {
 	}
 
 	public void selezionaField(MouseEvent mouseEvent) {
+		gestisciCBox();
+		gestisciBtn();
+	}
+	private void gestisciCBox(){
 		switch (ricercaCBox.getValue()) {
 			case "Titolo" -> {
 				titoloField.setDisable(false);
@@ -226,5 +230,12 @@ public class clientESController {
 				annoField.setDisable(false);
 			}
 		}
+
+	}
+	private void gestisciBtn() {
+		addPListBtn.setDisable(getCF() == null);
+		remPListBtn.setDisable(getCF() == null);
+		remSongBtn_acc.setDisable(getCF() == null);
+		addSongBtn_song.setDisable(getCF() == null);
 	}
 }
