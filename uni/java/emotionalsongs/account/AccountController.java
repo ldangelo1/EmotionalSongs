@@ -58,7 +58,6 @@ public class AccountController extends clientESController {
 		if (checkUtente(query)) {
 			out.println("Accesso eseguito da: " + user);
 			serverES.generaAlert(Alert.AlertType.INFORMATION, "Accesso eseguito!", "Premi OK per tornare alla pagina principale.");
-			abilitaFunzioni();
 			serverES.chiudiStage(sceneAccount);
 		} else {
 			out.println("Credenziali errate");

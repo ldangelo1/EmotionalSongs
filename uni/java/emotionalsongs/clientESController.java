@@ -123,11 +123,7 @@ public class clientESController {
 	@FXML
 	private void remSong() {
 	}
-	
-	protected void abilitaFunzioni() {
-		//userLbl.setText("Felice di rivederti" + getCF());
-	}
-	
+
 	public void initialize() {
 		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
@@ -194,15 +190,6 @@ public class clientESController {
 		plistTable.setItems(data);
 		rset.close();
 	}
-	
-	public String getCF() {
-		return CF;
-	}
-	
-	public void setCF(String cf) {
-		CF = cf;
-	}
-
 	public void selezionaField(MouseEvent mouseEvent) {
 		gestisciCBox();
 		gestisciBtn();
@@ -237,5 +224,12 @@ public class clientESController {
 		remPListBtn.setDisable(getCF() == null);
 		remSongBtn_acc.setDisable(getCF() == null);
 		addSongBtn_song.setDisable(getCF() == null);
+	}
+
+	public String getCF() {
+		return CF;
+	}
+	public void setCF(String cf) {
+		CF = cf;
 	}
 }
