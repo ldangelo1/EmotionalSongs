@@ -5,12 +5,14 @@ import database.serverES;
 import emotionalsongs.account.Account;
 import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
+import emotionalsongs.objects.Regex;
 import emotionalsongs.recensione.Recensione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -224,6 +226,27 @@ public class clientESController {
 		}
 		plistTable.setItems(data);
 		rset.close();
+	}
+	
+	@FXML
+	private void inRegex(KeyEvent keyEvent) {
+		TextField field = (TextField) keyEvent.getSource();
+		whatColor(field, Regex.regexStandard(field.getText()) ? "#007160" : "red");
+	}
+	
+	@FXML
+	private void inRegexNum(KeyEvent keyEvent) {
+		TextField field = (TextField) keyEvent.getSource();
+		switch (field.getId()) {
+			case "civicField" -> whatColor(field, Regex.regexNumber(field.getText(), "1,3") ? "#007160" : "red");
+			case "capField" -> whatColor(field, Regex.regexNumber(field.getText(), "5") ? "#007160" : "red");
+			case "annoField" -> whatColor(field, Regex.regexNumber(field.getText(), "4") ? "#007160" : "red");
+		}
+	}
+	
+	protected void whatColor(TextField field, String color) {
+		String property = "-fx-background-color: derive(" + color + ", 99%)";
+		field.setStyle(property);
 	}
 	
 	public String getCF() {

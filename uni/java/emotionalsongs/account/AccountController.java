@@ -3,11 +3,12 @@ package emotionalsongs.account;
 import database.serverES;
 import emotionalsongs.clientESController;
 import emotionalsongs.objects.Indirizzo;
+import emotionalsongs.objects.Regex;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.sql.ResultSet;
@@ -78,9 +79,40 @@ public class AccountController extends clientESController {
 		return getCF() != null;
 	}
 	
-	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
-	public void inputRegex(InputMethodEvent inputMethodEvent) {
+	@FXML
+	private void inRegexEmail(KeyEvent keyEvent) {
+		TextField field = (TextField) keyEvent.getSource();
+		whatColor(field, Regex.regexEmail(field.getText()) ? "#007160" : "red");
+	}
 	
+	@FXML
+	private void inRegexProv(KeyEvent keyEvent) {
+		TextField field = (TextField) keyEvent.getSource();
+		whatColor(field, Regex.regexProvince(field.getText()) ? "#007160" : "red");
+	}
+	
+	@FXML
+	private void inRegexUser(KeyEvent keyEvent) {
+		TextField field = (TextField) keyEvent.getSource();
+		whatColor(field, Regex.regexUsername(field.getText()) ? "#007160" : "red");
+	}
+	
+	@FXML
+	private void inRegexPass(KeyEvent keyEvent) {
+		TextField field = (TextField) keyEvent.getSource();
+		whatColor(field, Regex.regexPassword(field.getText()) ? "#007160" : "red");
+	}
+	
+	@FXML
+	private void inRegexID(KeyEvent keyEvent) {
+		String key = keyEvent.getCharacter();
+		if (key.matches("[a-z]")) {
+			cfField.deletePreviousChar();
+			cfField.appendText(key.toUpperCase());
+		}
+		
+		TextField field = (TextField) keyEvent.getSource();
+		whatColor(field, Regex.regexID(field.getText()) ? "#007160" : "red");
 	}
 	
 	public void initialize() {
