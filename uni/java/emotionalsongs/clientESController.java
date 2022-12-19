@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class clientESController {
 	private ChoiceBox<String> ricercaCBox;
 	
 	@FXML
-	private Button addPListBtn, remPListBtn, addSongBtn_song, remSongBtn_acc;
+	private Button addPListBtn, remPListBtn, addSongBtn, remSongBtn;
 	
 	@FXML
 	private void account() throws IOException {
@@ -123,7 +122,12 @@ public class clientESController {
 	@FXML
 	private void remSong() {
 	}
-
+	
+	public void gestione() {
+		funzioni();
+		
+	}
+	
 	public void initialize() {
 		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
@@ -134,7 +138,7 @@ public class clientESController {
 		initCanzoneTable(plistCanzoneTable, colTitolo_PList, colArtista_PList, colAnno_PList);
 		initPListTable(plistTable, colPList);
 		
-		userLbl.setText("Necessita di account per sbloccare altre funzioni");
+		funzioni();
 	}
 	
 	private void initCanzoneTable(TableView<Canzone> Table, TableColumn<Canzone, String> colTitolo, TableColumn<Canzone, String> colArtista, TableColumn<Canzone, Integer> colAnno) {
@@ -149,52 +153,12 @@ public class clientESController {
 		colPList.setCellValueFactory(new PropertyValueFactory<>("Playlist"));
 	}
 	
-	/**
-	 * Sfoglio canzone per canzone aggiungendole in lista,
-	 * successivamente popolo la tabella con la lista.
-	 *
-	 * @param tail seconda parte della query costruita dai dati in ingresso
-	 */
-	private void queryCanzone(String tail) throws SQLException {
-		ResultSet rset = serverES.select("Canzone", tail);
-		ObservableList<Canzone> data = FXCollections.observableArrayList();
-		
-		assert rset != null;
-		
-		while (rset.next()) {
-			Canzone canzone = new Canzone();
-			canzone.setTitolo(rset.getString("Titolo"));
-			canzone.setArtista(rset.getString("Artista"));
-			canzone.setAnno(rset.getInt("Anno"));
-			data.add(canzone);
-		}
-		canzoneTable.setItems(data);
-		rset.close();
+	private void funzioni() {
+		ricercaFieldCBox();
+		logFunzioni(getCF() == null);
 	}
 	
-	/**
-	 * Sfoglio playlist per playlist aggiungendole in lista,
-	 * successivamente popolo la tabella con la lista.
-	 */
-	private void queryPList() throws SQLException {
-		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
-		ObservableList<Playlist> data = FXCollections.observableArrayList();
-		
-		assert rset != null;
-		
-		while (rset.next()) {
-			Playlist playlist = new Playlist();
-			playlist.setNome(rset.getString("Nome"));
-			data.add(playlist);
-		}
-		plistTable.setItems(data);
-		rset.close();
-	}
-	public void selezionaField(MouseEvent mouseEvent) {
-		gestisciCBox();
-		gestisciBtn();
-	}
-	private void gestisciCBox(){
+	private void ricercaFieldCBox() {
 		switch (ricercaCBox.getValue()) {
 			case "Titolo" -> {
 				titoloField.setDisable(false);
@@ -217,18 +181,61 @@ public class clientESController {
 				annoField.setDisable(false);
 			}
 		}
-
 	}
-	private void gestisciBtn() {
-		addPListBtn.setDisable(getCF() == null);
-		remPListBtn.setDisable(getCF() == null);
-		remSongBtn_acc.setDisable(getCF() == null);
-		addSongBtn_song.setDisable(getCF() == null);
+	
+	private void logFunzioni(Boolean log) {
+		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti" + getCF());
+		
+		addPListBtn.setDisable(log);
+		remPListBtn.setDisable(log);
+		addSongBtn.setDisable(log);
+		remSongBtn.setDisable(log);
 	}
-
+	
+	/**
+	 * Sfoglio canzone per canzone aggiungendole in lista,
+	 * successivamente popolo la tabella con la lista.
+	 *
+	 * @param tail seconda parte della query costruita dai dati in ingresso
+	 */
+	private void queryCanzone(String tail) throws SQLException {
+		ResultSet rset = serverES.select("Canzone", tail);
+		ObservableList<Canzone> data = FXCollections.observableArrayList();
+		
+		assert rset != null;
+		while (rset.next()) {
+			Canzone canzone = new Canzone();
+			canzone.setTitolo(rset.getString("Titolo"));
+			canzone.setArtista(rset.getString("Artista"));
+			canzone.setAnno(rset.getInt("Anno"));
+			data.add(canzone);
+		}
+		canzoneTable.setItems(data);
+		rset.close();
+	}
+	
+	/**
+	 * Sfoglio playlist per playlist aggiungendole in lista,
+	 * successivamente popolo la tabella con la lista.
+	 */
+	private void queryPList() throws SQLException {
+		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
+		ObservableList<Playlist> data = FXCollections.observableArrayList();
+		
+		assert rset != null;
+		while (rset.next()) {
+			Playlist playlist = new Playlist();
+			playlist.setNome(rset.getString("Nome"));
+			data.add(playlist);
+		}
+		plistTable.setItems(data);
+		rset.close();
+	}
+	
 	public String getCF() {
 		return CF;
 	}
+	
 	public void setCF(String cf) {
 		CF = cf;
 	}

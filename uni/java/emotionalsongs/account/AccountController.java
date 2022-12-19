@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.sql.ResultSet;
@@ -78,7 +79,8 @@ public class AccountController extends clientESController {
 	}
 	
 	// TODO: 29/10/22 scrivere un solo metodo che fa la regex su tutti i campi
-	public void regex() {
+	public void inputRegex(InputMethodEvent inputMethodEvent) {
+	
 	}
 	
 	public void initialize() {

@@ -3,33 +3,33 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="sceneAccount" prefHeight="310.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.account.AccountController">
+<AnchorPane fx:id="sceneAccount" prefHeight="310.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.account.AccountController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="20.0" prefHeight="30.0" text="Nome"
            AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <graphic>
-            <TextField fx:id="nameField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="nameField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="176.0" layoutY="20.0" prefHeight="30.0" text="Cognome"
            AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="0.0">
         <graphic>
-            <TextField fx:id="surnameField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="surnameField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="202.0" layoutY="57.0" prefHeight="30.0" text="CF"
            AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="35.0">
         <graphic>
-            <TextField fx:id="cfField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="cfField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="195.0" layoutY="55.0" prefHeight="30.0" text="Email"
            AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="35.0">
         <graphic>
-            <TextField fx:id="mailField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="mailField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <ChoiceBox fx:id="qualifierCBox" layoutX="20.0" layoutY="116.0" prefHeight="30.0" prefWidth="70.0"
@@ -37,55 +37,57 @@
     <Label contentDisplay="RIGHT" layoutX="107.0" layoutY="116.0" prefHeight="30.0" text="Indirizzo"
            AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="95.0">
         <graphic>
-            <TextField fx:id="addrField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="addrField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="278.0" layoutY="116.0" prefHeight="30.0" text="Num. civico"
            AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="95.0">
         <graphic>
-            <TextField fx:id="civicField" prefHeight="30.0" prefWidth="31.0"/>
+            <TextField fx:id="civicField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="31.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="160.0" prefHeight="30.0" text="Città"
            AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="130.0">
         <graphic>
-            <TextField fx:id="cityField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="cityField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="163.0" layoutY="160.0" prefHeight="30.0" text="Provincia"
            AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="130.0">
         <graphic>
-            <TextField fx:id="provField" prefHeight="30.0" prefWidth="37.0"/>
+            <TextField fx:id="provField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="37.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="173.0" layoutY="170.0" prefHeight="30.0" text="CAP"
            AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="130.0">
         <graphic>
-            <TextField fx:id="capField" prefHeight="30.0" prefWidth="70.0"/>
+            <TextField fx:id="capField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="70.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="26.0" layoutY="317.0" prefHeight="30.0" text="username"
            AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
         <graphic>
-            <TextField fx:id="userRField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="userRField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="201.0" layoutY="317.0" prefHeight="30.0" text="password"
            AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="190.0">
         <graphic>
-            <PasswordField fx:id="passRField" prefHeight="30.0" prefWidth="110.0"/>
+            <PasswordField fx:id="passRField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0"
+                           prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" layoutX="404.0" layoutY="123.0" prefHeight="30.0" text="username"
            AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="95.0">
         <graphic>
-            <TextField fx:id="userAField" prefHeight="30.0" prefWidth="110.0"/>
+            <TextField fx:id="userAField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0" prefWidth="110.0"/>
         </graphic>
     </Label>
     <Label contentDisplay="RIGHT" graphicTextGap="5.0" layoutX="405.0" layoutY="163.0" prefHeight="30.0" text="password"
            AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0">
         <graphic>
-            <PasswordField fx:id="passAField" prefHeight="30.0" prefWidth="110.0"/>
+            <PasswordField fx:id="passAField" onInputMethodTextChanged="#inputRegex" prefHeight="30.0"
+                           prefWidth="110.0"/>
         </graphic>
     </Label>
     <Button layoutX="80.0" layoutY="378.0" onAction="#registrazione" prefHeight="30.0" prefWidth="130.0"
