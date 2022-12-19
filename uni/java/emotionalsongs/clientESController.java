@@ -79,7 +79,6 @@ public class clientESController {
 					query += "WHERE \"Artista\"=" + "'" + artista + "' " + "AND \"Anno\"=" + anno;
 			}
 		}
-		
 		queryCanzone(query);
 	}
 	
@@ -123,22 +122,18 @@ public class clientESController {
 	private void remSong() {
 	}
 	
-	public void gestione() {
-		funzioni();
-		
-	}
-	
 	public void initialize() {
 		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
 		ricercaCBox.getItems().addAll(ricercaStrings);
 		ricercaCBox.setValue(ricercaStrings[0]);
 		
+		ricercaFieldCBox();
+		logFunzioni();
+		
 		initCanzoneTable(canzoneTable, colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
 		initCanzoneTable(plistCanzoneTable, colTitolo_PList, colArtista_PList, colAnno_PList);
 		initPListTable(plistTable, colPList);
-		
-		funzioni();
 	}
 	
 	private void initCanzoneTable(TableView<Canzone> Table, TableColumn<Canzone, String> colTitolo, TableColumn<Canzone, String> colArtista, TableColumn<Canzone, Integer> colAnno) {
@@ -153,11 +148,7 @@ public class clientESController {
 		colPList.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 	}
 	
-	private void funzioni() {
-		ricercaFieldCBox();
-		logFunzioni(getCF() == null);
-	}
-	
+	@FXML
 	private void ricercaFieldCBox() {
 		switch (ricercaCBox.getValue()) {
 			case "Titolo" -> {
@@ -183,9 +174,12 @@ public class clientESController {
 		}
 	}
 	
-	private void logFunzioni(Boolean log) {
-		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti" + getCF());
+	@FXML
+	private void logFunzioni() {
+		boolean log = getCF() == null;
+		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti " + getCF());
 		
+		addPListField.setDisable(log);
 		addPListBtn.setDisable(log);
 		remPListBtn.setDisable(log);
 		addSongBtn.setDisable(log);
@@ -227,8 +221,8 @@ public class clientESController {
 			Playlist playlist = new Playlist();
 			playlist.setNome(rset.getString("Nome"));
 			data.add(playlist);
-			plistTable.setItems(data);
 		}
+		plistTable.setItems(data);
 		rset.close();
 	}
 	

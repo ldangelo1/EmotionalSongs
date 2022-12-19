@@ -3,11 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<TabPane onMouseMoved="#gestione" prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE"
+<TabPane onMouseMoved="#logFunzioni" prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE"
          xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="emotionalsongs.clientESController">
 	<Tab text="Canzoni">
-		<AnchorPane>
+		<AnchorPane onMouseMoved="#ricercaFieldCBox">
 			<padding>
 				<Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
 			</padding>
@@ -17,7 +17,8 @@
 					<TextField fx:id="titoloField" prefHeight="30.0" prefWidth="470.0"/>
 				</graphic>
 			</Label>
-			<Label contentDisplay="RIGHT" prefHeight="30.0" text="Artista" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="35.0">
+			<Label contentDisplay="RIGHT" prefHeight="30.0" text="Artista" AnchorPane.leftAnchor="20.0"
+			       AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="35.0">
 				<graphic>
 					<TextField fx:id="artistaField" prefHeight="30.0" prefWidth="470.0" />
 				</graphic>
