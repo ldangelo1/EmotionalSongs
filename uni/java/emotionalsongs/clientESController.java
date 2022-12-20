@@ -102,7 +102,8 @@ public class clientESController {
 	// TODO: 15/12/2022  metodo rimuovi playlist, plisTable.getItems è da sistemare
 	@FXML
 	private void remPList() throws SQLException {
-		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getItems() + "'";
+		String name = plistTable.getSelectionModel().getSelectedItem().getNome();
+		String queryIns = "WHERE \"CF\" = '" + getCF() + "' AND \"Nome\" = '" + name + "'";
 		if (serverES.delete("Playlist", queryIns) == 1) {
 			out.println("Playlist rimossa con successo");
 			queryPList();
