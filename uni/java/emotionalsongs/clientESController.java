@@ -188,7 +188,7 @@ public class clientESController {
 	@FXML
 	private void logFunzioni() {
 		boolean log = getCF() == null;
-		//userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti, " + getCF());
+		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti " + getCF());
 		
 		addPListField.setDisable(log);
 		addPListBtn.setDisable(log);
@@ -223,7 +223,7 @@ public class clientESController {
 	 * Sfoglio playlist per playlist aggiungendole in lista,
 	 * successivamente popolo la tabella con la lista.
 	 */
-	public void queryPList() throws SQLException {
+	private void queryPList() throws SQLException {
 		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
 		ObservableList<Playlist> data = FXCollections.observableArrayList();
 		
