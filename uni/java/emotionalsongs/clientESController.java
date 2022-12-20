@@ -66,6 +66,7 @@ public class clientESController {
 	 * Tramite i dati inseriti dall'utente compongo la query, da eseguire poi e
 	 * le canzoni trovate vengono gestite in queryCanzone.
 	 */
+	// TODO: 20/12/22 non so come mai, sto coso popola entrambe le tabelle ogni query
 	@FXML
 	private void song() throws Exception {
 		String titolo = titoloField.getText();
