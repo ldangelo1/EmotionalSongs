@@ -120,8 +120,20 @@ public class clientESController {
 	/**
 	 * Metodo di aggiunta canzone a Playlist
 	 */
+	// TODO: 20/12/22 valore provvisorio, da aggiustare solo idP
 	@FXML
-	private void addSong() {
+	private void addSong() throws SQLException {
+		String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
+		
+		ResultSet rset = serverES.select("Playlist", "WHERE \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'");
+		rset.next();
+		int idP = rset.getInt(1);
+		rset.close();
+		
+		if (serverES.insert("Contiene", "VALUES(" + idP + ", '" + idC + "')") == 1) {
+			out.println("Canzone aggiunta con successo");
+			qualeCanzone();
+		}
 	}
 	
 	/**
@@ -169,20 +181,27 @@ public class clientESController {
 		switch (ricercaCBox.getValue()) {
 			case "Titolo" -> {
 				titoloField.setDisable(false);
+				artistaField.clear();
 				artistaField.setDisable(true);
+				annoField.clear();
 				annoField.setDisable(true);
 			}
 			case "Artista" -> {
+				titoloField.clear();
 				titoloField.setDisable(true);
 				artistaField.setDisable(false);
+				annoField.clear();
 				annoField.setDisable(true);
 			}
 			case "Anno" -> {
+				titoloField.clear();
 				titoloField.setDisable(true);
+				artistaField.clear();
 				artistaField.setDisable(true);
 				annoField.setDisable(false);
 			}
 			case "Artista e Anno" -> {
+				titoloField.clear();
 				titoloField.setDisable(true);
 				artistaField.setDisable(false);
 				annoField.setDisable(false);
@@ -215,14 +234,16 @@ public class clientESController {
 	@FXML
 	private void qualeCanzone() throws SQLException {
 		data.clear();
-		String nomePList = plistTable.getSelectionModel().getSelectedItem().getNome();
+		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		
-		ResultSet rsetPlaylist = serverES.select("Playlist", "WHERE \"Nome\"='" + nomePList + "'");
-		rsetPlaylist.next();
-		
-		ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + rsetPlaylist.getInt(1));
-		while (rsetContiene.next()) {
-			queryCanzone(plistCanzoneTable, "WHERE \"ID\"='" + rsetContiene.getString(2) + "'");
+		if (nomePList != null) {
+			ResultSet rsetPlaylist = serverES.select("Playlist", "WHERE \"Nome\"='" + nomePList.getNome() + "'");
+			rsetPlaylist.next();
+			
+			ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + rsetPlaylist.getInt(1));
+			while (rsetContiene.next()) {
+				queryCanzone(plistCanzoneTable, "WHERE \"ID\"='" + rsetContiene.getString(2) + "'");
+			}
 		}
 	}
 	
@@ -236,7 +257,6 @@ public class clientESController {
 	 */
 	private void queryCanzone(TableView<Canzone> table, String tail) throws SQLException {
 		ResultSet rset = serverES.select("Canzone", tail);
-		//ObservableList<Canzone> data = FXCollections.observableArrayList();
 		
 		assert rset != null;
 		while (rset.next()) {
@@ -272,8 +292,9 @@ public class clientESController {
 		rset.close();
 	}
 	
-	protected void whatColor(TextField field, String color) {
-		String property = "-fx-background-color: derive(" + color + ", 99%)";
+	protected void whatColor(TextField field, String colorBG) {
+		if (field.getText().isBlank()) colorBG = "white";
+		String property = "-fx-background-color: derive(" + colorBG + ", 99%);";
 		field.setStyle(property);
 	}
 	
