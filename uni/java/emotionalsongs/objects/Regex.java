@@ -2,7 +2,7 @@ package emotionalsongs.objects;
 
 public class Regex {
 	public static Boolean regexStandard(String text) {
-		return text.matches("^[\\w!?' àèéìòù]+$");
+		return text.matches("^[a-zA-Z' àèéìòù]+$");
 	} // Regular phrase
 	
 	public static Boolean regexNumber(String text, String quantifier) {
