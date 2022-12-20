@@ -124,7 +124,7 @@ public class serverES extends Application {
 	 * @return il numero di tuple aggiornate
 	 */
 	public static Integer delete(String tabella, String tail) throws SQLException {
-		String query = "DELETE FROM \"" + tabella + "\" " + tail;
+		String query = "DELETE FROM \"" + tabella + "\" WHERE " + tail;
 		return (Integer) eseguiQuery(query, 2);
 	}
 	

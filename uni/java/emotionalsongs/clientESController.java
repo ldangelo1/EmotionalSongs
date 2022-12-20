@@ -31,14 +31,24 @@ public class clientESController {
 	
 	@FXML
 	private TableView<Canzone> canzoneTable, plistCanzoneTable;
+
+	public TableView<Playlist> getPlistTable() {
+		return plistTable;
+	}
+
 	@FXML
-	private TableView<Playlist> plistTable;
+	protected TableView<Playlist> plistTable;
 	@FXML
 	private TableColumn<Canzone, Integer> colAnno_Canzone, colAnno_PList;
 	@FXML
 	private TableColumn<Canzone, String> colTitolo_Canzone, colArtista_Canzone, colTitolo_PList, colArtista_PList;
+
+	public TableColumn<Playlist, String> getColPList() {
+		return colPList;
+	}
+
 	@FXML
-	private TableColumn<Playlist, String> colPList;
+	protected TableColumn<Playlist, String> colPList;
 	
 	@FXML
 	private ChoiceBox<String> ricercaCBox;
@@ -99,10 +109,9 @@ public class clientESController {
 	/**
 	 * Metodo di eliminazione della playlist
 	 */
-	// TODO: 15/12/2022  metodo rimuovi playlist, plisTable.getItems è da sistemare
 	@FXML
 	private void remPList() throws SQLException {
-		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getItems() + "'";
+		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'";
 		if (serverES.delete("Playlist", queryIns) == 1) {
 			out.println("Playlist rimossa con successo");
 			queryPList();
@@ -124,7 +133,7 @@ public class clientESController {
 	private void remSong() {
 	}
 	
-	public void initialize() throws SQLException {
+	public void initialize() {
 		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
 		ricercaCBox.getItems().addAll(ricercaStrings);
@@ -132,7 +141,7 @@ public class clientESController {
 		
 		ricercaFieldCBox();
 		logFunzioni();
-		
+
 		initCanzoneTable(canzoneTable, colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
 		initCanzoneTable(plistCanzoneTable, colTitolo_PList, colArtista_PList, colAnno_PList);
 		initPListTable(plistTable, colPList);
@@ -145,7 +154,7 @@ public class clientESController {
 		colAnno.setCellValueFactory(new PropertyValueFactory<>("Anno"));
 	}
 	
-	private void initPListTable(TableView<Playlist> Table, TableColumn<Playlist, String> colPList) {
+	protected void initPListTable(TableView<Playlist> Table, TableColumn<Playlist, String> colPList) {
 		assert Table != null;
 		colPList.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 	}
@@ -177,7 +186,7 @@ public class clientESController {
 	}
 	
 	@FXML
-	private void logFunzioni() throws SQLException {
+	private void logFunzioni() {
 		boolean log = getCF() == null;
 		//userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti, " + getCF());
 		
@@ -186,7 +195,6 @@ public class clientESController {
 		remPListBtn.setDisable(log);
 		addSongBtn.setDisable(log);
 		remSongBtn.setDisable(log);
-		queryPList();
 	}
 	
 	/**
