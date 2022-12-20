@@ -24,6 +24,8 @@ import static java.lang.System.out;
 public class clientESController {
 	private static String CF;
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
+	private final ObservableList<Canzone> data = FXCollections.observableArrayList();
+	
 	@FXML
 	private Label userLbl, avvisoLbl;
 	@FXML
@@ -44,7 +46,7 @@ public class clientESController {
 	private ChoiceBox<String> ricercaCBox;
 	
 	@FXML
-	private Button addPListBtn, remPListBtn, addSongBtn, remSongBtn;
+	private Button accountBtn, addPListBtn, remPListBtn, addSongBtn, remSongBtn;
 	
 	@FXML
 	private void account() throws IOException {
@@ -58,6 +60,12 @@ public class clientESController {
 		new Recensione().start(stage);
 	}
 	
+	/**
+	 * Metodo di ricerca delle canzoni:
+	 * <br>
+	 * Tramite i dati inseriti dall'utente compongo la query, da eseguire poi e
+	 * le canzoni trovate vengono gestite in queryCanzone.
+	 */
 	@FXML
 	private void song() throws Exception {
 		String titolo = titoloField.getText();
@@ -81,7 +89,8 @@ public class clientESController {
 					query += "WHERE \"Artista\"=" + "'" + artista + "' " + "AND \"Anno\"=" + anno;
 			}
 		}
-		queryCanzone(query);
+		data.clear();
+		queryCanzone(canzoneTable, query);
 	}
 	
 	/**
@@ -146,6 +155,10 @@ public class clientESController {
 		colPList.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 	}
 	
+	/**
+	 * Metodo di oscuramento dei campi non necessari,
+	 * selezionando la ricerca desiderata
+	 */
 	@FXML
 	private void ricercaFieldCBox() {
 		switch (ricercaCBox.getValue()) {
@@ -172,11 +185,15 @@ public class clientESController {
 		}
 	}
 	
+	/**
+	 * Metodo che gestisce la limitazione delle funzioni
+	 */
 	@FXML
 	private void logFunzioni() {
 		boolean log = getCF() == null;
 		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti " + getCF());
 		
+		accountBtn.setDisable(!log);
 		addPListField.setDisable(log);
 		addPListBtn.setDisable(log);
 		remPListBtn.setDisable(log);
@@ -185,14 +202,36 @@ public class clientESController {
 	}
 	
 	/**
+	 * Metodo di estrapolazione degli ID di Canzone:
+	 * <br>
+	 * Identifico il nome della Playlist a cui fare riferimento e ne ottengo l'id,
+	 * ottenendo poi le canzoni contenute in essa e le gestisco in queryCanzone.
+	 */
+	@FXML
+	private void qualeCanzone() throws SQLException {
+		data.clear();
+		String nomePList = plistTable.getSelectionModel().getSelectedItem().getNome();
+		
+		ResultSet rsetPlaylist = serverES.select("Playlist", "WHERE \"Nome\"='" + nomePList + "'");
+		rsetPlaylist.next();
+		
+		ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + rsetPlaylist.getInt(1));
+		while (rsetContiene.next()) {
+			queryCanzone(plistCanzoneTable, "WHERE \"ID\"='" + rsetContiene.getString(2) + "'");
+		}
+	}
+	
+	/**
+	 * Metodo di popolazione per tabella contenente l'oggetto Canzone:
+	 * <br>
 	 * Sfoglio canzone per canzone aggiungendole in lista,
 	 * successivamente popolo la tabella con la lista.
 	 *
 	 * @param tail seconda parte della query costruita dai dati in ingresso
 	 */
-	private void queryCanzone(String tail) throws SQLException {
+	private void queryCanzone(TableView<Canzone> table, String tail) throws SQLException {
 		ResultSet rset = serverES.select("Canzone", tail);
-		ObservableList<Canzone> data = FXCollections.observableArrayList();
+		//ObservableList<Canzone> data = FXCollections.observableArrayList();
 		
 		assert rset != null;
 		while (rset.next()) {
@@ -202,11 +241,13 @@ public class clientESController {
 			canzone.setAnno(rset.getInt("Anno"));
 			data.add(canzone);
 		}
-		canzoneTable.setItems(data);
+		table.setItems(data);
 		rset.close();
 	}
 	
 	/**
+	 * Metodo di popolazione per tabella contenente l'oggetto Playlist:
+	 * <br>
 	 * Sfoglio playlist per playlist aggiungendole in lista,
 	 * successivamente popolo la tabella con la lista.
 	 */
@@ -225,6 +266,11 @@ public class clientESController {
 		rset.close();
 	}
 	
+	protected void whatColor(TextField field, String color) {
+		String property = "-fx-background-color: derive(" + color + ", 99%)";
+		field.setStyle(property);
+	}
+	
 	@FXML
 	private void inRegex(KeyEvent keyEvent) {
 		TextField field = (TextField) keyEvent.getSource();
@@ -239,11 +285,6 @@ public class clientESController {
 			case "capField" -> whatColor(field, Regex.regexNumber(field.getText(), "5") ? "#007160" : "red");
 			case "annoField" -> whatColor(field, Regex.regexNumber(field.getText(), "4") ? "#007160" : "red");
 		}
-	}
-	
-	protected void whatColor(TextField field, String color) {
-		String property = "-fx-background-color: derive(" + color + ", 99%)";
-		field.setStyle(property);
 	}
 	
 	public String getCF() {

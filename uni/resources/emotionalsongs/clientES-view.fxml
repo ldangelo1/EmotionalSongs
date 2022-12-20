@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<TabPane xmlns:fx="http://javafx.com/fxml/1" onMouseEntered="#queryPList" onMouseMoved="#logFunzioni" prefHeight="604.0"
-         prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea"
+<TabPane onMouseMoved="#logFunzioni" prefHeight="604.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="emotionalsongs.clientESController">
 	<Tab text="Canzoni">
 		<AnchorPane onMouseMoved="#ricercaFieldCBox">
@@ -34,9 +34,9 @@
 			       AnchorPane.topAnchor="105.0"/>
 			<ChoiceBox fx:id="ricercaCBox" prefHeight="30.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="20.0"
 			           AnchorPane.topAnchor="0.0"/>
-			<TableView fx:id="canzoneTable" layoutX="40.0" layoutY="170.0" prefHeight="339.0" prefWidth="760.0"
-			           AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-			           AnchorPane.topAnchor="140.0">
+			<TableView fx:id="canzoneTable" layoutX="40.0" layoutY="170.0" onMouseEntered="#logFunzioni"
+			           prefHeight="339.0" prefWidth="760.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"
+			           AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
 				<columns>
 					<TableColumn fx:id="colTitolo_Canzone" prefWidth="75.0" text="Titolo"/>
 					<TableColumn fx:id="colArtista_Canzone" prefWidth="75.0" text="Artista"/>
@@ -54,14 +54,15 @@
 		</AnchorPane>
 	</Tab>
 	<Tab text="Account">
-		<AnchorPane>
+		<AnchorPane onMouseEntered="#queryPList">
 			<padding>
 				<Insets bottom="20.0" left="20.0" right="20.0" top="5.0"/>
 			</padding>
 			<Label fx:id="userLbl" layoutX="50.0" layoutY="40.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0"
 			       AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"/>
-			<TableView fx:id="plistTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0"
-			           AnchorPane.rightAnchor="610.0" AnchorPane.topAnchor="35.0">
+			<TableView fx:id="plistTable" onMouseClicked="#qualeCanzone" onMouseEntered="#logFunzioni"
+			           AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="610.0"
+			           AnchorPane.topAnchor="35.0">
 				<columns>
 					<TableColumn fx:id="colPList" prefWidth="75.0" text="Playlist"/>
 				</columns>
@@ -69,8 +70,8 @@
 					<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
 				</columnResizePolicy>
 			</TableView>
-			<TableView fx:id="plistCanzoneTable" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="155.0"
-			           AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
+			<TableView fx:id="plistCanzoneTable" onMouseEntered="#logFunzioni" AnchorPane.bottomAnchor="70.0"
+			           AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
 				<columns>
 					<TableColumn fx:id="colTitolo_PList" prefWidth="75.0" text="Titolo"/>
 					<TableColumn fx:id="colArtista_PList" prefWidth="75.0" text="Artista"/>
@@ -80,7 +81,7 @@
 					<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
 				</columnResizePolicy>
 			</TableView>
-			<Button mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0"
+			<Button fx:id="accountBtn" mnemonicParsing="false" onAction="#account" prefHeight="30.0" prefWidth="200.0"
 			        text="Accedi / Registrati" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="320.0"
 			        AnchorPane.rightAnchor="320.0"/>
 			<Button fx:id="addPListBtn" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
