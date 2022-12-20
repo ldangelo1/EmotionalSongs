@@ -31,24 +31,14 @@ public class clientESController {
 	
 	@FXML
 	private TableView<Canzone> canzoneTable, plistCanzoneTable;
-
-	public TableView<Playlist> getPlistTable() {
-		return plistTable;
-	}
-
 	@FXML
-	protected TableView<Playlist> plistTable;
+	private TableView<Playlist> plistTable;
 	@FXML
 	private TableColumn<Canzone, Integer> colAnno_Canzone, colAnno_PList;
 	@FXML
 	private TableColumn<Canzone, String> colTitolo_Canzone, colArtista_Canzone, colTitolo_PList, colArtista_PList;
-
-	public TableColumn<Playlist, String> getColPList() {
-		return colPList;
-	}
-
 	@FXML
-	protected TableColumn<Playlist, String> colPList;
+	private TableColumn<Playlist, String> colPList;
 	
 	@FXML
 	private ChoiceBox<String> ricercaCBox;
@@ -121,7 +111,6 @@ public class clientESController {
 	/**
 	 * Metodo di aggiunta canzone a Playlist
 	 */
-	// TODO: 15/12/2022  metodo aggiungi canzone
 	@FXML
 	private void addSong() {
 	}
@@ -141,21 +130,19 @@ public class clientESController {
 		
 		ricercaFieldCBox();
 		logFunzioni();
-
-		initCanzoneTable(canzoneTable, colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
-		initCanzoneTable(plistCanzoneTable, colTitolo_PList, colArtista_PList, colAnno_PList);
-		initPListTable(plistTable, colPList);
+		
+		initCanzoneTable(colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
+		initCanzoneTable(colTitolo_PList, colArtista_PList, colAnno_PList);
+		initPListTable(colPList);
 	}
 	
-	private void initCanzoneTable(TableView<Canzone> Table, TableColumn<Canzone, String> colTitolo, TableColumn<Canzone, String> colArtista, TableColumn<Canzone, Integer> colAnno) {
-		assert Table != null;
+	private void initCanzoneTable(TableColumn<Canzone, String> colTitolo, TableColumn<Canzone, String> colArtista, TableColumn<Canzone, Integer> colAnno) {
 		colTitolo.setCellValueFactory(new PropertyValueFactory<>("Titolo"));
 		colArtista.setCellValueFactory(new PropertyValueFactory<>("Artista"));
 		colAnno.setCellValueFactory(new PropertyValueFactory<>("Anno"));
 	}
 	
-	protected void initPListTable(TableView<Playlist> Table, TableColumn<Playlist, String> colPList) {
-		assert Table != null;
+	private void initPListTable(TableColumn<Playlist, String> colPList) {
 		colPList.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 	}
 	
@@ -223,6 +210,7 @@ public class clientESController {
 	 * Sfoglio playlist per playlist aggiungendole in lista,
 	 * successivamente popolo la tabella con la lista.
 	 */
+	@FXML
 	private void queryPList() throws SQLException {
 		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
 		ObservableList<Playlist> data = FXCollections.observableArrayList();

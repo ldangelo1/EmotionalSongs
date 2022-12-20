@@ -4,11 +4,11 @@ module uni.emotionalsong {
 	requires java.sql;
 	requires org.postgresql.jdbc;
 	
-	opens database to javafx.fxml;
-	opens emotionalsongs to javafx.fxml;
-	opens emotionalsongs.account to javafx.fxml;
-	opens emotionalsongs.objects to javafx.fxml;
-	opens emotionalsongs.recensione to javafx.fxml;
+	opens database;
+	opens emotionalsongs;
+	opens emotionalsongs.account;
+	opens emotionalsongs.objects;
+	opens emotionalsongs.recensione;
 	
 	exports database;
 	exports emotionalsongs;
