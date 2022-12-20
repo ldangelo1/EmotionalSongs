@@ -128,7 +128,12 @@ public class clientESController {
 	 * Metodo di rimozione canzone da Playlist
 	 */
 	@FXML
-	private void remSong() {
+	private void remSong() throws SQLException {
+		String id = plistCanzoneTable.getSelectionModel().getSelectedItem().getID();
+		if (serverES.delete("Contiene", "\"ID\"='" + id + "'") == 1) {
+			out.println("Canzone rimossa con successo");
+			qualeCanzone();
+		}
 	}
 	
 	public void initialize() {
@@ -239,6 +244,7 @@ public class clientESController {
 			canzone.setTitolo(rset.getString("Titolo"));
 			canzone.setArtista(rset.getString("Artista"));
 			canzone.setAnno(rset.getInt("Anno"));
+			canzone.setID(rset.getString("ID"));
 			data.add(canzone);
 		}
 		table.setItems(data);

@@ -9,6 +9,7 @@ public class Canzone {
 	private final StringProperty Titolo = new SimpleStringProperty();
 	private final StringProperty Artista = new SimpleStringProperty();
 	private final IntegerProperty Anno = new SimpleIntegerProperty();
+	private final StringProperty ID = new SimpleStringProperty();
 	
 	public String getTitolo() {
 		return Titolo.get();
@@ -32,5 +33,13 @@ public class Canzone {
 	
 	public void setAnno(Integer anno) {
 		Anno.set(anno);
+	}
+	
+	public String getID() {
+		return ID.get();
+	}
+	
+	public void setID(String id) {
+		ID.set(id);
 	}
 }
