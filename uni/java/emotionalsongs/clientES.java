@@ -15,7 +15,7 @@ public class clientES extends Application {
 	
 	@Override
 	public void start(Stage clientStage) throws IOException {
-		//DBInfo.isConnected = database.serverES.connectionDB();
+		DBInfo.isConnected = database.serverES.connessioneDB();
 		FXMLLoader fxmlLoader = new FXMLLoader(clientES.class.getResource("clientES-view.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 		clientStage.setResizable(false);

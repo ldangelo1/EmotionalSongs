@@ -50,6 +50,8 @@ public class clientESController {
 	
 	@FXML
 	private void account() throws IOException {
+		if (DBInfo.isConnected == null) return;
+		
 		Stage stage = new Stage();
 		new Account().start(stage);
 	}
@@ -257,6 +259,8 @@ public class clientESController {
 	 * @param tail seconda parte della query costruita dai dati in ingresso
 	 */
 	private void queryCanzone(TableView<Canzone> table, String tail) throws SQLException {
+		if (DBInfo.isConnected == null) return;
+		
 		ResultSet rset = serverES.select("Canzone", tail);
 		
 		assert rset != null;
@@ -280,6 +284,8 @@ public class clientESController {
 	 */
 	@FXML
 	private void queryPList() throws SQLException {
+		if (DBInfo.isConnected == null) return;
+		
 		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
 		ObservableList<Playlist> data = FXCollections.observableArrayList();
 		
