@@ -88,8 +88,7 @@ public class clientESController {
 				if (!anno.isEmpty()) query += "WHERE \"Anno\"=" + anno;
 			}
 			case "Artista e Anno" -> {
-				if (!artista.isEmpty() && !anno.isEmpty())
-					query += "WHERE \"Artista\"=" + "'" + artista + "' " + "AND \"Anno\"=" + anno;
+				if (!artista.isEmpty() && !anno.isEmpty()) query += "WHERE \"Artista\"=" + "'" + artista + "' " + "AND \"Anno\"=" + anno;
 			}
 		}
 		data.clear();
@@ -113,6 +112,7 @@ public class clientESController {
 	 */
 	@FXML
 	private void remPList() throws SQLException {
+		// TODO: 23/12/22 fare select per la pkey della playlist, così da eliminare esattamente quella selezionata
 		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'";
 		if (serverES.delete("Playlist", queryIns) == 1) {
 			out.println("Playlist rimossa con successo");
@@ -293,6 +293,7 @@ public class clientESController {
 		while (rset.next()) {
 			Playlist playlist = new Playlist();
 			playlist.setNome(rset.getString("Nome"));
+			playlist.setCont(rset.getInt("Contatore"));
 			data.add(playlist);
 		}
 		plistTable.setItems(data);
