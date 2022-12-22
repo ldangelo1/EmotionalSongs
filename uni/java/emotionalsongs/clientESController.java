@@ -47,7 +47,7 @@ public class clientESController {
 	
 	@FXML
 	private Button accountBtn, addPListBtn, remPListBtn, addSongBtn, remSongBtn;
-	
+
 	@FXML
 	private void account() throws IOException {
 		Stage stage = new Stage();
@@ -124,17 +124,14 @@ public class clientESController {
 	// TODO: 20/12/22 valore provvisorio, da aggiustare solo idP
 	@FXML
 	private void addSong() throws SQLException {
-		String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
+	/*	String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
+
+		Playlist name = addSong.nomePlay;
 		
-		ResultSet rset = serverES.select("Playlist", "WHERE \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'");
-		rset.next();
-		int idP = rset.getInt(1);
-		rset.close();
-		
-		if (serverES.insert("Contiene", "VALUES(" + idP + ", '" + idC + "')") == 1) {
+		if (serverES.insert("Contiene", "VALUES(" + name + ", '" + idC + "')") == 1) {
 			out.println("Canzone aggiunta con successo");
 			qualeCanzone();
-		}
+		} */
 	}
 	
 	/**
@@ -315,11 +312,17 @@ public class clientESController {
 		}
 	}
 	
-	public String getCF() {
+	public static String getCF() {
 		return CF;
 	}
 	
 	public void setCF(String cf) {
 		CF = cf;
+	}
+
+	@FXML
+	private void buttonAddSong() throws IOException, SQLException {
+	Stage stage = new Stage();
+	new addSong().start(stage);
 	}
 }
