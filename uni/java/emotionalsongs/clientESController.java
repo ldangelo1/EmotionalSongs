@@ -6,6 +6,8 @@ import emotionalsongs.account.Account;
 import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
 import emotionalsongs.objects.Regex;
+import emotionalsongs.popup.Popup;
+import emotionalsongs.popup.PopupController;
 import emotionalsongs.recensione.Recensione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,9 +25,8 @@ import static java.lang.System.out;
 
 public class clientESController {
 	private static String CF;
-	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
 	private final ObservableList<Canzone> data = FXCollections.observableArrayList();
-	
+	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
 	@FXML
 	private Label userLbl, avvisoLbl;
 	@FXML
@@ -56,7 +57,11 @@ public class clientESController {
 		new Account().start(stage);
 	}
 	
-	@FXML
+	private void popup() throws IOException {
+		Stage stage = new Stage();
+		new Popup().start(stage);
+	}
+	
 	private void recensione() throws IOException {
 		Stage stage = new Stage();
 		new Recensione().start(stage);
@@ -125,10 +130,13 @@ public class clientESController {
 	 */
 	// TODO: 20/12/22 valore provvisorio, da aggiustare solo idP
 	@FXML
-	private void addSong() throws SQLException {
+	private void addSong() throws SQLException, IOException {
 		String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
+		PopupController.setIdCanzone(idC);
 		
-		ResultSet rset = serverES.select("Playlist", "WHERE \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'");
+		popup();
+		
+		/*ResultSet rset = serverES.select("Playlist", "WHERE \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'");
 		rset.next();
 		int idP = rset.getInt(1);
 		rset.close();
@@ -136,7 +144,7 @@ public class clientESController {
 		if (serverES.insert("Contiene", "VALUES(" + idP + ", '" + idC + "')") == 1) {
 			out.println("Canzone aggiunta con successo");
 			qualeCanzone();
-		}
+		}*/
 	}
 	
 	/**
@@ -151,7 +159,7 @@ public class clientESController {
 		}
 	}
 	
-	public void initialize() {
+	public void initialize() throws SQLException {
 		avvisoLbl.setText(DBInfo.isConnected == null ? "Errore con il database" : "");
 		
 		ricercaCBox.getItems().addAll(ricercaStrings);
@@ -171,7 +179,7 @@ public class clientESController {
 		colAnno.setCellValueFactory(new PropertyValueFactory<>("Anno"));
 	}
 	
-	private void initPListTable(TableColumn<Playlist, String> colPList) {
+	protected void initPListTable(TableColumn<Playlist, String> colPList) {
 		colPList.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 	}
 	
@@ -240,10 +248,7 @@ public class clientESController {
 		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		
 		if (nomePList != null) {
-			ResultSet rsetPlaylist = serverES.select("Playlist", "WHERE \"Nome\"='" + nomePList.getNome() + "'");
-			rsetPlaylist.next();
-			
-			ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + rsetPlaylist.getInt(1));
+			ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + nomePList.getCont());
 			while (rsetContiene.next()) {
 				queryCanzone(plistCanzoneTable, "WHERE \"ID\"='" + rsetContiene.getString(2) + "'");
 			}
@@ -283,7 +288,7 @@ public class clientESController {
 	 * successivamente popolo la tabella con la lista.
 	 */
 	@FXML
-	private void queryPList() throws SQLException {
+	protected void queryPList() throws SQLException {
 		if (DBInfo.isConnected == null) return;
 		
 		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
