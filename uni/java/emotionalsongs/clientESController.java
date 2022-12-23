@@ -25,8 +25,11 @@ import static java.lang.System.out;
 
 public class clientESController {
 	private static String CF;
-	private final ObservableList<Canzone> data = FXCollections.observableArrayList();
+	private final ObservableList<Canzone> dataCanzone = FXCollections.observableArrayList();
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
+	@FXML
+	private Tab Account;
+	
 	@FXML
 	private Label userLbl, avvisoLbl;
 	@FXML
@@ -96,7 +99,7 @@ public class clientESController {
 				if (!artista.isEmpty() && !anno.isEmpty()) query += "WHERE \"Artista\"=" + "'" + artista + "' " + "AND \"Anno\"=" + anno;
 			}
 		}
-		data.clear();
+		dataCanzone.clear();
 		queryCanzone(canzoneTable, query);
 	}
 	
@@ -130,21 +133,11 @@ public class clientESController {
 	 */
 	// TODO: 20/12/22 valore provvisorio, da aggiustare solo idP
 	@FXML
-	private void addSong() throws SQLException, IOException {
+	private void addSong() throws IOException {
 		String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
 		PopupController.setIdCanzone(idC);
 		
 		popup();
-		
-		/*ResultSet rset = serverES.select("Playlist", "WHERE \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'");
-		rset.next();
-		int idP = rset.getInt(1);
-		rset.close();
-		
-		if (serverES.insert("Contiene", "VALUES(" + idP + ", '" + idC + "')") == 1) {
-			out.println("Canzone aggiunta con successo");
-			qualeCanzone();
-		}*/
 	}
 	
 	/**
@@ -165,8 +158,8 @@ public class clientESController {
 		ricercaCBox.getItems().addAll(ricercaStrings);
 		ricercaCBox.setValue(ricercaStrings[0]);
 		
-		ricercaFieldCBox();
 		logFunzioni();
+		ricercaFieldCBox();
 		
 		initCanzoneTable(colTitolo_Canzone, colArtista_Canzone, colAnno_Canzone);
 		initCanzoneTable(colTitolo_PList, colArtista_PList, colAnno_PList);
@@ -184,44 +177,11 @@ public class clientESController {
 	}
 	
 	/**
-	 * Metodo di oscuramento dei campi non necessari,
-	 * selezionando la ricerca desiderata
-	 */
-	@FXML
-	private void ricercaFieldCBox() {
-		switch (ricercaCBox.getValue()) {
-			case "Titolo" -> {
-				titoloField.setDisable(false);
-				artistaField.clear();
-				artistaField.setDisable(true);
-				annoField.clear();
-				annoField.setDisable(true);
-			}
-			case "Artista" -> {
-				titoloField.clear();
-				titoloField.setDisable(true);
-				artistaField.setDisable(false);
-				annoField.clear();
-				annoField.setDisable(true);
-			}
-			case "Anno" -> {
-				titoloField.clear();
-				titoloField.setDisable(true);
-				artistaField.clear();
-				artistaField.setDisable(true);
-				annoField.setDisable(false);
-			}
-			case "Artista e Anno" -> {
-				titoloField.clear();
-				titoloField.setDisable(true);
-				artistaField.setDisable(false);
-				annoField.setDisable(false);
-			}
-		}
-	}
-	
-	/**
 	 * Metodo che gestisce la limitazione delle funzioni
+	 * <br>
+	 * LISTENER
+	 * onMouseMoved: TabPane
+	 * onMouseEntered: canzoneTable, plistTable, plistCanzoneTable
 	 */
 	@FXML
 	private void logFunzioni() {
@@ -237,14 +197,61 @@ public class clientESController {
 	}
 	
 	/**
+	 * Metodo di oscuramento dei campi non necessari,
+	 * selezionando la ricerca desiderata
+	 * <br>
+	 * LISTENER
+	 * onMouseMoved: AnchorPane
+	 */
+	@FXML
+	private void ricercaFieldCBox() {
+		switch (ricercaCBox.getValue()) {
+			case "Titolo" -> {
+				artistaField.clear();
+				annoField.clear();
+				fieldCBox(false, true, true);
+			}
+			case "Artista" -> {
+				titoloField.clear();
+				annoField.clear();
+				fieldCBox(true, false, true);
+			}
+			case "Anno" -> {
+				titoloField.clear();
+				artistaField.clear();
+				fieldCBox(true, true, false);
+			}
+			case "Artista e Anno" -> {
+				titoloField.clear();
+				fieldCBox(true, false, false);
+			}
+		}
+	}
+	
+	private void fieldCBox(Boolean bTitolo, Boolean bArtista, Boolean bAnno) {
+		titoloField.setDisable(bTitolo);
+		artistaField.setDisable(bArtista);
+		annoField.setDisable(bAnno);
+	}
+	
+	/**
+	 * LISTENER
+	 * onSelectionChanged: Account
+	 */
+	@FXML
+	private void aggiornaTable() throws Exception {
+		if (!Account.isSelected()) song();
+	}
+	
+	/**
 	 * Metodo di estrapolazione degli ID di Canzone:
 	 * <br>
 	 * Identifico il nome della Playlist a cui fare riferimento e ne ottengo l'id,
 	 * ottenendo poi le canzoni contenute in essa e le gestisco in queryCanzone.
 	 */
 	@FXML
-	private void qualeCanzone() throws SQLException {
-		data.clear();
+	protected void qualeCanzone() throws SQLException {
+		dataCanzone.clear();
 		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		
 		if (nomePList != null) {
@@ -275,9 +282,9 @@ public class clientESController {
 			canzone.setArtista(rset.getString("Artista"));
 			canzone.setAnno(rset.getInt("Anno"));
 			canzone.setID(rset.getString("ID"));
-			data.add(canzone);
+			dataCanzone.add(canzone);
 		}
-		table.setItems(data);
+		table.setItems(dataCanzone);
 		rset.close();
 	}
 	
