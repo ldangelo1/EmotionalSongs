@@ -28,12 +28,12 @@
 					<TextField fx:id="annoField" onKeyTyped="#inRegexNum" prefHeight="30.0" prefWidth="470.0"/>
 				</graphic>
 			</Label>
-			<Label fx:id="avvisoLbl" alignment="CENTER" graphicTextGap="19.0" layoutX="40.0" layoutY="110.0"
-			       prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+			<Label fx:id="avvisoLbl" alignment="CENTER" graphicTextGap="19.0" prefHeight="30.0" AnchorPane.leftAnchor="20.0"
+			       AnchorPane.rightAnchor="20.0"
 			       AnchorPane.topAnchor="105.0"/>
 			<ChoiceBox fx:id="ricercaCBox" prefHeight="30.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="20.0"
 			           AnchorPane.topAnchor="0.0"/>
-			<TableView fx:id="canzoneTable" layoutX="40.0" layoutY="170.0" onMouseEntered="#logFunzioni"
+			<TableView fx:id="canzoneTable" onMouseEntered="#logFunzioni"
 			           AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
 			           AnchorPane.topAnchor="140.0">
 				<columns>

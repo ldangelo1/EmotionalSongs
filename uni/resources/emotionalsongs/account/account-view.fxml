@@ -8,94 +8,94 @@
 	<padding>
 		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
 	</padding>
-	<Label contentDisplay="RIGHT" layoutX="14.0" layoutY="20.0" prefHeight="30.0" text="Nome"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="Nome"
 	       AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 		<graphic>
 			<TextField fx:id="nameField" onKeyTyped="#inRegex" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="176.0" layoutY="20.0" prefHeight="30.0" text="Cognome"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="Cognome"
 	       AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="0.0">
 		<graphic>
 			<TextField fx:id="surnameField" onKeyTyped="#inRegex" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="202.0" layoutY="57.0" prefHeight="30.0" text="CF"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="CF"
 	       AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="35.0">
 		<graphic>
 			<TextField fx:id="cfField" onKeyTyped="#inRegexID" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="195.0" layoutY="55.0" prefHeight="30.0" text="Email"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="Email"
 	       AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="35.0">
 		<graphic>
 			<TextField fx:id="mailField" onKeyTyped="#inRegexEmail" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<ChoiceBox fx:id="qualifierCBox" layoutX="20.0" layoutY="116.0" prefHeight="30.0" prefWidth="70.0"
+	<ChoiceBox fx:id="qualifierCBox" prefHeight="30.0" prefWidth="70.0"
 	           AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="95.0"/>
-	<Label contentDisplay="RIGHT" layoutX="107.0" layoutY="116.0" prefHeight="30.0" text="Indirizzo"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="Indirizzo"
 	       AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="95.0">
 		<graphic>
 			<TextField fx:id="addrField" onKeyTyped="#inRegex" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="278.0" layoutY="116.0" prefHeight="30.0" text="N. civico"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="N. civico"
 	       AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="95.0">
 		<graphic>
 			<TextField fx:id="civicField" onKeyTyped="#inRegexNum" prefHeight="30.0" prefWidth="47.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="14.0" layoutY="160.0" prefHeight="30.0" text="Città"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="Città"
 	       AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="130.0">
 		<graphic>
 			<TextField fx:id="cityField" onKeyTyped="#inRegex" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="163.0" layoutY="160.0" prefHeight="30.0" text="Provincia"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="Provincia"
 	       AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="130.0">
 		<graphic>
 			<TextField fx:id="provField" onKeyTyped="#inRegexProv" prefHeight="30.0" prefWidth="37.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="173.0" layoutY="170.0" prefHeight="30.0" text="CAP"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="CAP"
 	       AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="130.0">
 		<graphic>
 			<TextField fx:id="capField" onKeyTyped="#inRegexNum" prefHeight="30.0" prefWidth="70.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="26.0" layoutY="317.0" prefHeight="30.0" text="username"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="username"
 	       AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="190.0">
 		<graphic>
 			<TextField fx:id="userRField" onKeyTyped="#inRegexUser" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="201.0" layoutY="317.0" prefHeight="30.0" text="password"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="password"
 	       AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="190.0">
 		<graphic>
 			<PasswordField fx:id="passRField" onKeyTyped="#inRegexPass" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" layoutX="404.0" layoutY="123.0" prefHeight="30.0" text="username"
+	<Label contentDisplay="RIGHT" prefHeight="30.0" text="username"
 	       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="95.0">
 		<graphic>
 			<TextField fx:id="userAField" onKeyTyped="#inRegexUser" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Label contentDisplay="RIGHT" graphicTextGap="5.0" layoutX="405.0" layoutY="163.0" prefHeight="30.0" text="password"
+	<Label contentDisplay="RIGHT" graphicTextGap="5.0" prefHeight="30.0" text="password"
 	       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0">
 		<graphic>
 			<PasswordField fx:id="passAField" onKeyTyped="#inRegexPass" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Button layoutX="80.0" layoutY="378.0" onAction="#registrazione" prefHeight="30.0" prefWidth="130.0"
+	<Button onAction="#registrazione" prefHeight="30.0" prefWidth="130.0"
 	        text="Registrazione" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0"/>
-	<Button defaultButton="true" layoutX="400.0" layoutY="245.0" onAction="#accesso" prefHeight="30.0" prefWidth="130.0"
+	<Button defaultButton="true" onAction="#accesso" prefHeight="30.0" prefWidth="130.0"
 	        text="Accesso" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0"/>
-	<Separator layoutX="427.0" layoutY="120.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0"
+	<Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0"
 	           AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="10.0"/>
-	<Separator layoutX="90.0" layoutY="120.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0"
+	<Separator prefWidth="200.0" AnchorPane.leftAnchor="100.0"
 	           AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="80.0"/>
-	<Separator layoutX="90.0" layoutY="120.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0"
+	<Separator prefWidth="200.0" AnchorPane.leftAnchor="100.0"
 	           AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="175.0"/>
 </AnchorPane>

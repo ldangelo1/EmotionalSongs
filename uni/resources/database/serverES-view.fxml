@@ -37,7 +37,7 @@
 			<PasswordField fx:id="passField" prefHeight="30.0" prefWidth="110.0"/>
 		</graphic>
 	</Label>
-	<Button defaultButton="true" layoutX="400.0" layoutY="245.0" onAction="#Connessione" prefHeight="30.0"
+	<Button defaultButton="true" onAction="#Connessione" prefHeight="30.0"
 	        prefWidth="130.0" text="Accesso" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0"
 	        AnchorPane.rightAnchor="120.0"/>
 </AnchorPane>
