@@ -12,10 +12,3 @@ target
 
 ### VS Code ###
 .vscode/
-
-### Mac OS ###
-.DS_Store
-/.idea/dataSources/f71fbd5e-3c2b-47ea-b486-85fa0021ed78.xml
-/.idea/dataSources/f71fbd5e-3c2b-47ea-b486-85fa0021ed78/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta
-/.idea/dataSources/f71fbd5e-3c2b-47ea-b486-85fa0021ed78/storage_v2/_src_/database/postgres.edMnLQ.meta
-/.idea/dataSources/f71fbd5e-3c2b-47ea-b486-85fa0021ed78/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta
