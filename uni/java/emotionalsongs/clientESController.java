@@ -76,7 +76,6 @@ public class clientESController {
 	 * Tramite i dati inseriti dall'utente compongo la query, da eseguire poi e
 	 * le canzoni trovate vengono gestite in queryCanzone.
 	 */
-	// TODO: 20/12/22 non so come mai, sto coso popola entrambe le tabelle ogni query
 	@FXML
 	private void song() throws Exception {
 		String titolo = titoloField.getText();
@@ -88,15 +87,31 @@ public class clientESController {
 		switch (ricerca) {
 			case "Titolo" -> {
 				if (!titolo.isEmpty()) query += "WHERE \"Titolo\"=" + "'" + titolo + "'";
+				else {
+					serverES.generaAlert(Alert.AlertType.INFORMATION, "Il campo selezionato risulta vuoto.", "Premere OK per riprovare.");
+					return;
+				}
 			}
 			case "Artista" -> {
 				if (!artista.isEmpty()) query += "WHERE \"Artista\"=" + "'" + artista + "'";
+				else {
+					serverES.generaAlert(Alert.AlertType.INFORMATION, "Il campo selezionato risulta vuoto.", "Premere OK per riprovare.");
+					return;
+				}
 			}
 			case "Anno" -> {
 				if (!anno.isEmpty()) query += "WHERE \"Anno\"=" + anno;
+				else {
+					serverES.generaAlert(Alert.AlertType.INFORMATION, "Il campo selezionato risulta vuoto.", "Premere OK per riprovare.");
+					return;
+				}
 			}
 			case "Artista e Anno" -> {
 				if (!artista.isEmpty() && !anno.isEmpty()) query += "WHERE \"Artista\"=" + "'" + artista + "' " + "AND \"Anno\"=" + anno;
+				else {
+					serverES.generaAlert(Alert.AlertType.INFORMATION, "Entrambi o uno dei due campi risultano vuoti.", "Premere OK per riprovare.");
+					return;
+				}
 			}
 		}
 		dataCanzone.clear();
@@ -108,11 +123,15 @@ public class clientESController {
 	 */
 	@FXML
 	private void addPList() throws SQLException {
-		String queryIns = "VALUES('" + addPListField.getText() + "', '" + getCF() + "')";
-		if (serverES.insert("Playlist", queryIns) == 1) {
-			out.println("Playlist aggiunta con successo");
-			queryPList();
-		}
+		String nomePList = addPListField.getText();
+		if (!nomePList.isEmpty()) {
+			String queryIns = "VALUES('" + nomePList + "', '" + getCF() + "')";
+			if (serverES.insert("Playlist", queryIns) == 1) {
+				out.println("Playlist aggiunta con successo");
+				addPListField.clear();
+				queryPList();
+			}
+		} else serverES.generaAlert(Alert.AlertType.INFORMATION, "Il campo a fianco risulta vuoto.", "Premere OK per riprovare.");
 	}
 	
 	/**
@@ -120,24 +139,27 @@ public class clientESController {
 	 */
 	@FXML
 	private void remPList() throws SQLException {
-		// TODO: 23/12/22 fare select per la pkey della playlist, così da eliminare esattamente quella selezionata
-		String queryIns = "\"CF\"='" + getCF() + "' AND \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'";
-		if (serverES.delete("Playlist", queryIns) == 1) {
-			out.println("Playlist rimossa con successo");
-			queryPList();
-		}
+		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
+		if (nomePList != null) {
+			String queryIns = "\"CF\"='" + getCF() + "' AND \"Contatore\"='" + nomePList.getCont() + "'";
+			if (serverES.delete("Playlist", queryIns) == 1) {
+				out.println("Playlist rimossa con successo");
+				plistCanzoneTable.getItems().clear();
+				queryPList();
+			}
+		} else serverES.generaAlert(Alert.AlertType.INFORMATION, "Non è stata selezionata alcuna playlist.", "Premere OK per riprovare.");
 	}
 	
 	/**
 	 * Metodo di aggiunta canzone a Playlist
 	 */
-	// TODO: 20/12/22 valore provvisorio, da aggiustare solo idP
 	@FXML
 	private void addSong() throws IOException {
-		String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
-		PopupController.setIdCanzone(idC);
-		
-		popup();
+		Canzone nomeCanzone = canzoneTable.getSelectionModel().getSelectedItem();
+		if (nomeCanzone != null) {
+			PopupController.setIdCanzone(nomeCanzone.getID());
+			popup();
+		} else serverES.generaAlert(Alert.AlertType.INFORMATION, "Non è stata selezionata alcuna canzone.", "Premere OK per riprovare.");
 	}
 	
 	/**
@@ -145,11 +167,15 @@ public class clientESController {
 	 */
 	@FXML
 	private void remSong() throws SQLException {
-		String id = plistCanzoneTable.getSelectionModel().getSelectedItem().getID();
-		if (serverES.delete("Contiene", "\"ID\"='" + id + "'") == 1) {
-			out.println("Canzone rimossa con successo");
-			qualeCanzone();
-		}
+		// TODO: 24/12/22 da prendere anche playlist
+		//Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
+		Canzone nomeCanzone = plistCanzoneTable.getSelectionModel().getSelectedItem();
+		if (nomeCanzone != null) {
+			if (serverES.delete("Contiene", "\"ID\"='" + nomeCanzone.getID() + "'") == 1) {
+				out.println("Canzone rimossa con successo");
+				qualeCanzone();
+			}
+		} else serverES.generaAlert(Alert.AlertType.INFORMATION, "Non è stata selezionata alcuna canzone.", "Premere OK per riprovare.");
 	}
 	
 	public void initialize() throws SQLException {
@@ -240,7 +266,8 @@ public class clientESController {
 	 */
 	@FXML
 	private void aggiornaTable() throws Exception {
-		if (!Account.isSelected()) song();
+		if (!Account.isSelected() && !canzoneTable.getItems().isEmpty()) song();
+		else plistCanzoneTable.getItems().clear();
 	}
 	
 	/**
@@ -250,7 +277,7 @@ public class clientESController {
 	 * ottenendo poi le canzoni contenute in essa e le gestisco in queryCanzone.
 	 */
 	@FXML
-	protected void qualeCanzone() throws SQLException {
+	private void qualeCanzone() throws SQLException {
 		dataCanzone.clear();
 		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		

@@ -4,6 +4,7 @@ import database.serverES;
 import emotionalsongs.clientESController;
 import emotionalsongs.objects.Playlist;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -28,13 +29,17 @@ public class PopupController extends clientESController {
 		queryPList();
 	}
 	
+	/**
+	 * Metodo di selezione della playlist a cui aggiungere la canzone scelta
+	 *
+	 * @param mouseEvent evento per selezionare la playlist
+	 */
 	public void qualePlaylist(MouseEvent mouseEvent) throws SQLException {
 		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
-		
 		if (nomePList != null && mouseEvent.getClickCount() == 2) {
 			if (serverES.insert("Contiene", "VALUES(" + nomePList.getCont() + ", '" + getIdCanzone() + "')") == 1) {
 				out.println("Canzone aggiunta con successo");
-				qualeCanzone();
+				serverES.generaAlert(Alert.AlertType.INFORMATION, "Canzone aggiunta con successo.", "Torna in account e premi sulla tua " + "playlist per visualizzarla");
 				serverES.chiudiStage(sceneAccount);
 			}
 		}
