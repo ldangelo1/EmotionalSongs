@@ -14,3 +14,9 @@ target
 
 ### VS Code ###
 .vscode/
+/.idea/dataSources.local.xml
+/.idea/dataSources/6b23216a-1873-4916-8cc9-aab21687e569/storage_v2/_src_/database/postgres.edMnLQ.meta
+/.idea/dataSources/6b23216a-1873-4916-8cc9-aab21687e569/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta
+/.idea/dataSources/6b23216a-1873-4916-8cc9-aab21687e569/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta
+/.idea/dataSources/6b23216a-1873-4916-8cc9-aab21687e569.xml
+/.idea/inspectionProfiles/Project_Default.xml

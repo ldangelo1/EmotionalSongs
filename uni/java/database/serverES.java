@@ -73,6 +73,7 @@ public class serverES extends Application {
 		alert.show();
 	}
 	
+	// TODO: 24/12/22 gestire la concorrenza
 	public static Object eseguiQuery(String query, Integer code) throws SQLException {
 		try {
 			switch (code) {
