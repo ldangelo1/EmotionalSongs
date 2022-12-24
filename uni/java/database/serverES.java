@@ -59,7 +59,7 @@ public class serverES extends Application {
 	}
 	
 	/**
-	 * Genera l'alert adeguato da mostrate al cliente
+	 * Genera alert adeguato da mostrate al cliente
 	 *
 	 * @param alertType il tipo di alert da mostrare
 	 * @param head      il messaggio da notificare
@@ -98,7 +98,6 @@ public class serverES extends Application {
 	 */
 	public static ResultSet select(String tabella, String tail) throws SQLException {
 		String query = "SELECT * FROM \"" + tabella + "\" " + tail;
-		
 		return (ResultSet) eseguiQuery(query, 1);
 	}
 	

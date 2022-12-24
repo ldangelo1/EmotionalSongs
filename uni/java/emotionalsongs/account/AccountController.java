@@ -115,6 +115,7 @@ public class AccountController extends clientESController {
 		whatColor(field, Regex.regexID(field.getText()) ? "#007160" : "red");
 	}
 	
+	@Override
 	public void initialize() {
 		qualifierCBox.getItems().addAll(typeQualifier);
 		qualifierCBox.setValue(typeQualifier[0]);

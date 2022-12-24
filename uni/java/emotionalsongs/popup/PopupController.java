@@ -34,6 +34,7 @@ public class PopupController extends clientESController {
 		if (nomePList != null && mouseEvent.getClickCount() == 2) {
 			if (serverES.insert("Contiene", "VALUES(" + nomePList.getCont() + ", '" + getIdCanzone() + "')") == 1) {
 				out.println("Canzone aggiunta con successo");
+				qualeCanzone();
 				serverES.chiudiStage(sceneAccount);
 			}
 		}
