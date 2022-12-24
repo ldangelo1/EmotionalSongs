@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <TabPane xmlns:fx="http://javafx.com/fxml/1" onMouseMoved="#logFunzioni" prefHeight="604.0" prefWidth="840.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.clientESController">
 	<Tab text="Canzoni">
@@ -51,7 +52,11 @@
 			<padding>
 				<Insets bottom="20.0" left="20.0" right="20.0" top="5.0"/>
 			</padding>
-			<Label fx:id="userLbl" prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"/>
+			<Label fx:id="userLbl" prefHeight="30.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
+				<font>
+					<Font size="14.0"/>
+				</font>
+			</Label>
 			<TableView fx:id="plistTable" onMouseClicked="#qualeCanzone" onMouseEntered="#logFunzioni" AnchorPane.bottomAnchor="70.0"
 			           AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="610.0" AnchorPane.topAnchor="35.0">
 				<columns>

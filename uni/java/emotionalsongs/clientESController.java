@@ -25,6 +25,7 @@ import static java.lang.System.out;
 
 public class clientESController {
 	private static String CF;
+	private static Playlist PLIST;
 	private final ObservableList<Canzone> dataCanzone = FXCollections.observableArrayList();
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
 	@FXML
@@ -51,6 +52,14 @@ public class clientESController {
 	
 	@FXML
 	private Button accountBtn, addPListBtn, remPListBtn, addSongBtn, remSongBtn;
+	
+	public static Playlist getPlaylist() {
+		return PLIST;
+	}
+	
+	public static void setPlaylist(Playlist playlist) {
+		PLIST = playlist;
+	}
 	
 	@FXML
 	private void account() throws IOException {
@@ -127,7 +136,7 @@ public class clientESController {
 		if (!nomePList.isEmpty()) {
 			String queryIns = "VALUES('" + nomePList + "', '" + getCF() + "')";
 			if (serverES.insert("Playlist", queryIns) == 1) {
-				out.println("Playlist aggiunta con successo");
+				out.println("Playlist \"" + nomePList + "\" aggiunta con successo");
 				addPListField.clear();
 				queryPList();
 			}
@@ -143,7 +152,7 @@ public class clientESController {
 		if (nomePList != null) {
 			String queryIns = "\"CF\"='" + getCF() + "' AND \"Contatore\"='" + nomePList.getCont() + "'";
 			if (serverES.delete("Playlist", queryIns) == 1) {
-				out.println("Playlist rimossa con successo");
+				out.println("Playlist \"" + nomePList.getNome() + "\" rimossa con successo");
 				plistCanzoneTable.getItems().clear();
 				queryPList();
 			}
@@ -157,7 +166,7 @@ public class clientESController {
 	private void addSong() throws IOException {
 		Canzone nomeCanzone = canzoneTable.getSelectionModel().getSelectedItem();
 		if (nomeCanzone != null) {
-			PopupController.setIdCanzone(nomeCanzone.getID());
+			PopupController.setCanzone(nomeCanzone);
 			popup();
 		} else serverES.generaAlert(Alert.AlertType.INFORMATION, "Non è stata selezionata alcuna canzone.", "Premere OK per riprovare.");
 	}
@@ -167,12 +176,10 @@ public class clientESController {
 	 */
 	@FXML
 	private void remSong() throws SQLException {
-		// TODO: 24/12/22 da prendere anche playlist
-		//Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		Canzone nomeCanzone = plistCanzoneTable.getSelectionModel().getSelectedItem();
 		if (nomeCanzone != null) {
-			if (serverES.delete("Contiene", "\"ID\"='" + nomeCanzone.getID() + "'") == 1) {
-				out.println("Canzone rimossa con successo");
+			if (serverES.delete("Contiene", "\"fk_Playlist\"=" + getPlaylist().getCont() + " AND \"ID\"='" + nomeCanzone.getID() + "'") == 1) {
+				out.println("Canzone \"" + nomeCanzone.getTitolo() + "\" rimossa con successo");
 				qualeCanzone();
 			}
 		} else serverES.generaAlert(Alert.AlertType.INFORMATION, "Non è stata selezionata alcuna canzone.", "Premere OK per riprovare.");
@@ -210,9 +217,15 @@ public class clientESController {
 	 * onMouseEntered: canzoneTable, plistTable, plistCanzoneTable
 	 */
 	@FXML
-	private void logFunzioni() {
+	private void logFunzioni() throws SQLException {
 		boolean log = getCF() == null;
-		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti " + getCF());
+		ResultSet rset = null;
+		
+		if (!log) {
+			rset = serverES.select("Utente", "WHERE \"CF\"='" + getCF() + "'");
+			rset.next();
+		}
+		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti, " + rset.getString("Username").toUpperCase());
 		
 		accountBtn.setDisable(!log);
 		addPListField.setDisable(log);
@@ -282,6 +295,7 @@ public class clientESController {
 		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		
 		if (nomePList != null) {
+			setPlaylist(nomePList);
 			ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + nomePList.getCont());
 			while (rsetContiene.next()) {
 				queryCanzone(plistCanzoneTable, "WHERE \"ID\"='" + rsetContiene.getString(2) + "'");

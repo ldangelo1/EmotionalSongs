@@ -2,6 +2,7 @@ package emotionalsongs.popup;
 
 import database.serverES;
 import emotionalsongs.clientESController;
+import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 public class PopupController extends clientESController {
-	private static String idCanzone = null;
+	private static Canzone CANZONE = null;
 	@FXML
 	private AnchorPane sceneAccount;
 	@FXML
@@ -37,19 +38,19 @@ public class PopupController extends clientESController {
 	public void qualePlaylist(MouseEvent mouseEvent) throws SQLException {
 		Playlist nomePList = plistTable.getSelectionModel().getSelectedItem();
 		if (nomePList != null && mouseEvent.getClickCount() == 2) {
-			if (serverES.insert("Contiene", "VALUES(" + nomePList.getCont() + ", '" + getIdCanzone() + "')") == 1) {
-				out.println("Canzone aggiunta con successo");
+			if (serverES.insert("Contiene", "VALUES(" + nomePList.getCont() + ", '" + getCanzone().getID() + "')") == 1) {
+				out.println("Canzone \"" + getCanzone().getTitolo() + "\" aggiunta con successo");
 				serverES.generaAlert(Alert.AlertType.INFORMATION, "Canzone aggiunta con successo.", "Torna in account e premi sulla tua " + "playlist per visualizzarla");
 				serverES.chiudiStage(sceneAccount);
 			}
 		}
 	}
 	
-	public String getIdCanzone() {
-		return idCanzone;
+	public Canzone getCanzone() {
+		return CANZONE;
 	}
 	
-	public static void setIdCanzone(String idC) {
-		idCanzone = idC;
+	public static void setCanzone(Canzone canzone) {
+		CANZONE = canzone;
 	}
 }
