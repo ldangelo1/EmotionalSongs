@@ -130,21 +130,16 @@ public class clientESController {
 	 */
 	// TODO: 20/12/22 valore provvisorio, da aggiustare solo idP
 	@FXML
-	private void addSong() throws SQLException, IOException {
-		String idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
+	private void addSong() throws IOException {
+		String idC = "";
+		if(canzoneTable.getSelectionModel().getSelectedItem() != null)
+			idC = canzoneTable.getSelectionModel().getSelectedItem().getID();
+		else {
+			serverES.generaAlert(Alert.AlertType.WARNING, "Errore nella selezione della canzone!", "Seleziona una canzone prima di cliccare il pulsante");
+			return;
+		}
 		PopupController.setIdCanzone(idC);
-		
 		popup();
-		
-		/*ResultSet rset = serverES.select("Playlist", "WHERE \"Nome\"='" + plistTable.getSelectionModel().getSelectedItem().getNome() + "'");
-		rset.next();
-		int idP = rset.getInt(1);
-		rset.close();
-		
-		if (serverES.insert("Contiene", "VALUES(" + idP + ", '" + idC + "')") == 1) {
-			out.println("Canzone aggiunta con successo");
-			qualeCanzone();
-		}*/
 	}
 	
 	/**
@@ -226,7 +221,7 @@ public class clientESController {
 	@FXML
 	private void logFunzioni() {
 		boolean log = getCF() == null;
-		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti " + getCF());
+		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti, " + getCF());
 		
 		accountBtn.setDisable(!log);
 		addPListField.setDisable(log);
@@ -265,9 +260,8 @@ public class clientESController {
 	 */
 	private void queryCanzone(TableView<Canzone> table, String tail) throws SQLException {
 		if (DBInfo.isConnected == null) return;
-		
+
 		ResultSet rset = serverES.select("Canzone", tail);
-		
 		assert rset != null;
 		while (rset.next()) {
 			Canzone canzone = new Canzone();
@@ -293,7 +287,7 @@ public class clientESController {
 		
 		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
 		ObservableList<Playlist> data = FXCollections.observableArrayList();
-		
+
 		assert rset != null;
 		while (rset.next()) {
 			Playlist playlist = new Playlist();
@@ -327,11 +321,21 @@ public class clientESController {
 		}
 	}
 	
-	public String getCF() {
+	public static String getCF() {
 		return CF;
 	}
 	
 	public void setCF(String cf) {
 		CF = cf;
+	}
+
+	@FXML
+	private void chiusura(){
+		if (plistCanzoneTable != null) {
+			plistCanzoneTable.getItems().clear();
+		} else return;
+		if (canzoneTable != null) {
+			canzoneTable.getItems().clear();
+		}
 	}
 }
