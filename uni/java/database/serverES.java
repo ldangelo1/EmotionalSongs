@@ -128,6 +128,20 @@ public class serverES extends Application {
 		return (Integer) eseguiQuery(query, 2);
 	}
 	
+	/**
+	 * Metodo che gestisce i comandi di "UPDATE"
+	 *
+	 * @param tabella   la tabella dove operare
+	 * @param tail      la seconda parte della query, generata in base ai dati in ingresso
+	 * @param condition specifica la tupla da aggiornare
+	 * @return il numero di tuple aggiornate
+	 */
+	public static Integer update(String tabella, String tail, String condition) throws SQLException {
+		String query = "UPDATE \"" + tabella + "\" SET " + tail + " WHERE " + condition;
+		return (Integer) eseguiQuery(query, 2);
+	}
+	
+	
 	@Override
 	public void start(Stage serverStage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(serverES.class.getResource("serverES-view.fxml"));
