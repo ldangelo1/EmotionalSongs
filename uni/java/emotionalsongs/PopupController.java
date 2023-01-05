@@ -1,7 +1,6 @@
-package emotionalsongs.popup;
+package emotionalsongs;
 
 import database.serverES;
-import emotionalsongs.clientESController;
 import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
 import javafx.fxml.FXML;

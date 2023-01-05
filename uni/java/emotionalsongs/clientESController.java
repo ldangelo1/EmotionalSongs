@@ -6,8 +6,6 @@ import emotionalsongs.account.Account;
 import emotionalsongs.objects.Canzone;
 import emotionalsongs.objects.Playlist;
 import emotionalsongs.objects.Regex;
-import emotionalsongs.popup.Popup;
-import emotionalsongs.popup.PopupController;
 import emotionalsongs.recensione.Info;
 import emotionalsongs.recensione.InfoController;
 import javafx.collections.FXCollections;

@@ -1,4 +1,4 @@
-package emotionalsongs.popup;
+package emotionalsongs;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
