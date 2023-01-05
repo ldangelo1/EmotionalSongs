@@ -345,15 +345,17 @@ public class clientESController {
 		if (DBInfo.isConnected == null) return;
 		
 		ResultSet rset = serverES.select("Canzone", tail);
-		
-		assert rset != null;
-		while (rset.next()) {
-			Canzone canzone = new Canzone();
-			canzone.setTitolo(rset.getString("Titolo"));
-			canzone.setArtista(rset.getString("Artista"));
-			canzone.setAnno(rset.getInt("Anno"));
-			canzone.setID(rset.getString("ID"));
-			dataCanzone.add(canzone);
+		if (!rset.next())
+			serverES.generaAlert(Alert.AlertType.INFORMATION, "Nessuna canzone trovata dalla ricerca.", "Premere OK " + "per riprovare.");
+		else {
+			do {
+				Canzone canzone = new Canzone();
+				canzone.setTitolo(rset.getString("Titolo"));
+				canzone.setArtista(rset.getString("Artista"));
+				canzone.setAnno(rset.getInt("Anno"));
+				canzone.setID(rset.getString("ID"));
+				dataCanzone.add(canzone);
+			} while (rset.next());
 		}
 		table.setItems(dataCanzone);
 		rset.close();
