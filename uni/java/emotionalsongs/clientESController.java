@@ -15,11 +15,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.System.out;
 
@@ -28,6 +30,8 @@ public class clientESController {
 	private static Playlist PLIST;
 	private final ObservableList<Canzone> dataCanzone = FXCollections.observableArrayList();
 	private final String[] ricercaStrings = {"Titolo", "Artista", "Anno", "Artista e Anno"};
+	@FXML
+	private AnchorPane sceneAccount;
 	@FXML
 	private Tab Account;
 	
@@ -61,12 +65,12 @@ public class clientESController {
 		PLIST = playlist;
 	}
 	
-	@FXML
-	private void account() throws IOException {
-		if (DBInfo.isConnected == null) return;
-		
-		Stage stage = new Stage();
-		new Account().start(stage);
+	public static String getCF() {
+		return CF;
+	}
+	
+	public void setCF(String cf) {
+		CF = cf;
 	}
 	
 	private void popup() throws IOException {
@@ -75,12 +79,20 @@ public class clientESController {
 	}
 	
 	@FXML
+	private void account() throws IOException {
+		if (DBInfo.isConnected == null) return;
+		
+		Stage stage = new Stage();
+		new Account().start(stage);
+	}
+	
+	@FXML
 	private void info(MouseEvent mouseEvent) throws IOException {
 		TableView<Canzone> table = (TableView<Canzone>) mouseEvent.getSource();
 		Canzone nomeCanzone = table.getSelectionModel().getSelectedItem();
 		
 		if (mouseEvent.getClickCount() == 2 && nomeCanzone != null) {
-			if (table.getId().equals("plistCanzoneTable")) InfoController.setHide(true);
+			InfoController.setHide(table.getId().equals("plistCanzoneTable"));
 			InfoController.setCanzone(nomeCanzone);
 			Stage stage = new Stage();
 			new Info().start(stage);
@@ -95,6 +107,12 @@ public class clientESController {
 	 */
 	@FXML
 	private void song() throws Exception {
+		AtomicReference<Boolean> validSearch = new AtomicReference<>(true);
+		
+		sceneAccount.getChildren().stream().filter(label -> label instanceof Label).forEachOrdered(label -> ((Label) label).getChildrenUnmodifiable().stream().filter(field -> field instanceof TextField).forEachOrdered(field -> {
+			if (field.getStyle().contains("red")) validSearch.set(false);
+		}));
+		
 		String titolo = titoloField.getText();
 		String artista = artistaField.getText();
 		String anno = annoField.getText();
@@ -132,7 +150,8 @@ public class clientESController {
 			}
 		}
 		dataCanzone.clear();
-		queryCanzone(canzoneTable, query);
+		if (validSearch.get()) queryCanzone(canzoneTable, query);
+		else serverES.generaAlert(Alert.AlertType.WARNING, "La formattazione dei campi è errata.", "Premere OK per riprovare.");
 	}
 	
 	/**
@@ -252,6 +271,9 @@ public class clientESController {
 	 */
 	@FXML
 	private void ricercaFieldCBox() {
+		if (ricercaCBox.isFocused())
+			sceneAccount.getChildren().stream().filter(label -> label instanceof Label).forEachOrdered(label -> ((Label) label).getChildrenUnmodifiable().stream().filter(field -> field instanceof TextField).forEachOrdered(field -> whatColor((TextField) field, "white")));
+		
 		switch (ricercaCBox.getValue()) {
 			case "Titolo" -> {
 				artistaField.clear();
@@ -381,13 +403,5 @@ public class clientESController {
 			case "capField" -> whatColor(field, Regex.regexNumber(field.getText(), "5") ? "#007160" : "red");
 			case "annoField" -> whatColor(field, Regex.regexNumber(field.getText(), "4") ? "#007160" : "red");
 		}
-	}
-	
-	public String getCF() {
-		return CF;
-	}
-	
-	public void setCF(String cf) {
-		CF = cf;
 	}
 }

@@ -7,9 +7,9 @@
 <TabPane xmlns:fx="http://javafx.com/fxml/1" onMouseMoved="#logFunzioni" prefHeight="604.0" prefWidth="840.0"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.clientESController">
 	<Tab text="Canzoni">
-		<AnchorPane onMouseMoved="#ricercaFieldCBox">
+		<AnchorPane fx:id="sceneAccount" onMouseMoved="#ricercaFieldCBox">
 			<padding>
-				<Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+				<Insets bottom="10.0" left="20.0" right="20.0" top="20.0"/>
 			</padding>
 			<Label contentDisplay="RIGHT" graphicTextGap="8.0" text="Titolo" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
 				<graphic>
