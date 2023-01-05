@@ -8,56 +8,46 @@
 	<padding>
 		<Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
 	</padding>
+	<Label prefHeight="30.0" text="Stupore: meraviglia o felicità" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="35.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="35.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0"/>
+	<Label prefHeight="30.0" text="Solennità: trascendenza, ispirazione" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="70.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="70.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0"/>
+	<Label prefHeight="30.0" text="Tenerezza: sensualità, affetto, amore" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="105.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="105.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0"/>
+	<Label prefHeight="30.0" text="Nostalgia: malinconia, sentimentale" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="140.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="140.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0"/>
+	<Label prefHeight="30.0" text="Calma: rilassamento, serenità" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="175.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="175.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="175.0"/>
+	<Label prefHeight="30.0" text="Potenza: trionfante, energico" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="210.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="210.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="210.0"/>
+	<Label prefHeight="30.0" text="Gioia: danzante, animato, divertito" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="245.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="245.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="245.0"/>
+	<Label prefHeight="30.0" text="Tensione: nervoso, impaziente, irritato" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="280.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="280.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0"/>
+	<Label prefHeight="30.0" text="Tristezza: depresso, addolorato" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
+	       AnchorPane.topAnchor="315.0"/>
+	<ChoiceBox prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="315.0"/>
+	<TextField prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="315.0"/>
+	<Button defaultButton="true" mnemonicParsing="false" onAction="#addEmozione" prefHeight="30.0" text="Aggiungi valutazione"
+	        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0"/>
 	<Label prefHeight="30.0" text="Emozione: descrizione" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
 	       AnchorPane.topAnchor="0.0"/>
 	<Label prefHeight="30.0" prefWidth="60.0" text="Voto" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="0.0"/>
-	<Label prefHeight="30.0" text="Note (opzionali)" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	       AnchorPane.topAnchor="0.0"/>
-	<Label prefHeight="30.0" text="Stupore: meraviglia o felicità" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="35.0"/>
-	<ChoiceBox fx:id="stupCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="35.0"/>
-	<TextField fx:id="stupField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="35.0"/>
-	<Label prefHeight="30.0" text="Solennità: trascendenza, ispirazione" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="70.0"/>
-	<ChoiceBox fx:id="soleCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="70.0"/>
-	<TextField fx:id="soleField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="70.0"/>
-	<Label prefHeight="30.0" text="Tenerezza: sensualità, affetto, amore" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="105.0"/>
-	<ChoiceBox fx:id="teneCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="105.0"/>
-	<TextField fx:id="teneField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="105.0"/>
-	<Label prefHeight="30.0" text="Nostalgia: malinconia, sentimentale" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="140.0"/>
-	<ChoiceBox fx:id="nostCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="140.0"/>
-	<TextField fx:id="nostField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="140.0"/>
-	<Label prefHeight="30.0" text="Calma: rilassamento, serenità" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="175.0"/>
-	<ChoiceBox fx:id="calmCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="175.0"/>
-	<TextField fx:id="calmField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="175.0"/>
-	<Label prefHeight="30.0" text="Potenza: trionfante, energico" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="210.0"/>
-	<ChoiceBox fx:id="poteCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="210.0"/>
-	<TextField fx:id="poteField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="210.0"/>
-	<Label prefHeight="30.0" text="Gioia: danzante, animato, divertito" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="245.0"/>
-	<ChoiceBox fx:id="gioiCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="245.0"/>
-	<TextField fx:id="gioiField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="245.0"/>
-	<Label prefHeight="30.0" text="Tensione: nervoso, impaziente, irritato" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="280.0"/>
-	<ChoiceBox fx:id="tensCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="280.0"/>
-	<TextField fx:id="tensField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="280.0"/>
-	<Label prefHeight="30.0" text="Tristezza: depresso, addolorato" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="355.0"
-	       AnchorPane.topAnchor="315.0"/>
-	<ChoiceBox fx:id="trisCBox" prefHeight="30.0" prefWidth="60.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="315.0"/>
-	<TextField fx:id="trisField" prefHeight="30.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0"
-	           AnchorPane.topAnchor="315.0"/>
-	<Button fx:id="addEmozioneBtn" defaultButton="true" mnemonicParsing="false" prefHeight="30.0" text="Button"
-	        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0"/>
+	<Label prefHeight="30.0" text="Note (opzionali)" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
 </AnchorPane>
