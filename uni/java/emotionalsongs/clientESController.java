@@ -8,13 +8,15 @@ import emotionalsongs.objects.Playlist;
 import emotionalsongs.objects.Regex;
 import emotionalsongs.popup.Popup;
 import emotionalsongs.popup.PopupController;
-import emotionalsongs.recensione.Recensione;
+import emotionalsongs.recensione.Info;
+import emotionalsongs.recensione.InfoController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -74,9 +76,17 @@ public class clientESController {
 		new Popup().start(stage);
 	}
 	
-	private void recensione() throws IOException {
-		Stage stage = new Stage();
-		new Recensione().start(stage);
+	@FXML
+	private void info(MouseEvent mouseEvent) throws IOException {
+		TableView<Canzone> table = (TableView<Canzone>) mouseEvent.getSource();
+		Canzone nomeCanzone = table.getSelectionModel().getSelectedItem();
+		
+		if (mouseEvent.getClickCount() == 2 && nomeCanzone != null) {
+			if (table.getId().equals("plistCanzoneTable")) InfoController.setHide(true);
+			InfoController.setCanzone(nomeCanzone);
+			Stage stage = new Stage();
+			new Info().start(stage);
+		}
 	}
 	
 	/**

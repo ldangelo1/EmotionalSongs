@@ -30,8 +30,8 @@
 			       AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="105.0"/>
 			<ChoiceBox fx:id="ricercaCBox" prefHeight="30.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="20.0"
 			           AnchorPane.topAnchor="0.0"/>
-			<TableView fx:id="canzoneTable" onMouseEntered="#logFunzioni" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0"
-			           AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
+			<TableView fx:id="canzoneTable" onMouseClicked="#info" onMouseEntered="#logFunzioni" AnchorPane.bottomAnchor="35.0"
+			           AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
 				<columns>
 					<TableColumn fx:id="colTitolo_Canzone" prefWidth="75.0" text="Titolo"/>
 					<TableColumn fx:id="colArtista_Canzone" prefWidth="75.0" text="Artista"/>
@@ -66,8 +66,8 @@
 					<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
 				</columnResizePolicy>
 			</TableView>
-			<TableView fx:id="plistCanzoneTable" onMouseEntered="#logFunzioni" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="155.0"
-			           AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
+			<TableView fx:id="plistCanzoneTable" onMouseClicked="#info" onMouseEntered="#logFunzioni" AnchorPane.bottomAnchor="70.0"
+			           AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
 				<columns>
 					<TableColumn fx:id="colTitolo_PList" prefWidth="75.0" text="Titolo"/>
 					<TableColumn fx:id="colArtista_PList" prefWidth="75.0" text="Artista"/>
