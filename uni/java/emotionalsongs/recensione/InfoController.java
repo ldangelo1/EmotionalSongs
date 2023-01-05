@@ -34,7 +34,7 @@ public class InfoController {
 	@FXML
 	private Button recensioneBtn;
 	
-	public static Boolean getHide() {
+	public Boolean getHide() {
 		return hide;
 	}
 	
@@ -42,7 +42,7 @@ public class InfoController {
 		InfoController.hide = hide;
 	}
 	
-	public static Canzone getCanzone() {
+	public Canzone getCanzone() {
 		return canzone;
 	}
 	
@@ -50,6 +50,7 @@ public class InfoController {
 		InfoController.canzone = canzone;
 	}
 	
+	@FXML
 	private void emozioneList() throws SQLException {
 		ObservableList<Emozione> dataEmozione = FXCollections.observableArrayList();
 		

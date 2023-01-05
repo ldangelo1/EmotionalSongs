@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="310.0" prefWidth="600.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" onMouseEntered="#emozioneList" prefHeight="310.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="emotionalsongs.recensione.InfoController">
 	<Label fx:id="titoloLbl" prefHeight="30.0" text="Titolo e Artista" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0"
 	       AnchorPane.topAnchor="0.0">
@@ -14,8 +14,8 @@
 	</Label>
 	<Button fx:id="recensioneBtn" mnemonicParsing="false" onAction="#recensione" prefHeight="30.0" text="Aggiungi emozione"
 	        AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-	<TableView fx:id="emozioneTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-	           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+	<TableView fx:id="emozioneTable" onMouseEntered="#emozioneList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+	           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
 		<columns>
 			<TableColumn fx:id="colEmozione" maxWidth="80.0" minWidth="80.0" resizable="false" text="Emozione"/>
 			<TableColumn fx:id="colNote" maxWidth="398.0" minWidth="398.0" resizable="false" text="Note"/>
