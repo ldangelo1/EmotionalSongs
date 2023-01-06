@@ -1,14 +1,20 @@
 package emotionalsongs.objects;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class Emozione {
+	private final IntegerProperty Count = new SimpleIntegerProperty();
 	private final StringProperty Nome = new SimpleStringProperty();
 	private final StringProperty Note = new SimpleStringProperty();
-	private final IntegerProperty Valutazione = new SimpleIntegerProperty();
+	private final DoubleProperty Valutazione = new SimpleDoubleProperty();
+	
+	public int getCount() {
+		return Count.get();
+	}
+	
+	public void setCount(Integer count) {
+		Count.set(count);
+	}
 	
 	public String getNome() {
 		return Nome.get();
@@ -26,7 +32,7 @@ public class Emozione {
 		Note.set(note);
 	}
 	
-	public int getValutazione() {
+	public double getValutazione() {
 		return Valutazione.get();
 	}
 	

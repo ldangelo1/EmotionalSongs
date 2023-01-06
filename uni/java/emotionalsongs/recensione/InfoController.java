@@ -29,7 +29,7 @@ public class InfoController {
 	@FXML
 	private TableColumn<Emozione, String> colEmozione, colNote;
 	@FXML
-	private TableColumn<Emozione, Integer> colValutazione;
+	private TableColumn<Emozione, Integer> colUtente, colValutazione;
 	
 	@FXML
 	private Button recensioneBtn;
@@ -54,15 +54,16 @@ public class InfoController {
 	private void emozioneList() throws SQLException {
 		ObservableList<Emozione> dataEmozione = FXCollections.observableArrayList();
 		
-		ResultSet rset = serverES.select("Emozione", "\"ID\", \"Tipo\", count(\"Valutazione\") AS numero, avg(\"Valutazione\") AS score"
-				, "GROUP BY \"ID\", \"Tipo\"");
+		ResultSet rset = serverES.select("Emozione", "\"ID\", \"Tipo\", count(\"Valutazione\") AS utente, avg(\"Valutazione\") AS score"
+				, "WHERE \"ID\"='" + canzone.getID() + "' GROUP BY \"ID\", \"Tipo\"");
 		
 		assert rset != null;
 		while (rset.next()) {
 			Emozione emozione = new Emozione();
-			emozione.setNome(rset.getString(1));
+			emozione.setCount(rset.getInt(3));
+			emozione.setNome(rset.getString(2));
 			emozione.setValutazione(rset.getInt(4));
-			emozione.setNote(rset.getString(5));
+			//emozione.setNote(rset.getString(5));
 			dataEmozione.add(emozione);
 		}
 		emozioneTable.setItems(dataEmozione);
@@ -78,6 +79,7 @@ public class InfoController {
 	}
 	
 	private void initTable(TableColumn<Emozione, String> colEmozione, TableColumn<Emozione, String> colNote, TableColumn<Emozione, Integer> colValutazione) {
+		colUtente.setCellValueFactory(new PropertyValueFactory<>("Count"));
 		colEmozione.setCellValueFactory(new PropertyValueFactory<>("Nome"));
 		colNote.setCellValueFactory(new PropertyValueFactory<>("Note"));
 		colValutazione.setCellValueFactory(new PropertyValueFactory<>("Valutazione"));
