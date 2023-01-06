@@ -97,8 +97,8 @@ public class serverES extends Application {
 	 * @param tail    la seconda parte della query, generata in base ai dati in ingresso
 	 * @return le tuple trovate
 	 */
-	public static ResultSet select(String tabella, String tail) throws SQLException {
-		String query = "SELECT * FROM \"" + tabella + "\" " + tail;
+	public static ResultSet select(String tabella, String select, String tail) throws SQLException {
+		String query = "SELECT " + select + " FROM \"" + tabella + "\" " + tail;
 		return (ResultSet) eseguiQuery(query, 1);
 	}
 	

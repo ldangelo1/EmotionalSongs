@@ -54,7 +54,8 @@ public class InfoController {
 	private void emozioneList() throws SQLException {
 		ObservableList<Emozione> dataEmozione = FXCollections.observableArrayList();
 		
-		ResultSet rset = serverES.select("Emozione", "WHERE \"ID\"='" + getCanzone().getID() + "'");
+		ResultSet rset = serverES.select("Emozione", "\"ID\", \"Tipo\", count(\"Valutazione\") AS numero, avg(\"Valutazione\") AS score"
+				, "GROUP BY \"ID\", \"Tipo\"");
 		
 		assert rset != null;
 		while (rset.next()) {

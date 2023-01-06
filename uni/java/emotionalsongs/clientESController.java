@@ -256,7 +256,7 @@ public class clientESController {
 		ResultSet rset = null;
 		
 		if (!log) {
-			rset = serverES.select("Utente", "WHERE \"CF\"='" + getCF() + "'");
+			rset = serverES.select("Utente", "*", "WHERE \"CF\"='" + getCF() + "'");
 			rset.next();
 		}
 		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti, " + rset.getString("Username").toUpperCase());
@@ -333,7 +333,7 @@ public class clientESController {
 		
 		if (nomePList != null) {
 			setPlaylist(nomePList);
-			ResultSet rsetContiene = serverES.select("Contiene", "WHERE \"fk_Playlist\"=" + nomePList.getCont());
+			ResultSet rsetContiene = serverES.select("Contiene", "*", "WHERE \"fk_Playlist\"=" + nomePList.getCont());
 			while (rsetContiene.next()) {
 				queryCanzone(plistCanzoneTable, "WHERE \"ID\"='" + rsetContiene.getString(2) + "'");
 			}
@@ -351,7 +351,7 @@ public class clientESController {
 	private void queryCanzone(TableView<Canzone> table, String tail) throws SQLException {
 		if (DBInfo.isConnected == null) return;
 		
-		ResultSet rset = serverES.select("Canzone", tail);
+		ResultSet rset = serverES.select("Canzone", "*", tail);
 		if (!rset.next())
 			serverES.generaAlert(Alert.AlertType.INFORMATION, "Nessuna canzone trovata dalla ricerca.", "Premere OK per riprovare.");
 		else {
@@ -378,7 +378,7 @@ public class clientESController {
 	protected void queryPList() throws SQLException {
 		if (DBInfo.isConnected == null) return;
 		
-		ResultSet rset = serverES.select("Playlist", "WHERE \"CF\"='" + getCF() + "'");
+		ResultSet rset = serverES.select("Playlist", "*", "WHERE \"CF\"='" + getCF() + "'");
 		ObservableList<Playlist> data = FXCollections.observableArrayList();
 		
 		assert rset != null;

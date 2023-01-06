@@ -66,8 +66,9 @@ public class RecensioneController extends InfoController {
 	}
 	
 	private Boolean checkEmozione(String nomeEmozione) throws SQLException {
-		ResultSet rset = serverES.select("Emozione", "WHERE \"Tipo\"='" + nomeEmozione + "' AND \"CF\"='" + clientESController.getCF() +
-				"' AND \"ID\"='" + getCanzone().getID() + "'");
+		ResultSet rset = serverES.select("Emozione", "*",
+				"WHERE \"Tipo\"='" + nomeEmozione + "' AND \"CF\"='" + clientESController.getCF() +
+						"' AND \"ID\"='" + getCanzone().getID() + "'");
 		rset.next();
 		return rset.getRow() == 0;
 	}
