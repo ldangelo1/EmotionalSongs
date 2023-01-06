@@ -82,8 +82,15 @@ public class clientESController {
 	private void account() throws IOException {
 		if (DBInfo.isConnected == null) return;
 		
-		Stage stage = new Stage();
-		new Account().start(stage);
+		if (getCF() == null) {
+			Stage stage = new Stage();
+			new Account().start(stage);
+		} else {
+			CF = null;
+			plistTable.getItems().clear();
+			plistCanzoneTable.getItems().clear();
+		}
+		
 	}
 	
 	@FXML
@@ -254,7 +261,7 @@ public class clientESController {
 		}
 		userLbl.setText(log ? "Necessita di account per sbloccare altre funzioni" : "Felice di rivederti, " + rset.getString("Username").toUpperCase());
 		
-		accountBtn.setDisable(!log);
+		accountBtn.setText(log ? "Accedi / Registrati" : "Esci");
 		addPListField.setDisable(log);
 		addPListBtn.setDisable(log);
 		remPListBtn.setDisable(log);
