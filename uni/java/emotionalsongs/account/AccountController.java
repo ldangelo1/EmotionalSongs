@@ -72,7 +72,7 @@ public class AccountController extends clientESController {
 	 * @return se un utente è o non è registrato
 	 */
 	private Boolean checkUtente(String tail) throws SQLException {
-		ResultSet rset = serverES.select("Utente", tail);
+		ResultSet rset = serverES.select("Utente", "*", tail);
 		assert rset != null;
 		if (rset.next()) setCF(rset.getString(1));
 		rset.close();
@@ -82,18 +82,24 @@ public class AccountController extends clientESController {
 	@FXML
 	private void inRegexEmail(KeyEvent keyEvent) {
 		TextField field = (TextField) keyEvent.getSource();
+		
+		lowCase(field, keyEvent.getCharacter());
 		whatColor(field, Regex.regexEmail(field.getText()) ? "#007160" : "red");
 	}
 	
 	@FXML
 	private void inRegexProv(KeyEvent keyEvent) {
 		TextField field = (TextField) keyEvent.getSource();
+		
+		upCase(field, keyEvent.getCharacter());
 		whatColor(field, Regex.regexProvince(field.getText()) ? "#007160" : "red");
 	}
 	
 	@FXML
 	private void inRegexUser(KeyEvent keyEvent) {
 		TextField field = (TextField) keyEvent.getSource();
+		
+		lowCase(field, keyEvent.getCharacter());
 		whatColor(field, Regex.regexUsername(field.getText()) ? "#007160" : "red");
 	}
 	
@@ -105,14 +111,24 @@ public class AccountController extends clientESController {
 	
 	@FXML
 	private void inRegexID(KeyEvent keyEvent) {
-		String key = keyEvent.getCharacter();
-		if (key.matches("[a-z]")) {
-			cfField.deletePreviousChar();
-			cfField.appendText(key.toUpperCase());
-		}
-		
 		TextField field = (TextField) keyEvent.getSource();
+		
+		upCase(field, keyEvent.getCharacter());
 		whatColor(field, Regex.regexID(field.getText()) ? "#007160" : "red");
+	}
+	
+	private void upCase(TextField field, String key) {
+		if (key.matches("[a-z]")) {
+			field.deletePreviousChar();
+			field.appendText(key.toUpperCase());
+		}
+	}
+	
+	private void lowCase(TextField field, String key) {
+		if (key.matches("[A-Z]")) {
+			field.deletePreviousChar();
+			field.appendText(key.toLowerCase());
+		}
 	}
 	
 	@Override
