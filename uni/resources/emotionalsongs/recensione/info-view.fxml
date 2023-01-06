@@ -17,8 +17,9 @@
 	<TableView fx:id="emozioneTable" onMouseEntered="#emozioneList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
 	           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
 		<columns>
+			<TableColumn fx:id="colEmozione1" maxWidth="80.0" minWidth="80.0" resizable="false" text="Utenti"/>
 			<TableColumn fx:id="colEmozione" maxWidth="80.0" minWidth="80.0" resizable="false" text="Emozione"/>
-			<TableColumn fx:id="colNote" maxWidth="398.0" minWidth="398.0" resizable="false" text="Note"/>
+			<TableColumn fx:id="colNote" maxWidth="319.0" minWidth="319.0" prefWidth="319.0" resizable="false" text="Note"/>
 			<TableColumn fx:id="colValutazione" maxWidth="80.0" minWidth="80.0" resizable="false" text="Valutazione"/>
 		</columns>
 		<columnResizePolicy>
