@@ -346,7 +346,7 @@ public class clientESController {
 		
 		ResultSet rset = serverES.select("Canzone", tail);
 		if (!rset.next())
-			serverES.generaAlert(Alert.AlertType.INFORMATION, "Nessuna canzone trovata dalla ricerca.", "Premere OK " + "per riprovare.");
+			serverES.generaAlert(Alert.AlertType.INFORMATION, "Nessuna canzone trovata dalla ricerca.", "Premere OK per riprovare.");
 		else {
 			do {
 				Canzone canzone = new Canzone();
